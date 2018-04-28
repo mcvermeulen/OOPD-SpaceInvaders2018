@@ -13,6 +13,9 @@ public class SpaceInvaders extends GameEngine {
     @Override
     public void setupGame() {
         createView(1280, 800);
+
+        Cannon kanon= new Cannon(this);
+        addGameObject(kanon, 700, 700);
     }
 
     @Override
