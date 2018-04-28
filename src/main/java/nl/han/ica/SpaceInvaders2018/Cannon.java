@@ -7,7 +7,6 @@ import static processing.core.PConstants.LEFT;
 
 public class Cannon extends AttackCapableGameObject {
     private PApplet app;
-    private int step = 10;
 
     public Cannon(PApplet app) {
         super(new Sprite("nl/han/ica/SpaceInvaders2018/sprites/Cannon.png"), 1);

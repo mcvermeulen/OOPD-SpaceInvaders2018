@@ -4,6 +4,7 @@ import nl.han.ica.OOPDProcessingEngineHAN.Engine.GameEngine;
 import nl.han.ica.OOPDProcessingEngineHAN.View.View;
 import processing.core.PApplet;
 import processing.core.PImage;
+import java.util.ArrayList;
 
 public class SpaceInvaders extends GameEngine {
     public static void main(String[] args) {
@@ -15,7 +16,11 @@ public class SpaceInvaders extends GameEngine {
         createView(1280, 800);
 
         Cannon kanon= new Cannon(this);
+        ArrayList<Alien> aliens = new ArrayList<>();
+        aliens.add(new SmallAlien(this));
         addGameObject(kanon, 700, 700);
+
+        addGameObject(aliens.get(0), 850,150);
     }
 
     @Override
