@@ -15,7 +15,7 @@ public abstract class Alien extends AttackCapableGameObject {
         nextFrame();
         float x = getX();
         // boundaries
-        if (direction == 90 && x == 970) {
+        if (direction == 90 && x == 960) {
             direction = 270;
         }
         if (direction == 270 && x == 290) {
