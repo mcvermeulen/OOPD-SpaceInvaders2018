@@ -4,13 +4,11 @@ import nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite;
 import processing.core.PApplet;
 
 public class Ruimteschip extends DestroyableGameObject {
-    private PApplet app;
     private int direction = 90;
 
-    public Ruimteschip(PApplet app) {
+    public Ruimteschip() {
         super(new Sprite("nl/han/ica/SpaceInvaders2018/sprites/Ruimteschip.png"), 1);
 
-        this.app = app;
         setCurrentFrameIndex(0);
         setDirectionSpeed(direction, 2);
     }

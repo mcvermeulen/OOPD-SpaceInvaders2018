@@ -16,12 +16,12 @@ public class SpaceInvaders extends GameEngine {
         createView(1280, 800);
 
         Cannon kanon= new Cannon(this);
-        Alien alien1 = new SmallAlien(this);
-        Alien alien2 = new MediumAlien(this);
-        Alien alien3 = new MediumAlien(this);
-        Alien alien4 = new LargeAlien(this);
-        Alien alien5 = new LargeAlien(this);
-        Ruimteschip schip = new Ruimteschip(this);
+        Alien alien1 = new SmallAlien();
+        Alien alien2 = new MediumAlien();
+        Alien alien3 = new MediumAlien();
+        Alien alien4 = new LargeAlien();
+        Alien alien5 = new LargeAlien();
+        Ruimteschip schip = new Ruimteschip();
 
         addGameObject(kanon, 700, 700);
         addGameObject(schip, 850,100);
