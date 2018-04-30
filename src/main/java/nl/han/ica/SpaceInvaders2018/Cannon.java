@@ -3,15 +3,16 @@ package nl.han.ica.SpaceInvaders2018;
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite;
 
 public class Cannon extends AttackCapableGameObject {
+    SpaceInvaders world;
 
-    public Cannon() {
-        super(new Sprite("nl/han/ica/SpaceInvaders2018/sprites/Cannon.png"), 1);
-
-        setCurrentFrameIndex(0);
+    public Cannon(SpaceInvaders world, float x, float y) {
+        super(new Sprite("nl/han/ica/SpaceInvaders2018/sprites/Cannon.png"), 1, x, y, 47, 30);
+        this.world = world;
     }
 
     @Override
     public void update() {
+        cleanUpProjectiles();
         if (getX() <= 290) {
             setxSpeed(0);
             setX(290);
@@ -37,6 +38,9 @@ public class Cannon extends AttackCapableGameObject {
 
         if (key == ' ') {
             System.out.println("Spatie!");
+            if (getTotalFriendlyProjectiles() == 0) {
+                generateLaser(world, true);
+            }
         }
     }
 

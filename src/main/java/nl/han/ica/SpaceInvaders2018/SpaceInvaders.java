@@ -9,30 +9,26 @@ import processing.core.PApplet;
 public class SpaceInvaders extends GameEngine {
 	private static final long serialVersionUID = 2790543985929323791L;
 
-	public static void main(String[] args) {
+    public static void main(String[] args) {
         PApplet.main(new String[]{"nl.han.ica.SpaceInvaders2018.SpaceInvaders"});
     }
 
     @Override
     public void setupGame() {
-        createView(1280, 800);
-        createDashboard(1280, 800);
+        int gameWidth = 1280;
+        int gameHeight = 800;
 
-        Cannon kanon= new Cannon();
-        Alien alien1 = new SmallAlien();
-        Alien alien2 = new MediumAlien();
-        Alien alien3 = new MediumAlien();
-        Alien alien4 = new LargeAlien();
-        Alien alien5 = new LargeAlien();
-        Ruimteschip schip = new Ruimteschip();
+        createView(gameWidth, gameHeight);
+        createDashboard(gameWidth, gameHeight);
 
-        addGameObject(kanon, 700, 700);
-        addGameObject(schip, 850,100);
-        addGameObject(alien1, 850,170);
-        addGameObject(alien2, 850,200);
-        addGameObject(alien3, 850,230);
-        addGameObject(alien4, 850,260);
-        addGameObject(alien5, 850,290);
+        Cannon kanon= new Cannon(this, 700, 700);
+        Ruimteschip schip = new Ruimteschip(850, 100);
+        AlienContainer alienContainer = new AlienContainer(this, 400, 170);
+        generateAliens(alienContainer,11, 22, 22);
+
+        addGameObject(kanon);
+        addGameObject(schip);
+        addGameObject(alienContainer);
     }
 
     @Override
@@ -52,5 +48,40 @@ public class SpaceInvaders extends GameEngine {
 
         size(viewWidth, viewHeight);
         setView(view);
+    }
+
+    private void generateAliens(AlienContainer aliens, int nSmallAliens, int nMediumAliens, int nLargeAliens) {
+        int columns = 11;
+        int row = 0;
+        int margeX = 35;
+        int margeY = 35;
+        int offset = 0;
+        for (int j = 0; j < nSmallAliens ; j++) {
+            Alien alien = new SmallAlien(aliens.getX()+offset*margeX, aliens.getY()+row*margeY);
+            aliens.add(alien);
+            offset++;
+            if (j > 0 && (j+1) % columns == 0) {
+                row++;
+                offset = 0;
+            }
+        }
+        for (int j = 0; j < nMediumAliens ; j++) {
+            Alien alien = new MediumAlien(aliens.getX()+offset*margeX, aliens.getY()+row*margeY);
+            aliens.add(alien);
+            offset++;
+            if (j > 0 && (j+1) % columns == 0) {
+                row++;
+                offset = 0;
+            }
+        }
+        for (int j = 0; j < nLargeAliens ; j++) {
+            Alien alien = new LargeAlien(aliens.getX()+offset*margeX, aliens.getY()+row*margeY);
+            aliens.add(alien);
+            offset++;
+            if (j > 0 && (j+1) % columns == 0) {
+                row++;
+                offset = 0;
+            }
+        }
     }
 }
