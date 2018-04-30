@@ -6,6 +6,7 @@ import nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite;
 import nl.han.ica.OOPDProcessingEngineHAN.Sound.Sound;
 import nl.han.ica.OOPDProcessingEngineHAN.View.View;
 import processing.core.PApplet;
+import processing.sound.SoundFile;
 
 public class SpaceInvaders extends GameEngine {
 	private static final long serialVersionUID = 2790543985929323791L;
@@ -56,9 +57,9 @@ public class SpaceInvaders extends GameEngine {
     }
     
     private void initializeSound() {
-        shootSound = new Sound(this, "src/main/java/nl/han/ica/SpaceInvaders2018/media/shoot.wav");
-        UFOShot = new Sound(this, "src/main/java/nl/han/ica/SpaceInvaders2018/media/ufo_lowpitch.wav");
-        UFOTravel = new Sound(this, "src/main/java/nl/han/ica/SpaceInvaders2018/media/ufo_highpitch.wav");
+        shootSound = new Sound(this, "nl/han/ica/SpaceInvaders2018/media/shoot.mp3");
+        UFOShot = new Sound(this, "nl/han/ica/SpaceInvaders2018/media/ufo_lowpitch.mp3");
+        UFOTravel = new Sound(this, "nl/han/ica/SpaceInvaders2018/media/ufo_highpitch.mp3");
     }
 
     //TODO dit kan beter

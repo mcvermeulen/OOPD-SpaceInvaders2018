@@ -69,7 +69,7 @@ public class Ruimteschip extends DestroyableGameObject implements ICollidableWit
             		AttackCapableGameObject k = p.getSource();
             		k.removeProjectile(p);
             		world.deleteGameObject(g);
-            		UFOShot.rewind();
+            		UFOShot.cue(140);
             		UFOShot.play();
             		setVisible(false); //TODO Explosie-animatie, puntenberekening (hoeveel was de UFO waard), puntenoptellen bij totaalscore, etc.
             	}

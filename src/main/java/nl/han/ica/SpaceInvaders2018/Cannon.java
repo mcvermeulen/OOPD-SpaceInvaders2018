@@ -40,7 +40,7 @@ public class Cannon extends AttackCapableGameObject {
         if (key == ' ') {
             System.out.println("Spatie!");
             if (getTotalFriendlyProjectiles() == 0) {
-            	shootSound.rewind();
+                shootSound.cue(137);
             	shootSound.play();
                 generateLaser(world, true);
             }
