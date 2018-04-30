@@ -17,10 +17,10 @@ public class Ruimteschip extends DestroyableGameObject {
         nextFrame();
         float x = getX();
         // boundaries
-        if (direction == 90 && x == 940) {
+        if (direction == 90 && x == 1140) {
             direction = 270;
         }
-        if (direction == 270 && x == 290) {
+        if (direction == 270 && x == 100) {
             direction = 90;
         }
         setDirectionSpeed(direction, 2);

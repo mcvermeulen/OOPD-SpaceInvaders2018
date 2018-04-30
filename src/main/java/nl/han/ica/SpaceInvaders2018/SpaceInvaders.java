@@ -1,14 +1,12 @@
 package nl.han.ica.SpaceInvaders2018;
 
+import nl.han.ica.OOPDProcessingEngineHAN.Dashboard.Dashboard;
 import nl.han.ica.OOPDProcessingEngineHAN.Engine.GameEngine;
+import nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite;
 import nl.han.ica.OOPDProcessingEngineHAN.View.View;
 import processing.core.PApplet;
-import processing.core.PImage;
 
 public class SpaceInvaders extends GameEngine {
-    /**
-	 * 
-	 */
 	private static final long serialVersionUID = 2790543985929323791L;
 
 	public static void main(String[] args) {
@@ -18,6 +16,7 @@ public class SpaceInvaders extends GameEngine {
     @Override
     public void setupGame() {
         createView(1280, 800);
+        createDashboard(1280, 800);
 
         Cannon kanon= new Cannon();
         Alien alien1 = new SmallAlien();
@@ -41,10 +40,15 @@ public class SpaceInvaders extends GameEngine {
 
     }
 
+    private void createDashboard(int dashboardWidth,int dashboardHeight) {
+        Dashboard dashboard = new Dashboard(0,0, dashboardWidth, dashboardHeight);
+        Sprite backgroundImg = new Sprite("nl/han/ica/SpaceInvaders2018/media/background-1280x800.png");
+        dashboard.setBackgroundImage(backgroundImg);
+        addDashboard(dashboard);
+    }
     private void createView(int viewWidth, int viewHeight) {
         View view = new View(viewWidth, viewHeight);
-        PImage backgroundImg = loadImage("nl/han/ica/SpaceInvaders2018/media/background-1280x800-2.jpg");
-        view.setBackground(backgroundImg);
+        view.setBackground(0,0,0);
 
         size(viewWidth, viewHeight);
         setView(view);
