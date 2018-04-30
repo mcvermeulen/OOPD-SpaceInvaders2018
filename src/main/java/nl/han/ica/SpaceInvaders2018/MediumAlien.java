@@ -1,7 +1,6 @@
 package nl.han.ica.SpaceInvaders2018;
 
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite;
-import processing.core.PApplet;
 
 public class MediumAlien extends Alien {
 

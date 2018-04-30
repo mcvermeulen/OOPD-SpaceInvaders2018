@@ -1,18 +1,13 @@
 package nl.han.ica.SpaceInvaders2018;
 
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite;
-import processing.core.PApplet;
-
-import static processing.core.PConstants.LEFT;
 
 public class Cannon extends AttackCapableGameObject {
-    private PApplet app;
 
-    public Cannon(PApplet app) {
+    public Cannon() {
         super(new Sprite("nl/han/ica/SpaceInvaders2018/sprites/Cannon.png"), 1);
 
         setCurrentFrameIndex(0);
-        this.app = app;
     }
 
     @Override

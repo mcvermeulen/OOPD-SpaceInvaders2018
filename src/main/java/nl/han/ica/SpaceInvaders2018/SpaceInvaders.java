@@ -6,7 +6,12 @@ import processing.core.PApplet;
 import processing.core.PImage;
 
 public class SpaceInvaders extends GameEngine {
-    public static void main(String[] args) {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 2790543985929323791L;
+
+	public static void main(String[] args) {
         PApplet.main(new String[]{"nl.han.ica.SpaceInvaders2018.SpaceInvaders"});
     }
 
@@ -14,7 +19,7 @@ public class SpaceInvaders extends GameEngine {
     public void setupGame() {
         createView(1280, 800);
 
-        Cannon kanon= new Cannon(this);
+        Cannon kanon= new Cannon();
         Alien alien1 = new SmallAlien();
         Alien alien2 = new MediumAlien();
         Alien alien3 = new MediumAlien();
