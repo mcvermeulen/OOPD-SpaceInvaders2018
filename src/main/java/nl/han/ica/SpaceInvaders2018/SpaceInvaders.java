@@ -50,6 +50,7 @@ public class SpaceInvaders extends GameEngine {
         setView(view);
     }
 
+    //TODO dit kan beter
     private void generateAliens(AlienContainer aliens, int nSmallAliens, int nMediumAliens, int nLargeAliens) {
         int columns = 11;
         int row = 0;
