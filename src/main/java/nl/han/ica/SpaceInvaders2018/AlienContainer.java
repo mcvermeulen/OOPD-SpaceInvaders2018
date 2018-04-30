@@ -11,7 +11,7 @@ public class AlienContainer extends Alien {
     private ArrayList<Alien> aliens;
 
     public AlienContainer(SpaceInvaders world, float x, float y) {
-        super(new Sprite("nl/han/ica/SpaceInvaders2018/sprites/MediumAlien.png"), 1, x, y, 0, 0);
+        super(new Sprite("nl/han/ica/SpaceInvaders2018/sprites/MediumAlien.png"), 1, x, y, 0, 0, world);
         setVisible(false);
         this.world = world;
         aliens = new ArrayList<>();

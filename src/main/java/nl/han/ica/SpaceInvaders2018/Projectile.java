@@ -6,10 +6,12 @@ public abstract class Projectile extends DestroyableGameObject {
 	
 	protected boolean friendly;
 	private boolean outOfBounds = false;
+	private AttackCapableGameObject source;
 	
-	public Projectile (Sprite sprite, int totalFrames, int sWidth, int sHeight, boolean friendly) {
-		super(sprite, totalFrames, 0, 0, sWidth, sHeight);
+	public Projectile (Sprite sprite, int totalFrames, int sWidth, int sHeight, boolean friendly, SpaceInvaders world, AttackCapableGameObject source) {
+		super(sprite, totalFrames, 0, 0, sWidth, sHeight, world);
 		this.friendly = friendly;
+		this.source = source;
 	}
 	
 	@Override
@@ -29,5 +31,13 @@ public abstract class Projectile extends DestroyableGameObject {
 	public boolean getOutOfBounds() {
 		return outOfBounds;
 	}
+	
+	public boolean getFriendly() {
+		return friendly;
+	}
+	
+    public AttackCapableGameObject getSource() {
+    	return source;
+    }
 
 }

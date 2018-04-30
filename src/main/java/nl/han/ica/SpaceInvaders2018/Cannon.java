@@ -1,13 +1,14 @@
 package nl.han.ica.SpaceInvaders2018;
 
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite;
+import nl.han.ica.OOPDProcessingEngineHAN.Sound.Sound;
 
 public class Cannon extends AttackCapableGameObject {
-    SpaceInvaders world;
+    private Sound shootSound;
 
-    public Cannon(SpaceInvaders world, float x, float y) {
-        super(new Sprite("nl/han/ica/SpaceInvaders2018/sprites/Cannon.png"), 1, x, y, 47, 30);
-        this.world = world;
+    public Cannon(SpaceInvaders world, float x, float y, Sound shoot) {
+        super(new Sprite("nl/han/ica/SpaceInvaders2018/sprites/Cannon.png"), 1, x, y, 47, 30, world);
+        this.shootSound = shoot;
     }
 
     @Override
@@ -39,6 +40,8 @@ public class Cannon extends AttackCapableGameObject {
         if (key == ' ') {
             System.out.println("Spatie!");
             if (getTotalFriendlyProjectiles() == 0) {
+            	shootSound.rewind();
+            	shootSound.play();
                 generateLaser(world, true);
             }
         }

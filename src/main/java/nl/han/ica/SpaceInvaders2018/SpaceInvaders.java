@@ -3,11 +3,15 @@ package nl.han.ica.SpaceInvaders2018;
 import nl.han.ica.OOPDProcessingEngineHAN.Dashboard.Dashboard;
 import nl.han.ica.OOPDProcessingEngineHAN.Engine.GameEngine;
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite;
+import nl.han.ica.OOPDProcessingEngineHAN.Sound.Sound;
 import nl.han.ica.OOPDProcessingEngineHAN.View.View;
 import processing.core.PApplet;
 
 public class SpaceInvaders extends GameEngine {
 	private static final long serialVersionUID = 2790543985929323791L;
+	private Sound shootSound;
+	private Sound UFOShot;
+	private Sound UFOTravel;
 
     public static void main(String[] args) {
         PApplet.main(new String[]{"nl.han.ica.SpaceInvaders2018.SpaceInvaders"});
@@ -17,12 +21,13 @@ public class SpaceInvaders extends GameEngine {
     public void setupGame() {
         int gameWidth = 1280;
         int gameHeight = 800;
+        initializeSound();
 
         createView(gameWidth, gameHeight);
         createDashboard(gameWidth, gameHeight);
 
-        Cannon kanon= new Cannon(this, 700, 700);
-        Ruimteschip schip = new Ruimteschip(850, 100);
+        Cannon kanon= new Cannon(this, 700, 700, shootSound);
+        Ruimteschip schip = new Ruimteschip(this, 850, 100, UFOShot, UFOTravel);
         AlienContainer alienContainer = new AlienContainer(this, 400, 170);
         generateAliens(alienContainer,11, 22, 22);
 
@@ -49,6 +54,12 @@ public class SpaceInvaders extends GameEngine {
         size(viewWidth, viewHeight);
         setView(view);
     }
+    
+    private void initializeSound() {
+        shootSound = new Sound(this, "src/main/java/nl/han/ica/SpaceInvaders2018/media/shoot.wav");
+        UFOShot = new Sound(this, "src/main/java/nl/han/ica/SpaceInvaders2018/media/ufo_lowpitch.wav");
+        UFOTravel = new Sound(this, "src/main/java/nl/han/ica/SpaceInvaders2018/media/ufo_highpitch.wav");
+    }
 
     //TODO dit kan beter
     private void generateAliens(AlienContainer aliens, int nSmallAliens, int nMediumAliens, int nLargeAliens) {
@@ -58,7 +69,7 @@ public class SpaceInvaders extends GameEngine {
         int margeY = 35;
         int offset = 0;
         for (int j = 0; j < nSmallAliens ; j++) {
-            Alien alien = new SmallAlien(aliens.getX()+offset*margeX, aliens.getY()+row*margeY);
+            Alien alien = new SmallAlien(this, aliens.getX()+offset*margeX, aliens.getY()+row*margeY);
             aliens.add(alien);
             offset++;
             if (j > 0 && (j+1) % columns == 0) {
@@ -67,7 +78,7 @@ public class SpaceInvaders extends GameEngine {
             }
         }
         for (int j = 0; j < nMediumAliens ; j++) {
-            Alien alien = new MediumAlien(aliens.getX()+offset*margeX, aliens.getY()+row*margeY);
+            Alien alien = new MediumAlien(this, aliens.getX()+offset*margeX, aliens.getY()+row*margeY);
             aliens.add(alien);
             offset++;
             if (j > 0 && (j+1) % columns == 0) {
@@ -76,7 +87,7 @@ public class SpaceInvaders extends GameEngine {
             }
         }
         for (int j = 0; j < nLargeAliens ; j++) {
-            Alien alien = new LargeAlien(aliens.getX()+offset*margeX, aliens.getY()+row*margeY);
+            Alien alien = new LargeAlien(this, aliens.getX()+offset*margeX, aliens.getY()+row*margeY);
             aliens.add(alien);
             offset++;
             if (j > 0 && (j+1) % columns == 0) {
