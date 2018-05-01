@@ -26,6 +26,17 @@ public abstract class Projectile extends DestroyableGameObject {
 				outOfBounds = true;
 			}
 		}
+		else if (!friendly) {
+			if (getY() < 1200) { // TODO, hier moeten we betere oplossingen voor bedenken, ook voor de boundaries van de aliens en het kanon
+				//setDirection(180);
+				setySpeed(1);
+				setY(getY() + getySpeed());
+			}
+			else {
+				//System.out.println("Delete mij");
+				outOfBounds = true;
+			}
+		}
 	}
 	
 	public boolean getOutOfBounds() {
