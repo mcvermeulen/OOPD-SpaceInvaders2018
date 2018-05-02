@@ -16,9 +16,9 @@ public class Score extends TextObject {
 
 	@Override
 	public void draw(PGraphics g) {
-		g.textAlign(g.LEFT,g.TOP);
+		g.textAlign(LEFT,TOP);
         g.textSize(textSize);
-        g.text(text, getX(),getY());
+        g.text(text, getX(), getY());
 	}
 
 }

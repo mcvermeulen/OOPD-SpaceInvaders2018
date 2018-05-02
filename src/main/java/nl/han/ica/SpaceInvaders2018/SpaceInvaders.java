@@ -6,7 +6,6 @@ import nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite;
 import nl.han.ica.OOPDProcessingEngineHAN.Sound.Sound;
 import nl.han.ica.OOPDProcessingEngineHAN.View.View;
 import processing.core.PApplet;
-import processing.sound.SoundFile;
 
 public class SpaceInvaders extends GameEngine {
 	private static final long serialVersionUID = 2790543985929323791L;
@@ -14,9 +13,12 @@ public class SpaceInvaders extends GameEngine {
 	private Sound UFOShot;
 	private Sound UFOTravel;
 	private Sound alienKilled;
+	private Sound explosion;
 	private TextObject dashboardText1;
 	private TextObject dashboardHeaderText1;
+	private TextObject dashboardPlayerLives1;
 	private int scorePlayer1;
+	private int livesPlayer1;
 
     public static void main(String[] args) {
         PApplet.main(new String[]{"nl.han.ica.SpaceInvaders2018.SpaceInvaders"});
@@ -27,16 +29,19 @@ public class SpaceInvaders extends GameEngine {
         int gameWidth = 1280;
         int gameHeight = 800;
         scorePlayer1 = 0;
+        livesPlayer1 = 3;
         initializeSound();
 
         createView(gameWidth, gameHeight);
         createDashboard(gameWidth, gameHeight);
 
-        Cannon kanon= new Cannon(this, 700, 700, shootSound);
+        Ground grond = new Ground(715, 290, 990);
+        Cannon kanon= new Cannon(this, 700, 680, shootSound, explosion);
         Ruimteschip schip = new Ruimteschip(this, 850, 130, UFOShot, UFOTravel);
         AlienContainer alienContainer = new AlienContainer(this, 400, 190, alienKilled);
         generateAliens(alienContainer, 11, 22, 22);
 
+        addGameObject(grond);
         addGameObject(kanon);
         addGameObject(schip);
         addGameObject(alienContainer);
@@ -56,10 +61,15 @@ public class SpaceInvaders extends GameEngine {
         dashboardHeaderText1.setY(50);
         dashboard.addGameObject(dashboardHeaderText1);
         
-        dashboardText1 = new Score(String.format("%05d", scorePlayer1), 30);
+        dashboardText1 = new Score(String.format("%06d", scorePlayer1), 30);
         dashboardText1.setX(290);
         dashboardText1.setY(90);
         dashboard.addGameObject(dashboardText1);
+        
+        dashboardPlayerLives1 = new PlayerLives(String.format("%01d", livesPlayer1), 25);
+        dashboardPlayerLives1.setX(300);
+        dashboardPlayerLives1.setY(715);
+        dashboard.addGameObject(dashboardPlayerLives1);
         
         addDashboard(dashboard);
     }
@@ -76,6 +86,7 @@ public class SpaceInvaders extends GameEngine {
         UFOShot = new Sound(this, "nl/han/ica/SpaceInvaders2018/media/ufo_lowpitch.mp3");
         UFOTravel = new Sound(this, "nl/han/ica/SpaceInvaders2018/media/ufo_highpitch.mp3");
         alienKilled = new Sound(this, "nl/han/ica/SpaceInvaders2018/media/invaderkilled.mp3");
+        explosion = new Sound(this, "nl/han/ica/SpaceInvaders2018/media/explosion.mp3");
     }
 
     //TODO dit kan beter
@@ -119,7 +130,17 @@ public class SpaceInvaders extends GameEngine {
         refreshDasboardText();
     }
     
+    public void decreaseLives() {
+    	livesPlayer1--;
+    	refreshDasboardText();
+    }
+    
+    public int getLives() {
+    	return livesPlayer1;
+    }
+    
     private void refreshDasboardText() {
-    	dashboardText1.setText(String.format("%05d", scorePlayer1));
+    	dashboardText1.setText(String.format("%06d", scorePlayer1));
+    	dashboardPlayerLives1.setText(String.format("%01d", livesPlayer1));
     }
 }

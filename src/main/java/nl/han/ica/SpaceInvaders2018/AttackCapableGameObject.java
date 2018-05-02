@@ -5,7 +5,7 @@ import nl.han.ica.SpaceInvaders2018.DestroyableGameObject;
 import java.util.ArrayList;
 
 public abstract class AttackCapableGameObject extends DestroyableGameObject {
-    private ArrayList<Projectile> projectiles = new ArrayList(); // NB. alleen het attackCapableObect zelf kan hier dus bij. Voor de aliens moet de container hiervan gebruik maken, anders gaat het mis
+    private ArrayList<Projectile> projectiles = new ArrayList<>(); // NB. alleen het attackCapableObect zelf kan hier dus bij. Voor de aliens moet de container hiervan gebruik maken, anders gaat het mis
     
     public AttackCapableGameObject(Sprite sprite, int totalFrames, float x, float y, int sWidth, int sHeight, SpaceInvaders world) {
         super(sprite, totalFrames, x, y, sWidth, sHeight, world);

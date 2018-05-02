@@ -33,10 +33,10 @@ public abstract class Alien extends AttackCapableGameObject implements ICollidab
     public void gameObjectCollisionOccurred(List<GameObject> collidedGameObjects) {
         for (GameObject g:collidedGameObjects) {
             if (g instanceof Projectile) {
-            	if(((Projectile) g).getFriendly()) {
+            	Projectile p = (Projectile) g;
+            	if(p.getFriendly()) {
             		alienKilled.cue(140);
             		alienKilled.play();
-            		Projectile p = (Projectile) g;
             		AttackCapableGameObject k = p.getSource();
             		k.removeProjectile(p);
             		world.deleteGameObject(g);
@@ -52,6 +52,10 @@ public abstract class Alien extends AttackCapableGameObject implements ICollidab
     
     public void fireLaser() {
     	generateLaser(world, false);
+    }
+    
+    public void dropToRowBelow() {
+    	setY(getY() + getHeight());
     }
     
 }
