@@ -36,12 +36,14 @@ public class SpaceInvaders extends GameEngine {
         createDashboard(gameWidth, gameHeight);
 
         Ground grond = new Ground(715, 290, 990);
+        Bunker bunker1 = new Bunker(350, 600, 71, 48, this);
         Cannon kanon= new Cannon(this, 700, 680, shootSound, explosion);
         Ruimteschip schip = new Ruimteschip(this, 850, 130, UFOShot, UFOTravel);
         AlienContainer alienContainer = new AlienContainer(this, 400, 190, alienKilled);
         generateAliens(alienContainer, 11, 22, 22);
 
         addGameObject(grond);
+        addGameObject(bunker1);
         addGameObject(kanon);
         addGameObject(schip);
         addGameObject(alienContainer);
@@ -66,7 +68,7 @@ public class SpaceInvaders extends GameEngine {
         dashboardText1.setY(90);
         dashboard.addGameObject(dashboardText1);
         
-        dashboardPlayerLives1 = new PlayerLives(String.format("%01d", livesPlayer1), 25);
+        dashboardPlayerLives1 = new PlayerLives(String.format("%01d", livesPlayer1), 25, this);
         dashboardPlayerLives1.setX(300);
         dashboardPlayerLives1.setY(715);
         dashboard.addGameObject(dashboardPlayerLives1);
@@ -135,12 +137,22 @@ public class SpaceInvaders extends GameEngine {
     	refreshDasboardText();
     }
     
+    public void increaseLives() {
+    	livesPlayer1++;
+    	refreshDasboardText();
+    }
+    
     public int getLives() {
     	return livesPlayer1;
+    }
+    
+    public int getScore() {
+    	return scorePlayer1;
     }
     
     private void refreshDasboardText() {
     	dashboardText1.setText(String.format("%06d", scorePlayer1));
     	dashboardPlayerLives1.setText(String.format("%01d", livesPlayer1));
     }
+    
 }

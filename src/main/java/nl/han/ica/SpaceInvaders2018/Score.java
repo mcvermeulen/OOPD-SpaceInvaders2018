@@ -3,7 +3,7 @@ package nl.han.ica.SpaceInvaders2018;
 import processing.core.PGraphics;
 
 public class Score extends TextObject {
-	
+		
 	Score(String text, int textSize) {
 		super(text, textSize);
 	}
@@ -20,5 +20,5 @@ public class Score extends TextObject {
         g.textSize(textSize);
         g.text(text, getX(), getY());
 	}
-
+	
 }

@@ -15,5 +15,5 @@ public abstract class DestroyableGameObject extends AnimatedSpriteObject {
         setCurrentFrameIndex(0);
         this.world = world;
     }
-
+     
 }
