@@ -41,6 +41,7 @@ public abstract class Alien extends AttackCapableGameObject implements ICollidab
             		AttackCapableGameObject k = p.getSource();
             		k.removeProjectile(p);
             		world.deleteGameObject(g);
+                    explode();
 	            	hit = true;
             	}
             }
