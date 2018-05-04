@@ -26,6 +26,7 @@ public class SpaceInvaders extends GameEngine {
 
     @Override
     public void setupGame() {
+        pause();
         int gameWidth = 1280;
         int gameHeight = 800;
         scorePlayer1 = 0;
@@ -47,6 +48,7 @@ public class SpaceInvaders extends GameEngine {
         addGameObject(kanon);
         addGameObject(schip);
         addGameObject(alienContainer);
+        resume();
     }
 
     @Override
