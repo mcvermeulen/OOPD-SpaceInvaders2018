@@ -1,7 +1,6 @@
 package nl.han.ica.SpaceInvaders2018;
 
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite;
-import nl.han.ica.SpaceInvaders2018.DestroyableGameObject;
 import java.util.ArrayList;
 
 public abstract class AttackCapableGameObject extends DestroyableGameObject {
@@ -12,7 +11,7 @@ public abstract class AttackCapableGameObject extends DestroyableGameObject {
     }
 
     // TODO dit zou mooier zijn met een abstracte methode, zodat we met een generate() methode afkunnen.
-    public void generateLaser(SpaceInvaders world, boolean friendly) {
+    public void generateLaser(boolean friendly) {
         Laser laser = new Laser (world, friendly, this);
         float y;
         if (friendly) {
@@ -25,12 +24,16 @@ public abstract class AttackCapableGameObject extends DestroyableGameObject {
         world.addGameObject(laser, getX() + (getWidth()/2), y);
     }
 
-    public void generatePlasma(boolean friendly) {
-        //TODO
+    public void generatePlasma() {
+        Plasma plasma = new Plasma(world,this);
+        projectiles.add(plasma);
+        world.addGameObject(plasma, getX() + (getWidth()/2), y);
     }
 
-    public void generateProton(boolean friendly) {
-        //TODO
+    public void generateProton() {
+        Proton proton = new Proton(world,this);
+        projectiles.add(proton);
+        world.addGameObject(proton, getX() + (getWidth()/2), y);
     }
 
     public int getTotalProjectiles() {

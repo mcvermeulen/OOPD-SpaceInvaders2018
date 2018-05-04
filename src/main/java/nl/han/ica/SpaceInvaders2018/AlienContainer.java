@@ -78,7 +78,7 @@ public class AlienContainer extends Alien implements ICollidableWithGameObjects 
 	    		if (fire <= 1) {
 	        		int alien = rand.nextInt(aliens.size());
 	        		Alien attackingAlien = aliens.get(alien);
-	    			attackingAlien.fireLaser();
+	    			attackingAlien.fire();
 	    		}
 	    	}
     	}
@@ -111,7 +111,6 @@ public class AlienContainer extends Alien implements ICollidableWithGameObjects 
     private void dropAsGroup() {
     	for (int i = aliens.size()-1; i>=0; i--) {
     		Alien a = aliens.get(i);
-    		//System.out.println(a.getY() + getHeight());
     		if (a.getY() + getHeight() >= 672) {
     			for (Alien alien: aliens) {
     				alien.dropToRowBelow();

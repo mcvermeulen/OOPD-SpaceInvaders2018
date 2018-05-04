@@ -1,6 +1,7 @@
 package nl.han.ica.SpaceInvaders2018;
 
 import java.util.List;
+import java.util.Random;
 
 import nl.han.ica.OOPDProcessingEngineHAN.Collision.ICollidableWithGameObjects;
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.GameObject;
@@ -49,9 +50,17 @@ public abstract class Alien extends AttackCapableGameObject implements ICollidab
     public boolean getHit() {
     	return hit;
     }
-    
-    public void fireLaser() {
-    	generateLaser(world, false);
+
+    public void fire() {
+        Random rand = new Random();
+        int type = rand.nextInt(100);
+        if (type > 50 && type < 80) {
+            generatePlasma();
+        } else if (type >= 80) {
+            generateProton();
+        } else {
+            generateLaser(false);
+        }
     }
     
     public void dropToRowBelow() {

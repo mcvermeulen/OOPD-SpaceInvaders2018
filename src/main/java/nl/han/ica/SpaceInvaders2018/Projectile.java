@@ -20,6 +20,7 @@ public abstract class Projectile extends DestroyableGameObject implements IColli
 	
 	@Override
 	public void update() {
+		nextFrame();
 		if (friendly) {
 			if (getY() + getHeight() > 50) { // TODO, hier moeten we betere oplossingen voor bedenken, ook voor de boundaries van de aliens en het kanon
 				//setDirection(180);

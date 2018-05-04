@@ -51,7 +51,7 @@ public class Cannon extends AttackCapableGameObject implements ICollidableWithGa
             if (getTotalFriendlyProjectiles() == 0) {
                 shootSound.cue(137);
             	shootSound.play();
-                generateLaser(world, true);
+                generateLaser(true);
             }
         }
     }
