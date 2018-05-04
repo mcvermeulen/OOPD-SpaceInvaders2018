@@ -24,20 +24,6 @@ public class AlienContainer extends Alien implements ICollidableWithGameObjects 
         aliens = new ArrayList<>();
         this.allHostileProjectiles = 0;
         this.speed = 0.7f;
-
-//        setDirectionSpeed(direction, 2); // waarom is deze nodig? Overschrijf je dit niet verderop?
-    }
-    
-    public void setBaseGroupSpeed(float speed) {
-    	this.speed = speed;
-    }
-    
-    public float getBaseGroupSpeed() {
-    	return speed;
-    }
-    
-    public ArrayList<Alien> getAliens() {
-        return aliens;
     }
 
     public void add(Alien alien) {

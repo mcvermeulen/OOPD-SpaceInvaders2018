@@ -3,6 +3,7 @@ package nl.han.ica.SpaceInvaders2018;
 import nl.han.ica.OOPDProcessingEngineHAN.Dashboard.Dashboard;
 import nl.han.ica.OOPDProcessingEngineHAN.Engine.GameEngine;
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite;
+import nl.han.ica.OOPDProcessingEngineHAN.Objects.TextObject;
 import nl.han.ica.OOPDProcessingEngineHAN.Sound.Sound;
 import nl.han.ica.OOPDProcessingEngineHAN.View.View;
 import processing.core.PApplet;
@@ -58,19 +59,22 @@ public class SpaceInvaders extends GameEngine {
         Dashboard dashboard = new Dashboard(0,0, dashboardWidth, dashboardHeight);
         Sprite backgroundImg = new Sprite("nl/han/ica/SpaceInvaders2018/media/background-1280x800.png");
         dashboard.setBackgroundImage(backgroundImg);
-        dashboardHeaderText1 = new Score("SCORE 1", 30);
-        dashboardHeaderText1.setX(290);
-        dashboardHeaderText1.setY(50);
+        dashboardHeaderText1 = new TextObject("SCORE 1", 30);
+        dashboardHeaderText1.setForeColor(255, 255, 255,255);
+        dashboardHeaderText1.setX(295);
+        dashboardHeaderText1.setY(80);
         dashboard.addGameObject(dashboardHeaderText1);
         
-        dashboardText1 = new Score(String.format("%06d", scorePlayer1), 30);
-        dashboardText1.setX(290);
-        dashboardText1.setY(90);
+        dashboardText1 = new TextObject(String.format("%06d", scorePlayer1), 30);
+        dashboardText1.setForeColor(255, 255, 255,255);
+        dashboardText1.setX(295);
+        dashboardText1.setY(115);
         dashboard.addGameObject(dashboardText1);
         
         dashboardPlayerLives1 = new PlayerLives(String.format("%01d", livesPlayer1), 25, this);
-        dashboardPlayerLives1.setX(300);
-        dashboardPlayerLives1.setY(715);
+        dashboardPlayerLives1.setForeColor(255, 255, 255,255);
+        dashboardPlayerLives1.setX(295);
+        dashboardPlayerLives1.setY(717);
         dashboard.addGameObject(dashboardPlayerLives1);
         
         addDashboard(dashboard);

@@ -1,5 +1,6 @@
 package nl.han.ica.SpaceInvaders2018;
 
+import nl.han.ica.OOPDProcessingEngineHAN.Objects.TextObject;
 import processing.core.PGraphics;
 import processing.core.PImage;
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite;
@@ -27,20 +28,17 @@ public class PlayerLives extends TextObject {
 	@Override
 	public void draw(PGraphics g) {
 		rewardLives(world.getScore());
-		g.textAlign(LEFT,TOP);
-        g.textSize(textSize);
-        g.text(text, getX(), getY());
 		drawReserveCannons(g);
 	}
 	
 	private void drawReserveCannons(PGraphics g) {
-		int x = Integer.parseInt(text);
+		int x = Integer.parseInt(getText());
 		if (x > 0) {
 			PImage cannon = reserveCannon.getPImage();
 			int width = reserveCannon.getWidth();
 			int height = reserveCannon.getHeight();
-			for (int i = 0; i < x - 1; i++) {
-				g.image(cannon, getX() + width + (width*i), getY() + height/2);
+			for (int i = 0; i < x; i++) {
+				g.image(cannon, getX() + (width*i), getY() + height/2);
 
 			}
 		}
