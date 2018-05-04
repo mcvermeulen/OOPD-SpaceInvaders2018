@@ -26,7 +26,6 @@ public class SpaceInvaders extends GameEngine {
 
     @Override
     public void setupGame() {
-        pause();
         int gameWidth = 1280;
         int gameHeight = 800;
         scorePlayer1 = 0;
@@ -41,14 +40,13 @@ public class SpaceInvaders extends GameEngine {
         Cannon kanon= new Cannon(this, 700, 680, shootSound, explosion);
         Ruimteschip schip = new Ruimteschip(this, 850, 130, UFOShot, UFOTravel);
         AlienContainer alienContainer = new AlienContainer(this, 400, 190, alienKilled);
-        generateAliens(alienContainer, 11, 22, 22);
+        alienContainer.generateAliens(this, 11, 22, 22);
 
         addGameObject(grond);
         addGameObject(bunker1);
         addGameObject(kanon);
         addGameObject(schip);
         addGameObject(alienContainer);
-        resume();
     }
 
     @Override
@@ -91,42 +89,6 @@ public class SpaceInvaders extends GameEngine {
         UFOTravel = new Sound(this, "nl/han/ica/SpaceInvaders2018/media/ufo_highpitch.mp3");
         alienKilled = new Sound(this, "nl/han/ica/SpaceInvaders2018/media/invaderkilled.mp3");
         explosion = new Sound(this, "nl/han/ica/SpaceInvaders2018/media/explosion.mp3");
-    }
-
-    //TODO dit kan beter
-    private void generateAliens(AlienContainer aliens, int nSmallAliens, int nMediumAliens, int nLargeAliens) {
-        int columns = 11;
-        int row = 0;
-        int margeX = 35;
-        int margeY = 35;
-        int offset = 0;
-        for (int j = 0; j < nSmallAliens ; j++) {
-            Alien alien = new SmallAlien(this, aliens.getX()+offset*margeX, aliens.getY()+row*margeY, alienKilled);
-            aliens.add(alien);
-            offset++;
-            if (j > 0 && (j+1) % columns == 0) {
-                row++;
-                offset = 0;
-            }
-        }
-        for (int j = 0; j < nMediumAliens ; j++) {
-            Alien alien = new MediumAlien(this, aliens.getX()+offset*margeX, aliens.getY()+row*margeY, alienKilled);
-            aliens.add(alien);
-            offset++;
-            if (j > 0 && (j+1) % columns == 0) {
-                row++;
-                offset = 0;
-            }
-        }
-        for (int j = 0; j < nLargeAliens ; j++) {
-            Alien alien = new LargeAlien(this, aliens.getX()+offset*margeX, aliens.getY()+row*margeY, alienKilled);
-            aliens.add(alien);
-            offset++;
-            if (j > 0 && (j+1) % columns == 0) {
-                row++;
-                offset = 0;
-            }
-        }
     }
     
     public void increaseScore(int score) {

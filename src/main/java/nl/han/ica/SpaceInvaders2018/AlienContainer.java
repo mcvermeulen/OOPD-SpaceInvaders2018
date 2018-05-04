@@ -150,4 +150,40 @@ public class AlienContainer extends Alien implements ICollidableWithGameObjects 
     		this.destroyed = destroyedAliens;
     	}
     }
+
+    //TODO dit kan beter
+    public void generateAliens(SpaceInvaders world, int nSmallAliens, int nMediumAliens, int nLargeAliens) {
+        int columns = 11;
+        int row = 0;
+        int margeX = 35;
+        int margeY = 35;
+        int offset = 0;
+        for (int j = 0; j < nSmallAliens ; j++) {
+            Alien alien = new SmallAlien(world, this.getX()+offset*margeX, this.getY()+row*margeY, alienKilled);
+            this.add(alien);
+            offset++;
+            if (j > 0 && (j+1) % columns == 0) {
+                row++;
+                offset = 0;
+            }
+        }
+        for (int j = 0; j < nMediumAliens ; j++) {
+            Alien alien = new MediumAlien(world, this.getX()+offset*margeX, this.getY()+row*margeY, alienKilled);
+            this.add(alien);
+            offset++;
+            if (j > 0 && (j+1) % columns == 0) {
+                row++;
+                offset = 0;
+            }
+        }
+        for (int j = 0; j < nLargeAliens ; j++) {
+            Alien alien = new LargeAlien(world, this.getX()+offset*margeX, this.getY()+row*margeY, alienKilled);
+            this.add(alien);
+            offset++;
+            if (j > 0 && (j+1) % columns == 0) {
+                row++;
+                offset = 0;
+            }
+        }
+    }
 }
