@@ -17,6 +17,8 @@ public class Cannon extends AttackCapableGameObject implements ICollidableWithGa
         super(new Sprite("nl/han/ica/SpaceInvaders2018/sprites/Cannon.png"), 1, x, y, 47, 30, world);
         this.shootSound = shoot;
         this.explosion = explosion;
+        world.pauseGame();
+        startAlarm();
     }
 
     @Override
@@ -78,7 +80,7 @@ public class Cannon extends AttackCapableGameObject implements ICollidableWithGa
             		if (world.getLives() > 0) {
             			setVisible(false);
             			world.pauseGame();
-            			startAlarm();
+            			newLifeAlarm();
             		}
             		else if (world.getLives() == 0) {
             			world.deleteGameObject(this);
@@ -90,8 +92,14 @@ public class Cannon extends AttackCapableGameObject implements ICollidableWithGa
     	}
     }
     
-    private void startAlarm() {
+    private void newLifeAlarm() {
         Alarm alarm=new Alarm("Use extra life", 1);
+        alarm.addTarget(this);
+        alarm.start();
+    }
+
+    private void startAlarm() {
+        Alarm alarm=new Alarm("Pause game so it can render before play starts", 2);
         alarm.addTarget(this);
         alarm.start();
     }
