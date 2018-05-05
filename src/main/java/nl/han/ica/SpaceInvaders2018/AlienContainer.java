@@ -17,13 +17,14 @@ public class AlienContainer extends Alien implements ICollidableWithGameObjects 
     private float speed;
     private int destroyed = 0;
 
-    public AlienContainer(SpaceInvaders world, float x, float y, Sound alienKilled) {
+    public AlienContainer(SpaceInvaders world, float x, float y, Sound alienKilled, int nSmall, int nMedium, int nLarge) {
         super(new Sprite("nl/han/ica/SpaceInvaders2018/sprites/MediumAlien.png"), 1, x, y, 0, 0, world, alienKilled);
         setVisible(false);
         this.world = world;
         aliens = new ArrayList<>();
         this.allHostileProjectiles = 0;
         this.speed = 0.7f;
+        this.generateAliens(nSmall, nMedium, nLarge);
     }
 
     public void add(Alien alien) {
@@ -92,6 +93,11 @@ public class AlienContainer extends Alien implements ICollidableWithGameObjects 
             alien.setDirectionSpeed(direction, speed);
         }
         cleanUpAliens();
+
+        if (aliens.size() == 0) {
+            world.increaseLevel();
+            world.deleteGameObject(this);
+        }
     }
 
     private void dropAsGroup() {
@@ -130,8 +136,8 @@ public class AlienContainer extends Alien implements ICollidableWithGameObjects 
         }
     }
 
-    //TODO dit kan beter
-    public void generateAliens(SpaceInvaders world, int nSmallAliens, int nMediumAliens, int nLargeAliens) {
+    // TODO dit kan beter
+    private void generateAliens(int nSmallAliens, int nMediumAliens, int nLargeAliens) {
         int columns = 11;
         int row = 0;
         int margeX = 35;

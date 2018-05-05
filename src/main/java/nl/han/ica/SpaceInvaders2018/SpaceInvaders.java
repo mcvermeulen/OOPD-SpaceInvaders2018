@@ -8,6 +8,8 @@ import nl.han.ica.OOPDProcessingEngineHAN.Sound.Sound;
 import nl.han.ica.OOPDProcessingEngineHAN.View.View;
 import processing.core.PApplet;
 
+import java.util.ArrayList;
+
 public class SpaceInvaders extends GameEngine {
 	private static final long serialVersionUID = 2790543985929323791L;
 	private Sound shootSound;
@@ -16,10 +18,11 @@ public class SpaceInvaders extends GameEngine {
 	private Sound alienKilled;
 	private Sound explosion;
 	private TextObject dashboardText1;
-	private TextObject dashboardHeaderText1;
 	private TextObject dashboardPlayerLives1;
 	private int scorePlayer1;
 	private int livesPlayer1;
+    private ArrayList<Level> levels;
+    private Level currentLevel;
 
     public static void main(String[] args) {
         PApplet.main(new String[]{"nl.han.ica.SpaceInvaders2018.SpaceInvaders"});
@@ -32,6 +35,7 @@ public class SpaceInvaders extends GameEngine {
         scorePlayer1 = 0;
         livesPlayer1 = 3;
         initializeSound();
+        inititializeLevels();
 
         createView(gameWidth, gameHeight);
         createDashboard(gameWidth, gameHeight);
@@ -40,8 +44,7 @@ public class SpaceInvaders extends GameEngine {
         Bunker bunker1 = new Bunker(350, 600, 71, 48, this);
         Cannon kanon= new Cannon(this, 700, 680, shootSound, explosion);
         Ruimteschip schip = new Ruimteschip(this, 850, 130, UFOShot, UFOTravel);
-        AlienContainer alienContainer = new AlienContainer(this, 400, 190, alienKilled);
-        alienContainer.generateAliens(this, 11, 22, 22);
+        AlienContainer alienContainer = new AlienContainer(this, 400, currentLevel.getStartPositionAliens(), alienKilled, 11, 22, 22);
 
         addGameObject(grond);
         addGameObject(bunker1);
@@ -56,6 +59,7 @@ public class SpaceInvaders extends GameEngine {
     }
 
     private void createDashboard(int dashboardWidth,int dashboardHeight) {
+        TextObject dashboardHeaderText1;
         Dashboard dashboard = new Dashboard(0,0, dashboardWidth, dashboardHeight);
         Sprite backgroundImg = new Sprite("nl/han/ica/SpaceInvaders2018/media/background-1280x800.png");
         dashboard.setBackgroundImage(backgroundImg);
@@ -121,6 +125,26 @@ public class SpaceInvaders extends GameEngine {
     private void refreshDasboardText() {
     	dashboardText1.setText(String.format("%06d", scorePlayer1));
     	dashboardPlayerLives1.setText(String.format("%01d", livesPlayer1));
+    }
+
+    private void inititializeLevels() {
+        levels = new ArrayList<>();
+        int startPosition = 190;
+        int marge = 35;
+        for (int i = 0; i < 10; i++) {
+            levels.add(new Level(i + 1, startPosition + i * marge));
+        }
+        currentLevel = levels.get(0);
+    }
+
+    public void increaseLevel() {
+        if (currentLevel.getLevelNumber() <= 10) {
+            currentLevel = levels.get(currentLevel.getLevelNumber());
+        } else {
+            currentLevel = levels.get(0);
+        }
+
+        addGameObject(new AlienContainer(this, 400, currentLevel.getStartPositionAliens(), alienKilled, 11, 22, 22));
     }
     
 }
