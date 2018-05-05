@@ -35,105 +35,99 @@ public class AlienContainer extends Alien implements ICollidableWithGameObjects 
         aliens.remove(alien);
         world.deleteGameObject(alien);
     }
-    
+
     public void cleanUpAliens() {
-		for (int i = aliens.size() - 1; i >= 0; i--) {
-			Alien a = aliens.get(i);
-			if (a.getHit()) {
-    			world.increaseScore(a.getValue());
-    			destroy(a);
-			}
-		}
+        for (int i = aliens.size() - 1; i >= 0; i--) {
+            Alien a = aliens.get(i);
+            if (a.getHit()) {
+                world.increaseScore(a.getValue());
+                destroy(a);
+            }
+        }
     }
-    
+
     public int giveAllHostileProjectiles() {
-    	int number = 0;
-    	for (Alien a : aliens) {
-    		number += a.getTotalHostileProjectiles();
-    	}
-    	return number;
+        int number = 0;
+        for (Alien a : aliens) {
+            number += a.getTotalHostileProjectiles();
+        }
+        return number;
     }
-    
+
     public void fireBack() {
-    	if (aliens.size() > 0) {
-	    	allHostileProjectiles = giveAllHostileProjectiles();
-	    	if (allHostileProjectiles < 3) {
-	    		Random rand = new Random();
-	    		int fire = rand.nextInt(250); // bepaalt kans dat de aliens schieten. Dit getal kan later een variabele fireRate worden dat bv. hoger wordt naarmate er minder aliens zijn
-	    		// hier later als we ook de andere twee projectiel typen hebben, nog een random gebruiken om te bepalen welk projectiel het wordt
-	    		if (fire <= 1) {
-	        		int alien = rand.nextInt(aliens.size());
-	        		Alien attackingAlien = aliens.get(alien);
-	    			attackingAlien.fire();
-	    		}
-	    	}
-    	}
+        if (aliens.size() > 0) {
+            allHostileProjectiles = giveAllHostileProjectiles();
+            if (allHostileProjectiles < 3) {
+                Random rand = new Random();
+                int fire = rand.nextInt(250); // bepaalt kans dat de aliens schieten. Dit getal kan later een variabele fireRate worden dat bv. hoger wordt naarmate er minder aliens zijn
+                // hier later als we ook de andere twee projectiel typen hebben, nog een random gebruiken om te bepalen welk projectiel het wordt
+                if (fire <= 1) {
+                    int alien = rand.nextInt(aliens.size());
+                    Alien attackingAlien = aliens.get(alien);
+                    attackingAlien.fire();
+                }
+            }
+        }
     }
-    
+
     @Override
     public void gameObjectCollisionOccurred(List<GameObject> collidedGameObjects) {
     }
 
     @Override
     public void update() {
-    	fireBack();
-    	updateCurrentGroupSpeed();
-    	// boundaries
+        fireBack();
+        updateCurrentGroupSpeed();
+        // boundaries
         if (direction == 90 && calculateRight() >= 990) {
-        	dropAsGroup();
+            dropAsGroup();
             direction = 270;
         }
         if (direction == 270 && calculateLeft() <= 290) {
-        	dropAsGroup();
+            dropAsGroup();
             direction = 90;
         }
         setDirectionSpeed(direction, speed);
-        for (Alien alien: aliens) {
+        for (Alien alien : aliens) {
             alien.setDirectionSpeed(direction, speed);
         }
         cleanUpAliens();
     }
-    
+
     private void dropAsGroup() {
-    	for (int i = aliens.size()-1; i>=0; i--) {
-    		Alien a = aliens.get(i);
-    		if (a.getY() + getHeight() >= 672) {
-    			for (Alien alien: aliens) {
-    				alien.dropToRowBelow();
-    			}
-    			System.out.println("Speler heeft verloren");
-    			world.pauseGame();
-    			break;
-    		}
-    		else {
-    			a.dropToRowBelow();
-    		}
-    	}
+        if (aliens.get(aliens.size() - 1).getY()-getHeight() >= 672) {
+            System.out.println("Speler heeft verloren");
+            world.pauseGame();
+        } else {
+            for (int i = aliens.size() - 1; i >= 0; i--) {
+    		    aliens.get(i).dropToRowBelow();
+            }
+        }
     }
 
     private int calculateRight() {
         float right = 0;
-        for (Alien alien: aliens) {
+        for (Alien alien : aliens) {
             if (alien.getX() + alien.getWidth() > right) right = alien.getX() + alien.getWidth();
         }
         return Math.round(right);
     }
-    
+
     private int calculateLeft() {
         float left = 990;
-        for (Alien alien: aliens) {
+        for (Alien alien : aliens) {
             if (alien.getX() < left) left = alien.getX();
         }
         return Math.round(left);
     }
-    
-    
+
+
     private void updateCurrentGroupSpeed() {
-    	int destroyedAliens = 55 - aliens.size();
-    	if (this.destroyed != destroyedAliens) {
-    		speed *= 1.025f;
-    		this.destroyed = destroyedAliens;
-    	}
+        int destroyedAliens = 55 - aliens.size();
+        if (this.destroyed != destroyedAliens) {
+            speed *= 1.025f;
+            this.destroyed = destroyedAliens;
+        }
     }
 
     //TODO dit kan beter
@@ -143,29 +137,29 @@ public class AlienContainer extends Alien implements ICollidableWithGameObjects 
         int margeX = 35;
         int margeY = 35;
         int offset = 0;
-        for (int j = 0; j < nSmallAliens ; j++) {
-            Alien alien = new SmallAlien(world, this.getX()+offset*margeX, this.getY()+row*margeY, alienKilled);
+        for (int j = 0; j < nSmallAliens; j++) {
+            Alien alien = new SmallAlien(world, this.getX() + offset * margeX, this.getY() + row * margeY, alienKilled);
             this.add(alien);
             offset++;
-            if (j > 0 && (j+1) % columns == 0) {
+            if (j > 0 && (j + 1) % columns == 0) {
                 row++;
                 offset = 0;
             }
         }
-        for (int j = 0; j < nMediumAliens ; j++) {
-            Alien alien = new MediumAlien(world, this.getX()+offset*margeX, this.getY()+row*margeY, alienKilled);
+        for (int j = 0; j < nMediumAliens; j++) {
+            Alien alien = new MediumAlien(world, this.getX() + offset * margeX, this.getY() + row * margeY, alienKilled);
             this.add(alien);
             offset++;
-            if (j > 0 && (j+1) % columns == 0) {
+            if (j > 0 && (j + 1) % columns == 0) {
                 row++;
                 offset = 0;
             }
         }
-        for (int j = 0; j < nLargeAliens ; j++) {
-            Alien alien = new LargeAlien(world, this.getX()+offset*margeX, this.getY()+row*margeY, alienKilled);
+        for (int j = 0; j < nLargeAliens; j++) {
+            Alien alien = new LargeAlien(world, this.getX() + offset * margeX, this.getY() + row * margeY, alienKilled);
             this.add(alien);
             offset++;
-            if (j > 0 && (j+1) % columns == 0) {
+            if (j > 0 && (j + 1) % columns == 0) {
                 row++;
                 offset = 0;
             }
