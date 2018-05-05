@@ -1,0 +1,30 @@
+									MEDIA
+
+background-1280x800.png     		-> ...
+
+titel.png							-> ...
+
+explosion.mp3, 
+fastinvader1.mp3, 
+invaderkilled.mp3, 
+shoot.mp3,
+spaceinvaders1.mpeg, 
+ufo_highpitch.mp3, 
+ufo_lowpitch.mp3					-> http://www.classicgaming.cc/classics/space-invaders/sounds
+
+
+
+									SPRITES
+
+Bunker.png,
+Cannon.png,
+Explosion.png,
+LargeAlien.png,
+Laser.png,
+MediumAlien.png
+Plasma.png,
+Proton.png,
+Ruimteschip.png,
+SmallAlien.png						-> zelf gemaakt naar voorbeeld van: https://gooperblooper22.deviantart.com/art/Space-Invaders-Sprite-Sheet-135338373
+
+BunkerHitSmall.png					-> zelf gemaakt

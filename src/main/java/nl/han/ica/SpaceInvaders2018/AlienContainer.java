@@ -103,6 +103,7 @@ public class AlienContainer extends Alien implements ICollidableWithGameObjects 
     private void dropAsGroup() {
         if (aliens.get(aliens.size() - 1).getY()-getHeight() >= 672) {
             System.out.println("Speler heeft verloren");
+            world.updateHighscore();
             world.pauseGame();
         } else {
             for (int i = aliens.size() - 1; i >= 0; i--) {
