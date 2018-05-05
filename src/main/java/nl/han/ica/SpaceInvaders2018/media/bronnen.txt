@@ -1,8 +1,8 @@
 									MEDIA
 
-background-1280x800.png     		-> ...
+background-1280x800.png     		-> http://www.andromedafree.it/archiviosfondidesktop/wallpapers/spazio/up2/1920x1440/16/00_wallpapers.htm
 
-titel.png							-> ...
+titel.png							-> zelf gemaakt
 
 explosion.mp3, 
 fastinvader1.mp3, 
