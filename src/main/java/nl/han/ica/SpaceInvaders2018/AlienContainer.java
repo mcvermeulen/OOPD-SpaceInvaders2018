@@ -78,22 +78,33 @@ public class AlienContainer extends Alien implements ICollidableWithGameObjects 
     @Override
     public void update() {
         fireBack();
+        // Update speed
         updateCurrentGroupSpeed();
-        // boundaries
-        if (direction == 90 && calculateRight() >= 990) {
-            dropAsGroup();
-            direction = 270;
-        }
-        if (direction == 270 && calculateLeft() <= 290) {
-            dropAsGroup();
-            direction = 90;
+        if (aliens.size() == 1) {
+            if (direction == 90) {
+                speed = 6;
+            } else {
+                speed = 3.8f;
+            }
         }
         setDirectionSpeed(direction, speed);
         for (Alien alien : aliens) {
             alien.setDirectionSpeed(direction, speed);
         }
+
+        // boundaries
+        if (direction == 90 && calculateRight() >= 990) {
+            direction = 270;
+            dropAsGroup();
+        } else
+        if (direction == 270 && calculateLeft() <= 290) {
+            direction = 90;
+            dropAsGroup();
+        }
+
         cleanUpAliens();
 
+        // No aliens left, increase level
         if (aliens.size() == 0) {
             world.increaseLevel();
             world.deleteGameObject(this);

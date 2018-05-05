@@ -163,12 +163,12 @@ public class SpaceInvaders extends GameEngine {
         for (int i = 0; i < 10; i++) {
             levels.add(new Level(i + 1, startPosition + i * marge));
         }
-        currentLevel = levels.get(0);
+        currentLevel = levels.get(9);
     }
 
     public void increaseLevel() {
         if (currentLevel.getLevelNumber() <= 9) {
-            currentLevel = levels.get(currentLevel.getLevelNumber()-1);
+            currentLevel = levels.get(currentLevel.getLevelNumber());
         } else {
             currentLevel = levels.get(0);
         }
