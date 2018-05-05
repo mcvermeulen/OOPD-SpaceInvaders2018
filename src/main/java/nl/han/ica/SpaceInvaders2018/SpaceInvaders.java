@@ -130,7 +130,7 @@ public class SpaceInvaders extends GameEngine {
     private void inititializeLevels() {
         levels = new ArrayList<>();
         int startPosition = 190;
-        int marge = 35;
+        int marge = 25;
         for (int i = 0; i < 10; i++) {
             levels.add(new Level(i + 1, startPosition + i * marge));
         }
@@ -138,8 +138,8 @@ public class SpaceInvaders extends GameEngine {
     }
 
     public void increaseLevel() {
-        if (currentLevel.getLevelNumber() <= 10) {
-            currentLevel = levels.get(currentLevel.getLevelNumber());
+        if (currentLevel.getLevelNumber() <= 9) {
+            currentLevel = levels.get(currentLevel.getLevelNumber()-1);
         } else {
             currentLevel = levels.get(0);
         }
