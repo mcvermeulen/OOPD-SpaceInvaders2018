@@ -16,11 +16,6 @@ public abstract class Projectile extends DestroyableGameObject implements IColli
         super(sprite, totalFrames, 0, 0, sWidth, sHeight, world);
         this.friendly = friendly;
         this.source = source;
-        if (friendly) {
-            setySpeed(-10);
-        } else {
-            setySpeed(2);
-        }
     }
 
     @Override
