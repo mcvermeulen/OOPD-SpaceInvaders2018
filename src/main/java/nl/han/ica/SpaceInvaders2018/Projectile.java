@@ -68,10 +68,7 @@ public abstract class Projectile extends DestroyableGameObject implements IColli
             		Projectile p = (Projectile) g;
             		AttackCapableGameObject k = p.getSource();
             		k.removeProjectile(p);
-            		world.deleteGameObject(g);
-            		
             		source.removeProjectile(this);
-            		world.deleteGameObject(this);
             	}
             }
     	}

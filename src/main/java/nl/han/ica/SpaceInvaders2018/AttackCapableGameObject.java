@@ -10,7 +10,6 @@ public abstract class AttackCapableGameObject extends DestroyableGameObject {
         super(sprite, totalFrames, x, y, sWidth, sHeight, world);
     }
 
-    // TODO dit zou mooier zijn met een abstracte methode, zodat we met een generate() methode afkunnen.
     public void generateLaser(boolean friendly) {
         Laser laser = new Laser (world, friendly, this);
         float y;
@@ -20,20 +19,22 @@ public abstract class AttackCapableGameObject extends DestroyableGameObject {
         else {
         	y = getY() + getHeight();
         }
-        projectiles.add(laser);
-        world.addGameObject(laser, getX() + (getWidth()/2), y);
+        addProjectile(laser, y);
     }
 
     public void generatePlasma() {
         Plasma plasma = new Plasma(world,this);
-        projectiles.add(plasma);
-        world.addGameObject(plasma, getX() + (getWidth()/2), y);
+        addProjectile(plasma, getY() + getHeight());
     }
 
     public void generateProton() {
         Proton proton = new Proton(world,this);
-        projectiles.add(proton);
-        world.addGameObject(proton, getX() + (getWidth()/2), y);
+        addProjectile(proton, getY() + getHeight());
+    }
+
+    private void addProjectile(Projectile p, float y) {
+        projectiles.add(p);
+        world.addGameObject(p, getX() + (getWidth()/2), y);
     }
 
     public int getTotalProjectiles() {
@@ -56,6 +57,7 @@ public abstract class AttackCapableGameObject extends DestroyableGameObject {
 
     public void removeProjectile (Projectile p) {
         projectiles.remove(p);
+        world.deleteGameObject(p);
     }
 
     public void cleanUpProjectiles() {
