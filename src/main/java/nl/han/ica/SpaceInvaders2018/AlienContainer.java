@@ -22,13 +22,14 @@ public class AlienContainer extends Alien implements ICollidableWithGameObjects 
 
     /**
      * Constructor
-     * @param world referentie naar de hoofdmodule
-     * @param x x-coordinaat van de startpositie van de aliens
-     * @param y y-coordinaat van de startpositie van de aliens
+     *
+     * @param world       referentie naar de hoofdmodule
+     * @param x           x-coordinaat van de startpositie van de aliens
+     * @param y           y-coordinaat van de startpositie van de aliens
      * @param alienKilled geluid wat afgespeeld wordt als de aliens geraakt zijn
-     * @param nSmall aantal kleine aliens
-     * @param nMedium aantal medium aliens
-     * @param nLarge aantal grote aliens
+     * @param nSmall      aantal kleine aliens
+     * @param nMedium     aantal medium aliens
+     * @param nLarge      aantal grote aliens
      */
     public AlienContainer(SpaceInvaders world, float x, float y, Sound alienKilled, int nSmall, int nMedium, int nLarge) {
         super(new Sprite("nl/han/ica/SpaceInvaders2018/sprites/MediumAlien.png"), 1, x, y, 0, 0, world, alienKilled);
@@ -109,8 +110,7 @@ public class AlienContainer extends Alien implements ICollidableWithGameObjects 
         if (direction == 90 && calculateRight() >= 990) {
             direction = 270;
             dropAsGroup();
-        } else
-        if (direction == 270 && calculateLeft() <= 290) {
+        } else if (direction == 270 && calculateLeft() <= 290) {
             direction = 90;
             dropAsGroup();
         }
@@ -125,14 +125,8 @@ public class AlienContainer extends Alien implements ICollidableWithGameObjects 
     }
 
     private void dropAsGroup() {
-        if (aliens.get(aliens.size() - 1).getY()-getHeight() >= 672) {
-            System.out.println("Speler heeft verloren");
-            world.updateHighscore();
-            world.pauseGame();
-        } else {
-            for (int i = aliens.size() - 1; i >= 0; i--) {
-    		    aliens.get(i).dropToRowBelow();
-            }
+        for (int i = aliens.size() - 1; i >= 0; i--) {
+            aliens.get(i).dropToRowBelow();
         }
     }
 

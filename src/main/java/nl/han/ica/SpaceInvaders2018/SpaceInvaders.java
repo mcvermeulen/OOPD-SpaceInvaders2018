@@ -47,7 +47,7 @@ public class SpaceInvaders extends GameEngine {
         createDashboard(gameWidth, gameHeight);
         initializePersistence();
 
-        Ground grond = new Ground(715, 290, 990);
+        Ground grond = new Ground(this, 715, 290, 990);
         Bunker bunker1 = new Bunker(350, 600, 71, 48, this);
         Cannon kanon= new Cannon(this, 700, 680, shootSound, explosion);
         Ruimteschip schip = new Ruimteschip(this, 850, 130, UFOShot, UFOTravel);
@@ -163,7 +163,7 @@ public class SpaceInvaders extends GameEngine {
         for (int i = 0; i < 10; i++) {
             levels.add(new Level(i + 1, startPosition + i * marge));
         }
-        currentLevel = levels.get(0);
+        currentLevel = levels.get(9);
     }
 
     public void increaseLevel() {
