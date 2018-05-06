@@ -77,7 +77,7 @@ public abstract class Alien extends AttackCapableGameObject implements ICollidab
         }
     }
     
-    public void dropToRowBelow() {
+    protected void dropToRowBelow() {
     	setY(getY() + getHeight());
     }
     

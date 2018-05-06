@@ -109,10 +109,10 @@ public class AlienContainer extends Alien implements ICollidableWithGameObjects 
         // boundaries
         if (direction == 90 && calculateRight() >= 990) {
             direction = 270;
-            dropAsGroup();
+            dropToRowBelow();
         } else if (direction == 270 && calculateLeft() <= 290) {
             direction = 90;
-            dropAsGroup();
+            dropToRowBelow();
         }
 
         cleanUpAliens();
@@ -124,7 +124,8 @@ public class AlienContainer extends Alien implements ICollidableWithGameObjects 
         }
     }
 
-    private void dropAsGroup() {
+    @Override
+    protected void dropToRowBelow() {
         for (int i = aliens.size() - 1; i >= 0; i--) {
             aliens.get(i).dropToRowBelow();
         }
