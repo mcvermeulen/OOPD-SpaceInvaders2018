@@ -76,7 +76,7 @@ public class AlienContainer extends Alien implements ICollidableWithGameObjects 
             allHostileProjectiles = giveAllHostileProjectiles();
             if (allHostileProjectiles < maxHostileProjectiles) {
                 Random rand = new Random();
-                int fire = rand.nextInt(250); // bepaalt kans dat de aliens schieten. Dit getal kan later een variabele fireRate worden dat bv. hoger wordt naarmate er minder aliens zijn
+                int fire = rand.nextInt(200); // bepaalt kans dat de aliens schieten. Dit getal kan later een variabele fireRate worden dat bv. hoger wordt naarmate er minder aliens zijn
                 // hier later als we ook de andere twee projectiel typen hebben, nog een random gebruiken om te bepalen welk projectiel het wordt
                 if (fire <= 1) {
                     int alien = rand.nextInt(aliens.size());

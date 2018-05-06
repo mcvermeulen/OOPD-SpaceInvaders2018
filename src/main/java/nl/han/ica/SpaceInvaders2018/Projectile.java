@@ -1,6 +1,7 @@
 package nl.han.ica.SpaceInvaders2018;
 
 import java.util.List;
+import java.util.Random;
 
 import nl.han.ica.OOPDProcessingEngineHAN.Collision.ICollidableWithGameObjects;
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.GameObject;
@@ -9,6 +10,7 @@ import nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite;
 public abstract class Projectile extends DestroyableGameObject implements ICollidableWithGameObjects {
 
     protected boolean friendly;
+    protected int weight;
     private boolean outOfBounds = false;
     private AttackCapableGameObject source;
 
@@ -48,22 +50,30 @@ public abstract class Projectile extends DestroyableGameObject implements IColli
         return source;
     }
 
-
-    // TODO Voor nu wordt een vijandelijk projectiel altijd verwijderd als de speler deze schiet. Maar de zwaardere projectielen hebben later
-    // een kans om de collision is overleven
-
     @Override
     public void gameObjectCollisionOccurred(List<GameObject> collidedGameObjects) {
         for (GameObject g : collidedGameObjects) {
             if (g instanceof Projectile) {
-                if (((Projectile) g).getFriendly()) {
-                    Projectile p = (Projectile) g;
+                Projectile p = (Projectile) g;
+                if (p.getFriendly()) {
                     AttackCapableGameObject k = p.getSource();
                     k.removeProjectile(p);
-                    source.removeProjectile(this);
+                    if (weight == p.getWeight()) {
+                        source.removeProjectile(this);
+                    } else {
+                        Random rand = new Random();
+                        int chance = rand.nextInt(weight*3);
+                        if (chance < weight) {
+                            source.removeProjectile(this);
+                        }
+                    }
                 }
             }
         }
+    }
+
+    public int getWeight() {
+        return weight;
     }
 
 }
