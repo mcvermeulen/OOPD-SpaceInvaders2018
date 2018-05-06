@@ -14,20 +14,13 @@ import java.util.ArrayList;
 
 public class SpaceInvaders extends GameEngine {
 	private static final long serialVersionUID = 2790543985929323791L;
-	private Sound shootSound;
-	private Sound UFOShot;
-	private Sound UFOTravel;
-	private Sound alienKilled;
-	private Sound explosion;
-	private TextObject dashboardText1;
-	private TextObject dashboardPlayerLives1;
-	private TextObject dashboardHighscore;
-	private int highscore;
-	private int scorePlayer1;
-	private int livesPlayer1;
+	private Sound shootSound, UFOShot, UFOTravel, alienKilled, explosion;
+	private TextObject dashboardText1, dashboardPlayerLives1, dashboardHighscore;
+	private int highscore, scorePlayer1, livesPlayer1;
 	private IPersistence persistence;
     private ArrayList<Level> levels;
     private Level currentLevel;
+    private int playfieldWidth, playfieldHeight;
 
     public static void main(String[] args) {
         PApplet.main(new String[]{"nl.han.ica.SpaceInvaders2018.SpaceInvaders"});
@@ -40,6 +33,7 @@ public class SpaceInvaders extends GameEngine {
         highscore = 0;
         scorePlayer1 = 0;
         livesPlayer1 = 3;
+        playfieldHeight = playfieldWidth = 700;
         initializeSound();
         inititializeLevels();
         
@@ -181,6 +175,15 @@ public class SpaceInvaders extends GameEngine {
     	if (scorePlayer1 > highscore) {
     		persistence.saveData(Integer.toString(scorePlayer1));
     	}
+    }
+
+
+    public int getPlayfieldWidth() {
+        return playfieldWidth;
+    }
+
+    public int getPlayfieldHeight() {
+        return playfieldHeight;
     }
     
 }

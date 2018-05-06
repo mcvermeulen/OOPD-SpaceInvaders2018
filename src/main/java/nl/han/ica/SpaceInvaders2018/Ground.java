@@ -34,8 +34,6 @@ public class Ground extends GameObject implements ICollidableWithGameObjects {
 
 	@Override
 	public void update() {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override

@@ -14,11 +14,12 @@ import java.util.Random;
  */
 public class AlienContainer extends Alien implements ICollidableWithGameObjects {
     private SpaceInvaders world;
-    protected int direction = 90;
+    private int direction = 90;
     private ArrayList<Alien> aliens;
     private int allHostileProjectiles;
+    private int maxHostileProjectiles = 3;
     private float speed;
-    private int destroyed = 0;
+    private int destroyed, nTotalAliens = 0;
 
     /**
      * Constructor
@@ -35,9 +36,10 @@ public class AlienContainer extends Alien implements ICollidableWithGameObjects 
         super(new Sprite("nl/han/ica/SpaceInvaders2018/sprites/MediumAlien.png"), 1, x, y, 0, 0, world, alienKilled);
         setVisible(false);
         this.world = world;
-        aliens = new ArrayList<>();
+        this.aliens = new ArrayList<>();
         this.allHostileProjectiles = 0;
         this.speed = 0.7f;
+        this.nTotalAliens = nSmall + nMedium + nLarge;
         this.generateAliens(nSmall, nMedium, nLarge);
     }
 
@@ -72,7 +74,7 @@ public class AlienContainer extends Alien implements ICollidableWithGameObjects 
     public void fireBack() {
         if (aliens.size() > 0) {
             allHostileProjectiles = giveAllHostileProjectiles();
-            if (allHostileProjectiles < 3) {
+            if (allHostileProjectiles < maxHostileProjectiles) {
                 Random rand = new Random();
                 int fire = rand.nextInt(250); // bepaalt kans dat de aliens schieten. Dit getal kan later een variabele fireRate worden dat bv. hoger wordt naarmate er minder aliens zijn
                 // hier later als we ook de andere twee projectiel typen hebben, nog een random gebruiken om te bepalen welk projectiel het wordt
@@ -101,18 +103,17 @@ public class AlienContainer extends Alien implements ICollidableWithGameObjects 
                 speed = 3.8f;
             }
         }
+        // boundaries
+        if (direction == 90 && calculateRight() >= (world.width + world.getPlayfieldWidth())/2) {
+            direction = 270;
+            dropToRowBelow();
+        } else if (direction == 270 && calculateLeft() <= (world.width - world.getPlayfieldWidth())/2) {
+            direction = 90;
+            dropToRowBelow();
+        }
         setDirectionSpeed(direction, speed);
         for (Alien alien : aliens) {
             alien.setDirectionSpeed(direction, speed);
-        }
-
-        // boundaries
-        if (direction == 90 && calculateRight() >= 990) {
-            direction = 270;
-            dropToRowBelow();
-        } else if (direction == 270 && calculateLeft() <= 290) {
-            direction = 90;
-            dropToRowBelow();
         }
 
         cleanUpAliens();
@@ -140,7 +141,7 @@ public class AlienContainer extends Alien implements ICollidableWithGameObjects 
     }
 
     private int calculateLeft() {
-        float left = 990;
+        float left = world.width;
         for (Alien alien : aliens) {
             if (alien.getX() < left) left = alien.getX();
         }
@@ -149,7 +150,7 @@ public class AlienContainer extends Alien implements ICollidableWithGameObjects 
 
 
     private void updateCurrentGroupSpeed() {
-        int destroyedAliens = 55 - aliens.size();
+        int destroyedAliens = nTotalAliens - aliens.size();
         if (this.destroyed != destroyedAliens) {
             speed *= 1.025f;
             this.destroyed = destroyedAliens;
