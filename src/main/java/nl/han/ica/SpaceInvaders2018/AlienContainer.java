@@ -9,6 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * De container waarin de aliens zitten, zodat deze synchroon bewegen
+ */
 public class AlienContainer extends Alien implements ICollidableWithGameObjects {
     private SpaceInvaders world;
     protected int direction = 90;
@@ -17,6 +20,16 @@ public class AlienContainer extends Alien implements ICollidableWithGameObjects 
     private float speed;
     private int destroyed = 0;
 
+    /**
+     * Constructor
+     * @param world referentie naar de hoofdmodule
+     * @param x x-coordinaat van de startpositie van de aliens
+     * @param y y-coordinaat van de startpositie van de aliens
+     * @param alienKilled geluid wat afgespeeld wordt als de aliens geraakt zijn
+     * @param nSmall aantal kleine aliens
+     * @param nMedium aantal medium aliens
+     * @param nLarge aantal grote aliens
+     */
     public AlienContainer(SpaceInvaders world, float x, float y, Sound alienKilled, int nSmall, int nMedium, int nLarge) {
         super(new Sprite("nl/han/ica/SpaceInvaders2018/sprites/MediumAlien.png"), 1, x, y, 0, 0, world, alienKilled);
         setVisible(false);

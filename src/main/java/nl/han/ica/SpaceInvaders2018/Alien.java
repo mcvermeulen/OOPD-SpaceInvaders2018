@@ -8,12 +8,25 @@ import nl.han.ica.OOPDProcessingEngineHAN.Objects.GameObject;
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite;
 import nl.han.ica.OOPDProcessingEngineHAN.Sound.Sound;
 
+/**
+ * Superklasse van de aliens
+ */
 public abstract class Alien extends AttackCapableGameObject implements ICollidableWithGameObjects {
-	
 	protected int value = 0;
 	protected boolean hit;
 	protected Sound alienKilled;
 
+    /**
+     * Constructor
+     * @param sprite Afbeelding van de alien
+     * @param totalFrames Aantal frames waaruit de afbeeldng bestaat
+     * @param x X-positie waarop de alien getekend wordt
+     * @param y Y-positie waarop de aliend getekend wordt
+     * @param sWidth Breedte van de alien
+     * @param sHeight Hoogte van de alien
+     * @param world Referentie naar de hoofdmodule
+     * @param alienKilled Geluid wat de alien maakt als hij geraakt wordt
+     */
     public Alien(Sprite sprite, int totalFrames, float x, float y, int sWidth, int sHeight, SpaceInvaders world, Sound alienKilled) {
         super(sprite, totalFrames, x, y, sWidth, sHeight, world);
         this.hit = false;

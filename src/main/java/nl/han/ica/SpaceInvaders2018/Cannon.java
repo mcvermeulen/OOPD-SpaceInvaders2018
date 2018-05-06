@@ -9,10 +9,21 @@ import nl.han.ica.OOPDProcessingEngineHAN.Objects.GameObject;
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite;
 import nl.han.ica.OOPDProcessingEngineHAN.Sound.Sound;
 
+/**
+ * Het kanon (de speler)
+ */
 public class Cannon extends AttackCapableGameObject implements ICollidableWithGameObjects, IAlarmListener {
     private Sound shootSound;
     private Sound explosion;
 
+    /**
+     * Constructor
+     * @param world Referentie naar de hoofdmodule
+     * @param x X-coordinaat van het kanon
+     * @param y Y-coordinaat
+     * @param shoot Geluid van het schieten
+     * @param explosion Geluid van de explosie
+     */
     public Cannon(SpaceInvaders world, float x, float y, Sound shoot, Sound explosion) {
         super(new Sprite("nl/han/ica/SpaceInvaders2018/sprites/Cannon.png"), 1, x, y, 47, 30, world);
         this.shootSound = shoot;
