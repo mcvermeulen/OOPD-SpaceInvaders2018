@@ -18,14 +18,12 @@ public class Ground extends GameObject implements ICollidableWithGameObjects {
     /**
      * Constructor
      * @param yPosition Hoogte van de lijn
-     * @param xPosition1 Beginpunt van de lijn
-     * @param xPosition2 Einpunt van de lijn
      */
-	public Ground (SpaceInvaders world, int yPosition, int xPosition1, int xPosition2) {
+	public Ground (SpaceInvaders world, int yPosition) {
 	    this.world = world;
 		this.yPosition = yPosition;
-		this.xPosition1 = xPosition1;
-		this.xPosition2 = xPosition2;
+		this.xPosition1 = (world.getWidth() - world.getPlayfieldWidth())/2;
+		this.xPosition2 = (world.getWidth() + world.getPlayfieldWidth())/2;
 		setWidth(xPosition2 - xPosition1);
 		setHeight(3);
 		setX(xPosition1);

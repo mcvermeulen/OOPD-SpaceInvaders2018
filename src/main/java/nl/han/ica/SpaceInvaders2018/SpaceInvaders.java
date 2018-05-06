@@ -41,7 +41,7 @@ public class SpaceInvaders extends GameEngine {
         createDashboard(gameWidth, gameHeight);
         initializePersistence();
 
-        Ground grond = new Ground(this, 715, 290, 990);
+        Ground grond = new Ground(this, 715);
         Bunker bunker1 = new Bunker(350, 600, 71, 48, this);
         Cannon kanon= new Cannon(this, 700, 680, shootSound, explosion);
         Ruimteschip schip = new Ruimteschip(this, 850, 130, UFOShot, UFOTravel);
