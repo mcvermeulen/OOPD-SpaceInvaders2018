@@ -45,6 +45,7 @@ public class SpaceInvaders extends GameEngine {
 
     public void newGame() {
         setGameState(GameState.INPROGRESS);
+        currentLevel = levels.get(0);
         highscore = 0;
         scorePlayer1 = 0;
         livesPlayer1 = 3;
@@ -68,7 +69,6 @@ public class SpaceInvaders extends GameEngine {
 
     @Override
     public void update() {
-
     }
 
     private void createDashboard(int dashboardWidth,int dashboardHeight) {
@@ -178,7 +178,6 @@ public class SpaceInvaders extends GameEngine {
         for (int i = 0; i < 10; i++) {
             levels.add(new Level(i + 1, startPosition + i * marge));
         }
-        currentLevel = levels.get(0);
     }
 
     public void increaseLevel() {

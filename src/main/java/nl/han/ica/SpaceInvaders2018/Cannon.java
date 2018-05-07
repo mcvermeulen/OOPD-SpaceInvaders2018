@@ -34,8 +34,6 @@ public class Cannon extends AttackCapableGameObject implements ICollidableWithGa
         super(new Sprite("nl/han/ica/SpaceInvaders2018/sprites/Cannon.png"), 1, x, y, 47, 30, world);
         this.shootSound = shoot;
         this.explosion = explosion;
-        world.pauseGame();
-        startAlarm();
     }
 
     /**
@@ -132,20 +130,11 @@ public class Cannon extends AttackCapableGameObject implements ICollidableWithGa
     }
 
     /**
-     * Pauzeert het spel aan het begin, zodat het tijd krijgt om alles te renderen
-     */
-    private void startAlarm() {
-        Alarm alarm=new Alarm("Pause game so it can render before play starts", 2);
-        alarm.addTarget(this);
-        alarm.start();
-    }
-
-    /**
      * Als het alarm afgaat, gaat het spel door en wordt er een nieuw kanon speelbaar voor de speler (d.w.z. een leven wordt verbruikt)
      */
 	@Override
 	public void triggerAlarm(String alarmName) {
 		setVisible(true);
-		world.resumeGame();	
+		world.resumeGame();
 	}
 }
