@@ -7,19 +7,47 @@ import nl.han.ica.OOPDProcessingEngineHAN.Collision.ICollidableWithGameObjects;
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.GameObject;
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite;
 
+/**
+ * Superklasse Projectile
+ */
 public abstract class Projectile extends DestroyableGameObject implements ICollidableWithGameObjects {
 
+	/**
+	 * Friendly = afgevuurd door de speler, !Friendly = afgevuurd door een alien
+	 */
     protected boolean friendly;
+    /**
+     * 1 = Laser, 2 = Proton, 3 = Photon
+     */
     protected int weight;
+    /**
+     * Geeft aan of het projectiel buiten het speelscherm is gegaan
+     */
     private boolean outOfBounds = false;
+    /**
+     * Het object dat het projectiel oorspronkelijk heeft afgevuurd
+     */
     private AttackCapableGameObject source;
 
+    /**
+     * Constructor
+     * @param sprite		Afbeelding van het projectiel
+     * @param totalFrames	Aantal frames waaruit de afbeeldng bestaat
+     * @param sWidth		Breedte van de afbeelding
+     * @param sHeight		Hoogte van de afbeelding
+     * @param friendly		Friendly = afgevuurd door de speler, !Friendly = afgevuurd door een alien
+     * @param world			Referentie naar de hoofdmodule
+     * @param source		Het object dat het projectiel oorspronkelijk heeft afgevuurd
+     */
     public Projectile(Sprite sprite, int totalFrames, int sWidth, int sHeight, boolean friendly, SpaceInvaders world, AttackCapableGameObject source) {
         super(sprite, totalFrames, 0, 0, sWidth, sHeight, world);
         this.friendly = friendly;
         this.source = source;
     }
 
+    /**
+     * Beweegt het projectiel over het scherm
+     */
     @Override
     public void update() {
         nextFrame();
@@ -38,18 +66,33 @@ public abstract class Projectile extends DestroyableGameObject implements IColli
         }
     }
 
+    /**
+     * Geeft aan of het projectiel buiten beeld is
+     * @return		Is het projectiel buiten beeld, true of false
+     */
     public boolean getOutOfBounds() {
         return outOfBounds;
     }
 
+    /**
+     * Geeft aan of een projectiel Friendly is
+     * @return		Is het projectiel Friendly, true of false
+     */
     public boolean getFriendly() {
         return friendly;
     }
 
+    /**
+     * Geeft aan welk object het Projectiel heeft afgeschoten
+     * @return		Object dat het projectiel heeft afgeschoten
+     */
     public AttackCapableGameObject getSource() {
         return source;
     }
 
+    /**
+     * Geeft aan wat er moet gebeuren wanneer een projectiel een ander projectiel raakt
+     */
     @Override
     public void gameObjectCollisionOccurred(List<GameObject> collidedGameObjects) {
         for (GameObject g : collidedGameObjects) {
@@ -72,6 +115,10 @@ public abstract class Projectile extends DestroyableGameObject implements IColli
         }
     }
 
+    /**
+     * Geeft zwaarte van het projectiel
+     * @return		Zwaarte van het projectiel
+     */
     public int getWeight() {
         return weight;
     }
