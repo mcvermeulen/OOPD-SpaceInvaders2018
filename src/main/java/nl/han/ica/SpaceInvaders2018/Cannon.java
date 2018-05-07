@@ -110,10 +110,7 @@ public class Cannon extends AttackCapableGameObject implements ICollidableWithGa
             			newLifeAlarm();
             		}
             		else if (world.getLives() == 0) {
-            			world.deleteGameObject(this);
-            			System.out.println("Speler heeft verloren");
-            			world.updateHighscore();
-            			world.pauseGame();
+            			world.endGame();
             		}
             	}
             }

@@ -42,7 +42,7 @@ public class Startscreen extends GameObject{
      * Zorgt dat het spel start als er met de muis wordt geklikt
      */
     @Override
-    public void mouseClicked(int x, int y, int button) {
+    public void mousePressed(int x, int y, int button) {
         if (getGameState() == GameState.START) {
             world.newGame();
         }

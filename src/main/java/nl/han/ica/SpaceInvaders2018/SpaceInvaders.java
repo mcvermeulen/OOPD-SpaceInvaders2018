@@ -71,7 +71,7 @@ public class SpaceInvaders extends GameEngine {
     public void update() {
     }
 
-    private void createDashboard(int dashboardWidth,int dashboardHeight) {
+    public void createDashboard(int dashboardWidth,int dashboardHeight) {
         Dashboard dashboard = new Dashboard(0,0, dashboardWidth, dashboardHeight);
         Sprite backgroundImg = new Sprite("nl/han/ica/SpaceInvaders2018/media/background-1280x800.png");
         dashboard.setBackgroundImage(backgroundImg);
@@ -211,5 +211,17 @@ public class SpaceInvaders extends GameEngine {
 
     public static GameState getGameState() {
         return gameState;
+    }
+
+    public void endGame() {
+        setGameState(GameState.END);
+        deleteAllGameOBjects();
+        addGameObject(new GameOver(this));
+        System.out.println("Speler heeft verloren");
+        updateHighscore();
+    }
+
+    public int getHighscore() {
+        return Integer.parseInt(persistence.loadDataString());
     }
 }

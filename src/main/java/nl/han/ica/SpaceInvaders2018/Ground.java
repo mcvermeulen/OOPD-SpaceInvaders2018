@@ -3,7 +3,6 @@ package nl.han.ica.SpaceInvaders2018;
 import nl.han.ica.OOPDProcessingEngineHAN.Collision.ICollidableWithGameObjects;
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.GameObject;
 import processing.core.PGraphics;
-
 import java.util.List;
 
 /**
@@ -52,9 +51,7 @@ public class Ground extends GameObject implements ICollidableWithGameObjects {
     public void gameObjectCollisionOccurred(List<GameObject> collidedGameObjects) {
          for (GameObject g:collidedGameObjects) {
             if (g instanceof Alien) {
-                System.out.println("Speler heeft verloren");
-                world.updateHighscore();
-                world.pauseGame();
+            	world.endGame();
             }
         }
     }
