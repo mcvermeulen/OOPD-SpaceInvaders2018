@@ -4,6 +4,7 @@ import nl.han.ica.OOPDProcessingEngineHAN.Objects.GameObject;
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.TextObject;
 import processing.core.PGraphics;
 import processing.core.PImage;
+import static nl.han.ica.SpaceInvaders2018.SpaceInvaders.getGameState;
 
 /**
  * Startscherm van het spel
@@ -41,10 +42,9 @@ public class Startscreen extends GameObject{
     @Override
     public void mouseClicked(int x, int y, int button) {
         System.out.println("klik");
-        if (world.getGameState() == 0) {
+        if (getGameState() == GameState.START) {
             world.newGame();
         }
-
     }
 
     /**
@@ -52,7 +52,7 @@ public class Startscreen extends GameObject{
      */
     @Override
     public void update() {
-        if (world.getGameState() != 0) {
+        if (getGameState() != GameState.START) {
             this.setVisible(false);
         } else {
             this.setVisible(true);

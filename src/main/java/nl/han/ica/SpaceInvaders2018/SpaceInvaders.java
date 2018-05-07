@@ -15,10 +15,11 @@ import java.util.ArrayList;
 import java.util.Vector;
 
 public class SpaceInvaders extends GameEngine {
+    private static GameState gameState = GameState.START;
 	private static final long serialVersionUID = 2790543985929323791L;
 	private Sound shootSound, UFOShot, UFOTravel, alienKilled, explosion;
 	private TextObject dashboardText1, dashboardPlayerLives1, dashboardHighscore;
-	private int highscore, scorePlayer1, livesPlayer1, playfieldWidth, playfieldHeight, gameState;
+	private int highscore, scorePlayer1, livesPlayer1, playfieldWidth, playfieldHeight;
 	private IPersistence persistence;
     private ArrayList<Level> levels;
     private Level currentLevel;
@@ -31,7 +32,6 @@ public class SpaceInvaders extends GameEngine {
     public void setupGame() {
         int gameWidth = 1280;
         int gameHeight = 800;
-        gameState = 0;
         playfieldHeight = playfieldWidth = 700;
         initializeSound();
         inititializeLevels();
@@ -44,7 +44,7 @@ public class SpaceInvaders extends GameEngine {
     }
 
     public void newGame() {
-        gameState = 1;
+        setGameState(GameState.INPROGRESS);
         highscore = 0;
         scorePlayer1 = 0;
         livesPlayer1 = 3;
@@ -76,7 +76,7 @@ public class SpaceInvaders extends GameEngine {
         Sprite backgroundImg = new Sprite("nl/han/ica/SpaceInvaders2018/media/background-1280x800.png");
         dashboard.setBackgroundImage(backgroundImg);
 
-        if (gameState != 0) {
+        if (gameState != GameState.START) {
             addDashboardText(dashboard);
         }
         addDashboard(dashboard);
@@ -164,7 +164,7 @@ public class SpaceInvaders extends GameEngine {
     }
     
     private void refreshDasboardText() {
-        if (gameState != 0) {
+        if (gameState != GameState.START) {
             dashboardHighscore.setText(String.format("%06d", highscore));
             dashboardText1.setText(String.format("%06d", scorePlayer1));
             dashboardPlayerLives1.setText(String.format("%01d", livesPlayer1));
@@ -206,11 +206,11 @@ public class SpaceInvaders extends GameEngine {
         return playfieldHeight;
     }
 
-    public int getGameState() {
-        return gameState;
+    public static void setGameState(GameState gameState) {
+        SpaceInvaders.gameState = gameState;
     }
 
-    public void setGameState(int gameState) {
-        this.gameState = gameState;
+    public static GameState getGameState() {
+        return gameState;
     }
 }
