@@ -38,7 +38,6 @@ public class SpaceInvaders extends GameEngine {
         
         createView(gameWidth, gameHeight);
         createDashboard(gameWidth, gameHeight);
-        initializePersistence();
 
         Startscreen start = new Startscreen(this);
         addGameObject(start);
@@ -64,6 +63,7 @@ public class SpaceInvaders extends GameEngine {
 
         deleteAllDashboards();
         createDashboard(getWidth(), getHeight());
+        initializePersistence();
     }
 
     @Override
