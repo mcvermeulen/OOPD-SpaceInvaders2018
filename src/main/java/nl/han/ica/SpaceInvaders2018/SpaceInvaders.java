@@ -2,6 +2,7 @@ package nl.han.ica.SpaceInvaders2018;
 
 import nl.han.ica.OOPDProcessingEngineHAN.Dashboard.Dashboard;
 import nl.han.ica.OOPDProcessingEngineHAN.Engine.GameEngine;
+import nl.han.ica.OOPDProcessingEngineHAN.Objects.GameObject;
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite;
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.TextObject;
 import nl.han.ica.OOPDProcessingEngineHAN.Persistence.FilePersistence;
@@ -11,16 +12,16 @@ import nl.han.ica.OOPDProcessingEngineHAN.View.View;
 import processing.core.PApplet;
 
 import java.util.ArrayList;
+import java.util.Vector;
 
 public class SpaceInvaders extends GameEngine {
 	private static final long serialVersionUID = 2790543985929323791L;
 	private Sound shootSound, UFOShot, UFOTravel, alienKilled, explosion;
 	private TextObject dashboardText1, dashboardPlayerLives1, dashboardHighscore;
-	private int highscore, scorePlayer1, livesPlayer1;
+	private int highscore, scorePlayer1, livesPlayer1, playfieldWidth, playfieldHeight, gameState;
 	private IPersistence persistence;
     private ArrayList<Level> levels;
     private Level currentLevel;
-    private int playfieldWidth, playfieldHeight;
 
     public static void main(String[] args) {
         PApplet.main(new String[]{"nl.han.ica.SpaceInvaders2018.SpaceInvaders"});
@@ -30,9 +31,7 @@ public class SpaceInvaders extends GameEngine {
     public void setupGame() {
         int gameWidth = 1280;
         int gameHeight = 800;
-        highscore = 0;
-        scorePlayer1 = 0;
-        livesPlayer1 = 3;
+        gameState = 0;
         playfieldHeight = playfieldWidth = 700;
         initializeSound();
         inititializeLevels();
@@ -40,6 +39,16 @@ public class SpaceInvaders extends GameEngine {
         createView(gameWidth, gameHeight);
         createDashboard(gameWidth, gameHeight);
         initializePersistence();
+
+        Startscreen start = new Startscreen(this);
+        addGameObject(start);
+    }
+
+    public void newGame() {
+        gameState = 1;
+        highscore = 0;
+        scorePlayer1 = 0;
+        livesPlayer1 = 3;
 
         Ground grond = new Ground(this, 715);
         Bunker bunker1 = new Bunker(350, 600, 71, 48, this);
@@ -52,6 +61,9 @@ public class SpaceInvaders extends GameEngine {
         addGameObject(kanon);
         addGameObject(schip);
         addGameObject(alienContainer);
+
+        deleteAllDashboards();
+        createDashboard(getWidth(), getHeight());
     }
 
     @Override
@@ -60,42 +72,49 @@ public class SpaceInvaders extends GameEngine {
     }
 
     private void createDashboard(int dashboardWidth,int dashboardHeight) {
-        TextObject dashboardHeaderText1;
-        TextObject dashboardHeaderTextHighscore;
         Dashboard dashboard = new Dashboard(0,0, dashboardWidth, dashboardHeight);
         Sprite backgroundImg = new Sprite("nl/han/ica/SpaceInvaders2018/media/background-1280x800.png");
         dashboard.setBackgroundImage(backgroundImg);
+
+        if (gameState != 0) {
+            addDashboardText(dashboard);
+        }
+        addDashboard(dashboard);
+    }
+
+    private void addDashboardText(Dashboard dashboard) {
+        TextObject dashboardHeaderText1;
+        TextObject dashboardHeaderTextHighscore;
+
         dashboardHeaderText1 = new TextObject("SCORE 1", 30);
-        dashboardHeaderText1.setForeColor(255, 255, 255,255);
+        dashboardHeaderText1.setForeColor(255, 255, 255, 255);
         dashboardHeaderText1.setX(295);
         dashboardHeaderText1.setY(80);
         dashboard.addGameObject(dashboardHeaderText1);
-        
+
         dashboardHeaderTextHighscore = new TextObject("HI-SCORE", 30);
-        dashboardHeaderTextHighscore.setForeColor(255, 255, 255,255);
+        dashboardHeaderTextHighscore.setForeColor(255, 255, 255, 255);
         dashboardHeaderTextHighscore.setX(600);
         dashboardHeaderTextHighscore.setY(80);
         dashboard.addGameObject(dashboardHeaderTextHighscore);
-        
+
         dashboardText1 = new TextObject(String.format("%06d", scorePlayer1), 30);
-        dashboardText1.setForeColor(255, 255, 255,255);
+        dashboardText1.setForeColor(255, 255, 255, 255);
         dashboardText1.setX(295);
         dashboardText1.setY(115);
         dashboard.addGameObject(dashboardText1);
-        
+
         dashboardHighscore = new TextObject(String.format("%06d", highscore), 30);
-        dashboardHighscore.setForeColor(255, 255, 255,255);
+        dashboardHighscore.setForeColor(255, 255, 255, 255);
         dashboardHighscore.setX(600);
         dashboardHighscore.setY(115);
         dashboard.addGameObject(dashboardHighscore);
-        
+
         dashboardPlayerLives1 = new PlayerLives(String.format("%01d", livesPlayer1), 25, this);
-        dashboardPlayerLives1.setForeColor(255, 255, 255,255);
+        dashboardPlayerLives1.setForeColor(255, 255, 255, 255);
         dashboardPlayerLives1.setX(295);
         dashboardPlayerLives1.setY(717);
         dashboard.addGameObject(dashboardPlayerLives1);
-        
-        addDashboard(dashboard);
     }
     private void createView(int viewWidth, int viewHeight) {
         View view = new View(viewWidth, viewHeight);
@@ -145,9 +164,11 @@ public class SpaceInvaders extends GameEngine {
     }
     
     private void refreshDasboardText() {
-    	dashboardHighscore.setText(String.format("%06d", highscore));
-    	dashboardText1.setText(String.format("%06d", scorePlayer1));
-    	dashboardPlayerLives1.setText(String.format("%01d", livesPlayer1));
+        if (gameState != 0) {
+            dashboardHighscore.setText(String.format("%06d", highscore));
+            dashboardText1.setText(String.format("%06d", scorePlayer1));
+            dashboardPlayerLives1.setText(String.format("%01d", livesPlayer1));
+        }
     }
 
     private void inititializeLevels() {
@@ -177,7 +198,6 @@ public class SpaceInvaders extends GameEngine {
     	}
     }
 
-
     public int getPlayfieldWidth() {
         return playfieldWidth;
     }
@@ -185,5 +205,12 @@ public class SpaceInvaders extends GameEngine {
     public int getPlayfieldHeight() {
         return playfieldHeight;
     }
-    
+
+    public int getGameState() {
+        return gameState;
+    }
+
+    public void setGameState(int gameState) {
+        this.gameState = gameState;
+    }
 }

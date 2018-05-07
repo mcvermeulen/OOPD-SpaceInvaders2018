@@ -12,20 +12,30 @@ import nl.han.ica.OOPDProcessingEngineHAN.Sound.Sound;
  * Superklasse van de aliens
  */
 public abstract class Alien extends AttackCapableGameObject implements ICollidableWithGameObjects {
+	
+	/**
+	 * De waarde van de alien, die toegevoegd wordt aan de score als de speler hem raakt
+	 */
 	protected int value = 0;
+	/**
+	 * Geeft aan of de alien is geraakt
+	 */
 	protected boolean hit;
+	/**
+	 * Geluid wat de alien maakt als hij geraakt wordt
+	 */
 	protected Sound alienKilled;
 
     /**
      * Constructor
-     * @param sprite Afbeelding van de alien
-     * @param totalFrames Aantal frames waaruit de afbeeldng bestaat
-     * @param x X-positie waarop de alien getekend wordt
-     * @param y Y-positie waarop de aliend getekend wordt
-     * @param sWidth Breedte van de alien
-     * @param sHeight Hoogte van de alien
-     * @param world Referentie naar de hoofdmodule
-     * @param alienKilled Geluid wat de alien maakt als hij geraakt wordt
+     * @param sprite 		Afbeelding van de alien
+     * @param totalFrames 	Aantal frames waaruit de afbeeldng bestaat
+     * @param x 			X-positie waarop de alien getekend wordt
+     * @param y 			Y-positie waarop de aliend getekend wordt
+     * @param sWidth 		Breedte van de alien
+     * @param sHeight 		Hoogte van de alien
+     * @param world 		Referentie naar de hoofdmodule
+     * @param alienKilled 	Geluid wat de alien maakt als hij geraakt wordt
      */
     public Alien(Sprite sprite, int totalFrames, float x, float y, int sWidth, int sHeight, SpaceInvaders world, Sound alienKilled) {
         super(sprite, totalFrames, x, y, sWidth, sHeight, world);
@@ -39,10 +49,17 @@ public abstract class Alien extends AttackCapableGameObject implements ICollidab
         cleanUpProjectiles();
     }
     
+    /**
+     * Geeft de waarde van de alien, die toegevoegd wordt aan de score als de speler hem raakt
+     * @return		waarde
+     */
     public int getValue() {
     	return value;
     }
     
+    /**
+     * Als een alien wordt geraakt, worden zowel de alien als het projectiel verwijderd, en er vindt een explosie plaats
+     */
     @Override
     public void gameObjectCollisionOccurred(List<GameObject> collidedGameObjects) {
         for (GameObject g:collidedGameObjects) {
@@ -60,10 +77,17 @@ public abstract class Alien extends AttackCapableGameObject implements ICollidab
         }
     }
     
+    /**
+     * Geeft aan of de alien is geraakt
+     * @return		is de alien geraakt, true of false
+     */
     public boolean getHit() {
     	return hit;
     }
-
+    
+    /**
+     * Bepaalt welk type projectiel door de alien wordt afgevuurd
+     */
     public void fire() {
         Random rand = new Random();
         int type = rand.nextInt(100);
@@ -76,6 +100,9 @@ public abstract class Alien extends AttackCapableGameObject implements ICollidab
         }
     }
     
+    /**
+     * Verplaatst de alien naar beneden
+     */
     protected void dropToRowBelow() {
     	setY(getY() + getHeight());
     }

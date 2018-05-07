@@ -13,24 +13,45 @@ import java.util.Random;
  * De container waarin de aliens zitten, zodat deze synchroon bewegen
  */
 public class AlienContainer extends Alien implements ICollidableWithGameObjects {
-    private SpaceInvaders world;
+    /**
+     * Referentie naar de hoofdmodule
+     */
+	private SpaceInvaders world;
+    /**
+     * Beweegrichting van de aliens
+     */
     private int direction = 90;
+    /**
+     * ArrayList met daarin Aliens
+     */
     private ArrayList<Alien> aliens;
+    /**
+     * Totaal aantal vijandelijke projectielen op het hele scherm
+     */
     private int allHostileProjectiles;
+    /**
+     * Maximaal aantal vijandelijke projectielen op het hele scherm
+     */
     private int maxHostileProjectiles = 3;
+    /**
+     * Beweegsnelheid van de aliens
+     */
     private float speed;
+    /**
+     * Aantal vernietigde aliens
+     */
     private int destroyed, nTotalAliens = 0;
 
     /**
      * Constructor
      *
-     * @param world       referentie naar de hoofdmodule
-     * @param x           x-coordinaat van de startpositie van de aliens
-     * @param y           y-coordinaat van de startpositie van de aliens
-     * @param alienKilled geluid wat afgespeeld wordt als de aliens geraakt zijn
-     * @param nSmall      aantal kleine aliens
-     * @param nMedium     aantal medium aliens
-     * @param nLarge      aantal grote aliens
+     * @param world       	referentie naar de hoofdmodule
+     * @param x           	x-coordinaat van de startpositie van de aliens
+     * @param y           	y-coordinaat van de startpositie van de aliens
+     * @param alienKilled 	geluid wat afgespeeld wordt als de aliens geraakt zijn
+     * @param nSmall      	aantal kleine aliens
+     * @param nMedium     	aantal medium aliens
+     * @param nLarge      	aantal grote aliens
      */
     public AlienContainer(SpaceInvaders world, float x, float y, Sound alienKilled, int nSmall, int nMedium, int nLarge) {
         super(new Sprite("nl/han/ica/SpaceInvaders2018/sprites/MediumAlien.png"), 1, x, y, 0, 0, world, alienKilled);
@@ -43,16 +64,27 @@ public class AlienContainer extends Alien implements ICollidableWithGameObjects 
         this.generateAliens(nSmall, nMedium, nLarge);
     }
 
+    /**
+     * Voegt een alien toe aan de container
+     * @param alien		alien
+     */
     public void add(Alien alien) {
         aliens.add(alien);
         world.addGameObject(alien);
     }
 
+    /**
+     * Verwijderd een alien uit de container
+     * @param alien		alien
+     */
     public void destroy(Alien alien) {
         aliens.remove(alien);
         world.deleteGameObject(alien);
     }
 
+    /**
+     * Verwijderd alle aliens die voor het attribuut hit de waarde 'true' hebben
+     */
     public void cleanUpAliens() {
         for (int i = aliens.size() - 1; i >= 0; i--) {
             Alien a = aliens.get(i);
@@ -63,6 +95,10 @@ public class AlienContainer extends Alien implements ICollidableWithGameObjects 
         }
     }
 
+    /**
+     * Telt hoeveel vijandelijke projectielen er in totaal op het scherm zijn, door alle aliens in de container na te lopen
+     * @return 			  	alle vijandelijke projectielen op het scherm
+     */
     public int giveAllHostileProjectiles() {
         int number = 0;
         for (Alien a : aliens) {
@@ -71,13 +107,15 @@ public class AlienContainer extends Alien implements ICollidableWithGameObjects 
         return number;
     }
 
+    /**
+     * Laat de aliens terugschieten op de speler, mits er aan een aantal condities wordt voldaan
+     */
     public void fireBack() {
         if (aliens.size() > 0) {
             allHostileProjectiles = giveAllHostileProjectiles();
             if (allHostileProjectiles < maxHostileProjectiles) {
                 Random rand = new Random();
-                int fire = rand.nextInt(200); // bepaalt kans dat de aliens schieten. Dit getal kan later een variabele fireRate worden dat bv. hoger wordt naarmate er minder aliens zijn
-                // hier later als we ook de andere twee projectiel typen hebben, nog een random gebruiken om te bepalen welk projectiel het wordt
+                int fire = rand.nextInt(200); // TODO: dit getal nog een variabele maken?
                 if (fire <= 1) {
                     int alien = rand.nextInt(aliens.size());
                     Alien attackingAlien = aliens.get(alien);
@@ -87,10 +125,14 @@ public class AlienContainer extends Alien implements ICollidableWithGameObjects 
         }
     }
 
+    //TODO: Hebben we deze interface hier eigenlijk wel nodig?
     @Override
     public void gameObjectCollisionOccurred(List<GameObject> collidedGameObjects) {
     }
 
+    /**
+     * Bepaalt de beweegrichting en -snelheid van de aliens, of ze schieten, en of de aliens opnieuw moeten worden getekend omdat de speler ze allemaal heeft neergeschoten
+     */
     @Override
     public void update() {
         fireBack();
@@ -103,7 +145,7 @@ public class AlienContainer extends Alien implements ICollidableWithGameObjects 
                 speed = 3.8f;
             }
         }
-        // boundaries
+        // Boundaries
         if (direction == 90 && calculateRight() >= (world.width + world.getPlayfieldWidth())/2) {
             direction = 270;
             dropToRowBelow();
@@ -125,6 +167,9 @@ public class AlienContainer extends Alien implements ICollidableWithGameObjects 
         }
     }
 
+    /**
+     * De hele groep naar beneden laten bewegen
+     */
     @Override
     protected void dropToRowBelow() {
         for (int i = aliens.size() - 1; i >= 0; i--) {
@@ -132,6 +177,10 @@ public class AlienContainer extends Alien implements ICollidableWithGameObjects 
         }
     }
 
+    /**
+     * Berekent de x-positie van de meest rechtse alien
+     * @return				meest rechtse x-positie
+     */
     private int calculateRight() {
         float right = 0;
         for (Alien alien : aliens) {
@@ -140,6 +189,10 @@ public class AlienContainer extends Alien implements ICollidableWithGameObjects 
         return Math.round(right);
     }
 
+    /**
+     * Berekent de x-positie van de meest linkse alien
+     * @return				meest linkse x-positie
+     */
     private int calculateLeft() {
         float left = world.width;
         for (Alien alien : aliens) {
@@ -148,7 +201,9 @@ public class AlienContainer extends Alien implements ICollidableWithGameObjects 
         return Math.round(left);
     }
 
-
+    /**
+     * Past de snelheid van de groep aan, naarmate er minder aliens in de groep zitten
+     */
     private void updateCurrentGroupSpeed() {
         int destroyedAliens = nTotalAliens - aliens.size();
         if (this.destroyed != destroyedAliens) {
@@ -158,6 +213,12 @@ public class AlienContainer extends Alien implements ICollidableWithGameObjects 
     }
 
     // TODO dit kan beter
+    /**
+     * Vult de ArrayList met nieuw aangemaakte aliens
+     * @param nSmallAliens	aantal kleine aliens
+     * @param nMediumAliens	aantal medium aliens
+     * @param nLargeAliens	aantal grote aliens
+     */
     private void generateAliens(int nSmallAliens, int nMediumAliens, int nLargeAliens) {
         int columns = 11;
         int row = 0;

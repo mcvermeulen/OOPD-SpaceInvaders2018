@@ -10,13 +10,14 @@ import java.util.List;
  * Grondlijn
  */
 public class Ground extends GameObject implements ICollidableWithGameObjects {
-    SpaceInvaders world;
+    private SpaceInvaders world;
 	private int yPosition;
 	private int xPosition1;
 	private int xPosition2;
 
     /**
      * Constructor
+     * @param world		Referentie naar de hoofdmodule
      * @param yPosition Hoogte van de lijn
      */
 	public Ground (SpaceInvaders world, int yPosition) {
@@ -34,6 +35,9 @@ public class Ground extends GameObject implements ICollidableWithGameObjects {
 	public void update() {
 	}
 
+	/**
+	 * Tekent de grondlijn
+	 */
 	@Override
 	public void draw(PGraphics g) {
 		g.stroke(204, 102, 0);
@@ -41,6 +45,9 @@ public class Ground extends GameObject implements ICollidableWithGameObjects {
 		g.line(xPosition1, yPosition, xPosition2, yPosition);
 	}
 
+	/**
+	 * Geeft aan wat er gebeurt wanneer de aliens de grondlijn bereiken
+	 */
     @Override
     public void gameObjectCollisionOccurred(List<GameObject> collidedGameObjects) {
          for (GameObject g:collidedGameObjects) {

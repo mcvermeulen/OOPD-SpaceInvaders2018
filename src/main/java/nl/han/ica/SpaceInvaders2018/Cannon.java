@@ -13,14 +13,20 @@ import nl.han.ica.OOPDProcessingEngineHAN.Sound.Sound;
  * Het kanon (de speler)
  */
 public class Cannon extends AttackCapableGameObject implements ICollidableWithGameObjects, IAlarmListener {
-    private Sound shootSound;
+    /**
+     * Geluid van het schieten
+     */
+	private Sound shootSound;
+	/**
+	 * Geluid van de explosie
+	 */
     private Sound explosion;
 
     /**
      * Constructor
      * @param world Referentie naar de hoofdmodule
      * @param x X-coordinaat van het kanon
-     * @param y Y-coordinaat
+     * @param y Y-coordinaat van het kanon
      * @param shoot Geluid van het schieten
      * @param explosion Geluid van de explosie
      */
@@ -32,6 +38,9 @@ public class Cannon extends AttackCapableGameObject implements ICollidableWithGa
         startAlarm();
     }
 
+    /**
+     * Beweegt het kanon
+     */
     @Override
     public void update() {
         cleanUpProjectiles();
@@ -45,6 +54,9 @@ public class Cannon extends AttackCapableGameObject implements ICollidableWithGa
         }
     }
 
+    /**
+     * Bepaalt wat er moet gebeuren wanneer er bepaalde toetsaanslagen gebeuren
+     */
     @Override
     public void keyPressed(int keyCode, char key) {
         final int speed = 5;
@@ -67,6 +79,9 @@ public class Cannon extends AttackCapableGameObject implements ICollidableWithGa
         }
     }
 
+    /**
+     * Stopt de beweging van het kanon als de knoppen los worden gelaten
+     */
     @Override
     public void keyReleased(int keyCode, char key) {
         switch (keyCode) {
@@ -76,6 +91,9 @@ public class Cannon extends AttackCapableGameObject implements ICollidableWithGa
         }
     }
     
+    /**
+     * Geeft aan wat er moet gebeuren wanneer de speler wordt geraakt door een vijandelijk projectiel
+     */
     @Override
     public void gameObjectCollisionOccurred(List<GameObject> collidedGameObjects) {
     	for (GameObject g:collidedGameObjects) {
@@ -104,18 +122,27 @@ public class Cannon extends AttackCapableGameObject implements ICollidableWithGa
     	}
     }
     
+    /**
+     * Pauzeert het spel als een kanon is vernietigd door de aliens
+     */
     private void newLifeAlarm() {
         Alarm alarm=new Alarm("Use extra life", 1);
         alarm.addTarget(this);
         alarm.start();
     }
 
+    /**
+     * Pauzeert het spel aan het begin, zodat het tijd krijgt om alles te renderen
+     */
     private void startAlarm() {
         Alarm alarm=new Alarm("Pause game so it can render before play starts", 2);
         alarm.addTarget(this);
         alarm.start();
     }
 
+    /**
+     * Als het alarm afgaat, gaat het spel door en wordt er een nieuw kanon speelbaar voor de speler (d.w.z. een leven wordt verbruikt)
+     */
 	@Override
 	public void triggerAlarm(String alarmName) {
 		setVisible(true);
