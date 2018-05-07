@@ -80,11 +80,24 @@ public class PlayerLives extends TextObject {
 		if (score > 1000 && !firstLifeAwarded) {
 			world.increaseLives();
 			firstLifeAwarded = true;
+			showExtraLifeText();
 		}
 		else if (score > 2000 && !secondLifeAwarded) {
 			world.increaseLives();
 			secondLifeAwarded = true;
+			showExtraLifeText();
 		}
 	}
+	
+    /**
+     * Toont mededeling wanneer een extra leven is gehaald
+     */
+    private void showExtraLifeText() {
+    	BonusPointsText bonus = new BonusPointsText("+1 LIFE!", 20, world);
+    	bonus.setForeColor(0, 255, 0, 255);
+    	bonus.setX(getX());
+    	bonus.setY(getY());
+    	world.addGameObject(bonus);
+    }
 
 }

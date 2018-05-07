@@ -1,7 +1,7 @@
 package nl.han.ica.SpaceInvaders2018;
 
 import java.util.List;
-
+import java.util.Random;
 import nl.han.ica.OOPDProcessingEngineHAN.Collision.ICollidableWithGameObjects;
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.GameObject;
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite;
@@ -71,11 +71,23 @@ public class Ruimteschip extends DestroyableGameObject implements ICollidableWit
     }
     
     /**
+     * Geeft een nieuwe waarde aan het Ruimteschip (tussen de 50 en 300 punten)
+     * @return		De punten die toegevoegd worden aan de score van de speler, als het ruimteschip wordt geraakt
+     */
+    public int generateValue() {
+    	Random random = new Random();
+    	int value = 50 * (random.nextInt(6) + 1);
+    	System.out.println(value);
+    	return value;
+    }
+    
+    /**
      * Reset het ruimteschip (maakt het weer zichtbaar)
      */
     public void resetUFO() {
     	if (shot) {
     		setVisible(true);
+    		value = generateValue();
     	}
     	shot = false;
     }
@@ -128,15 +140,23 @@ public class Ruimteschip extends DestroyableGameObject implements ICollidableWit
      * @return		is het ruimteschip in beeld, of niet
      */
     public boolean outOfViewPort(float x) {
-	    //System.out.println(x);
 		if (x >= 990 || x <= 290 - getWidth()) {
-			//System.out.println(true);
 			return true;
 		} else if (x < 990 || x > 290 - getWidth()) {
-			//System.out.println(false);
 			return false;
 		}
 		return true;
+    }
+    
+    /**
+     * Toont de bonuspunten op de locatie waar het ruimteschip was geraakt
+     */
+    private void showBonusPoints() {
+    	BonusPointsText bonus = new BonusPointsText((String.format("%02d", value)), 20, world);
+    	bonus.setForeColor(255, 0, 0, 255);
+    	bonus.setX(getX());
+    	bonus.setY(getY() + getHeight());
+    	world.addGameObject(bonus);
     }
     
     /**
@@ -153,9 +173,10 @@ public class Ruimteschip extends DestroyableGameObject implements ICollidableWit
             		world.deleteGameObject(g);
             		shot = true;
             		pauseTravelSound();
-            		setVisible(false); //TODO Explosie-animatie, puntenberekening (hoeveel was de UFO waard), puntenoptellen bij totaalscore, etc.
+            		setVisible(false); //TODO Explosie-animatie, etc.
             		UFOShot.cue(140);
             		UFOShot.play();
+            		showBonusPoints();
             		world.increaseScore(value);
             	}
             }
