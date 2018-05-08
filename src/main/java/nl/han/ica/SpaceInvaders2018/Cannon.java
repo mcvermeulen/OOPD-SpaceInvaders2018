@@ -16,18 +16,19 @@ public class Cannon extends AttackCapableGameObject implements ICollidableWithGa
     /**
      * Geluid van het schieten
      */
-	private Sound shootSound;
-	/**
-	 * Geluid van de explosie
-	 */
+    private Sound shootSound;
+    /**
+     * Geluid van de explosie
+     */
     private Sound explosion;
 
     /**
      * Constructor
-     * @param world Referentie naar de hoofdmodule
-     * @param x X-coordinaat van het kanon
-     * @param y Y-coordinaat van het kanon
-     * @param shoot Geluid van het schieten
+     *
+     * @param world     Referentie naar de hoofdmodule
+     * @param x         X-coordinaat van het kanon
+     * @param y         Y-coordinaat van het kanon
+     * @param shoot     Geluid van het schieten
      * @param explosion Geluid van de explosie
      */
     public Cannon(SpaceInvaders world, float x, float y, Sound shoot, Sound explosion) {
@@ -71,7 +72,7 @@ public class Cannon extends AttackCapableGameObject implements ICollidableWithGa
         if (key == ' ') {
             if (getTotalFriendlyProjectiles() == 0) {
                 shootSound.cue(137);
-            	shootSound.play();
+                shootSound.play();
                 generateLaser(true);
             }
         }
@@ -83,44 +84,42 @@ public class Cannon extends AttackCapableGameObject implements ICollidableWithGa
     @Override
     public void keyReleased(int keyCode, char key) {
         switch (keyCode) {
-            case LEFT: case RIGHT:
+            case LEFT:
+            case RIGHT:
                 setxSpeed(0);
                 break;
         }
     }
-    
+
     /**
      * Geeft aan wat er moet gebeuren wanneer de speler wordt geraakt door een vijandelijk projectiel
      */
     @Override
     public void gameObjectCollisionOccurred(List<GameObject> collidedGameObjects) {
-    	for (GameObject g:collidedGameObjects) {
+        for (GameObject g : collidedGameObjects) {
             if (g instanceof Projectile) {
                 Projectile p = (Projectile) g;
-            	if(!p.getFriendly()) {
-            		AttackCapableGameObject k = p.getSource();
-            		k.removeProjectile(p);
-            		explosion.cue(140);
-            		explosion.play();
-            		world.decreaseLives();
-            		if (world.getLives() > 0) {
-            			setVisible(false);
-            			world.pauseGame();
-            			newLifeAlarm();
-            		}
-            		else if (world.getLives() == 0) {
-            			world.endGame();
-            		}
-            	}
+                AttackCapableGameObject k = p.getSource();
+                k.removeProjectile(p);
+                explosion.cue(140);
+                explosion.play();
+                world.decreaseLives();
+                if (world.getLives() > 0) {
+                    setVisible(false);
+                    world.pauseGame();
+                    newLifeAlarm();
+                } else if (world.getLives() == 0) {
+                    world.endGame();
+                }
             }
-    	}
+        }
     }
-    
+
     /**
      * Pauzeert het spel als een kanon is vernietigd door de aliens
      */
     private void newLifeAlarm() {
-        Alarm alarm=new Alarm("Use extra life", 1);
+        Alarm alarm = new Alarm("Use extra life", 1);
         alarm.addTarget(this);
         alarm.start();
     }
@@ -128,9 +127,9 @@ public class Cannon extends AttackCapableGameObject implements ICollidableWithGa
     /**
      * Als het alarm afgaat, gaat het spel door en wordt er een nieuw kanon speelbaar voor de speler (d.w.z. een leven wordt verbruikt)
      */
-	@Override
-	public void triggerAlarm(String alarmName) {
-		setVisible(true);
-		world.resumeGame();
-	}
+    @Override
+    public void triggerAlarm(String alarmName) {
+        setVisible(true);
+        world.resumeGame();
+    }
 }
