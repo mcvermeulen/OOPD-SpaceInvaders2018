@@ -20,10 +20,6 @@ public class Ruimteschip extends DestroyableGameObject implements ICollidableWit
      */
 	private Sound UFOShot;
     /**
-     * Geluid dat het schip maakt, wanneer het beweegt
-     */
-    private Sound UFOTravel;
-    /**
      * Geeft aan of het ruimteschip is geraakt door de speler
      */
     private boolean shot;
@@ -38,12 +34,10 @@ public class Ruimteschip extends DestroyableGameObject implements ICollidableWit
      * @param x				X-positie waarop het object getekend wordt
      * @param y				Y-positie waarop het object getekend wordt
      * @param UFOShot		Geluid dat het schip maakt, wanneer het neergeschoten wordt
-     * @param UFOTravel		Geluid dat het schip maakt, wanneer het beweegt
      */
-    public Ruimteschip(SpaceInvaders world, float x, float y, Sound UFOShot, Sound UFOTravel) {
+    public Ruimteschip(SpaceInvaders world, float x, float y, Sound UFOShot) {
         super(new Sprite("nl/han/ica/SpaceInvaders2018/sprites/Ruimteschip.png"), 1, x, y, 50, 23, world);
         this.UFOShot = UFOShot;
-        this.UFOTravel = UFOTravel;
         this.shot = false;
         this.value = 100;
 
@@ -57,16 +51,6 @@ public class Ruimteschip extends DestroyableGameObject implements ICollidableWit
     @Override
     public void update() {
     	nextFrame();
-        float x = getX();
-        boolean outOfBounds = outOfViewPort(x);
-        if (outOfBounds) {
-        	//System.out.println("geen geluid");
-        	pauseTravelSound();
-        }
-        else if (!outOfBounds && !shot) {
-        	//System.out.println("We horen geluid te hebben");
-        	travelSound();
-        }
         travel();
     }
     
@@ -97,55 +81,15 @@ public class Ruimteschip extends DestroyableGameObject implements ICollidableWit
      */
     public void travel() {
         // boundaries
-        if (direction == 90 && x == 1140) {
+        if (direction == 90 && x >= world.width) {
         	resetUFO();
         	direction = 270;
 	    }
-	    else if (direction == 270 && x == 100) {
+	    else if (direction == 270 && x <= 0) {
 	    	resetUFO();
 	    	direction = 90;
 	    }
         setDirectionSpeed(direction, 2);
-    }
-    
-    /**
-     * Voegt geluid toe aan het ruimteschip, als het in beeld is
-     */
-    public void travelSound() {
-    	if (shot) {
-    		//System.out.println("geen geluid");
-    		pauseTravelSound();
-    	}
-    	else if (!shot) {
-    		//System.out.println("We horen geluid te hebben");
-    		if (!UFOTravel.isPlaying()) {
-    			//System.out.println("We horen geluid te hebben");
-    			//UFOTravel.loop(-1); // TODO: eventueel op 20 zetten als het geluid steeds so abrupt blijft afkappen
-    		}
-    	}
-    }
-    
-    /**
-     * Pauzeert het geluid van het ruimteschip
-     */
-    public void pauseTravelSound() {
-    	if (UFOTravel.isPlaying() || UFOTravel.isLooping()) {
-    		UFOTravel.pause();
-    	}
-    }
-    
-    /**
-     * Geeft aan of het ruimteschip in beeld is
-     * @param x		x-positie van het ruimteschip
-     * @return		is het ruimteschip in beeld, of niet
-     */
-    public boolean outOfViewPort(float x) {
-		if (x >= 990 || x <= 290 - getWidth()) {
-			return true;
-		} else if (x < 990 || x > 290 - getWidth()) {
-			return false;
-		}
-		return true;
     }
     
     /**
@@ -166,13 +110,11 @@ public class Ruimteschip extends DestroyableGameObject implements ICollidableWit
     public void gameObjectCollisionOccurred(List<GameObject> collidedGameObjects) {
         for (GameObject g:collidedGameObjects) {
             if (g instanceof Projectile) {
-            	if(((Projectile) g).getFriendly()) {
-            		Projectile p = (Projectile) g;
+                Projectile p = (Projectile) g;
+            	if(p.getFriendly()) {
             		AttackCapableGameObject k = p.getSource();
             		k.removeProjectile(p);
-            		world.deleteGameObject(g);
             		shot = true;
-            		pauseTravelSound();
             		setVisible(false); //TODO Explosie-animatie, etc.
             		UFOShot.cue(140);
             		UFOShot.play();

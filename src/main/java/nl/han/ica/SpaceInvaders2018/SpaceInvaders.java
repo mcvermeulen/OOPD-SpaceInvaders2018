@@ -17,7 +17,7 @@ import java.util.Vector;
 public class SpaceInvaders extends GameEngine {
     private static GameState gameState = GameState.START;
 	private static final long serialVersionUID = 2790543985929323791L;
-	private Sound shootSound, UFOShot, UFOTravel, alienKilled, explosion;
+	private Sound shootSound, UFOShot, alienKilled, explosion;
 	private TextObject dashboardText1, dashboardPlayerLives1, dashboardHighscore;
 	private int highscore, scorePlayer1, livesPlayer1, playfieldWidth, playfieldHeight;
 	private IPersistence persistence;
@@ -53,8 +53,8 @@ public class SpaceInvaders extends GameEngine {
         Ground grond = new Ground(this, 715);
         Bunker bunker1 = new Bunker(350, 600, 71, 48, this);
         Cannon kanon= new Cannon(this, 700, 680, shootSound, explosion);
-        Ruimteschip schip = new Ruimteschip(this, 850, 130, UFOShot, UFOTravel);
-        AlienContainer alienContainer = new AlienContainer(this, 400, currentLevel.getStartPositionAliens(), alienKilled, 11, 22, 22);
+        Ruimteschip schip = new Ruimteschip(this, 850, 130, UFOShot);
+        AlienContainer alienContainer = new AlienContainer(this, 500, currentLevel.getStartPositionAliens(), alienKilled, 11, 22, 22);
 
         addGameObject(grond);
         addGameObject(bunker1);
@@ -127,7 +127,6 @@ public class SpaceInvaders extends GameEngine {
     private void initializeSound() {
         shootSound = new Sound(this, "nl/han/ica/SpaceInvaders2018/media/shoot.mp3");
         UFOShot = new Sound(this, "nl/han/ica/SpaceInvaders2018/media/ufo_lowpitch.mp3");
-        UFOTravel = new Sound(this, "nl/han/ica/SpaceInvaders2018/media/ufo_highpitch.mp3");
         alienKilled = new Sound(this, "nl/han/ica/SpaceInvaders2018/media/invaderkilled.mp3");
         explosion = new Sound(this, "nl/han/ica/SpaceInvaders2018/media/explosion.mp3");
     }
