@@ -19,12 +19,15 @@ public class BunkerSquareTile extends BunkerTile {
     public void swapSprite() {
     	if(hitPoints == 3) {
     		setSprite(sprite3);
+    		sprite3.resize(20, 20);
     	}
     	else if(hitPoints == 2) {
     		setSprite(sprite2);
+    		sprite2.resize(20, 20);
     	}
     	else if(hitPoints == 1) {
     		setSprite(sprite1);
+    		sprite1.resize(20, 20);
     	}
     }
 }

@@ -27,4 +27,6 @@ Proton.png,
 Ruimteschip.png,
 SmallAlien.png						-> zelf gemaakt naar voorbeeld van: https://gooperblooper22.deviantart.com/art/Space-Invaders-Sprite-Sheet-135338373
 
-BunkerHitSmall.png					-> zelf gemaakt
+BunkerHitSmall.png,
+BunkerTile1_1hp.png t/m
+BunkerTile5_4hp.png					-> zelf gemaakt

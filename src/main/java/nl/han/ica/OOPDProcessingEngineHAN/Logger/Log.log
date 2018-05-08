@@ -270,3 +270,5 @@ FAILURE: test
 FAILURE: test
 [2015-51-08 10:51:39.436] 
 FAILURE: test
+[2018-41-08 09:41:49.63] 
+FAILURE: java.lang.NoSuchMethodException: nl.han.ica.SpaceInvaders2018.BunkerSlopedTile1.<init>(nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite)

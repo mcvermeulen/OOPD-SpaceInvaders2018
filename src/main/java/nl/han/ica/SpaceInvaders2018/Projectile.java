@@ -130,12 +130,23 @@ public abstract class Projectile extends DestroyableGameObject implements IColli
     public void tileCollisionOccurred(List<CollidedTile> collidedTiles)  {
     	PVector vector;
     	for (CollidedTile ct : collidedTiles) {
-             //if (ct.theTile instanceof BunkerTile) {
-            	 source.removeProjectile(this);
-            	 world.deleteGameObject(this);
-            	 vector = world.getTileMap().getTilePixelLocation(ct.theTile);
-                 world.getTileMap().setTile((int) vector.x / 20, (int) vector.y / 20, -1);
-            // }
+    		source.removeProjectile(this);
+       	 	world.deleteGameObject(this);
+             if (ct.theTile instanceof BunkerTile) {
+            	 BunkerTile bt = (BunkerTile)ct.theTile;
+            	 if (bt.getHitPoints() == 0) {
+            		 vector = world.getTileMap().getTilePixelLocation(ct.theTile);
+            		 world.getTileMap().setTile((int) vector.x / 20, (int) vector.y / 20, -1);
+            	 }
+            	 else if (bt.getHitPoints() > 0) {
+            		 bt.setHitPoints(bt.getHitPoints() - weight);
+            		 bt.swapSprite();
+            		 if (bt.getHitPoints() == 0) {
+                		 vector = world.getTileMap().getTilePixelLocation(ct.theTile);
+                		 world.getTileMap().setTile((int) vector.x / 20, (int) vector.y / 20, -1);
+                	 }
+            	 }
+            }
     	 }
     }
 

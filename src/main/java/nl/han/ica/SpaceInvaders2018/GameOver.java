@@ -59,11 +59,12 @@ public class GameOver extends GameObject{
         if (world.getScore() > world.getHighscore()) {
             g.textSize(36);
             g.fill(0xFF00EE00);
-            g.text("U beat the highscore!!", xCenter, y+(height/6)*4);
+            g.text("You beat the highscore!!", xCenter, y+(height/6)*4);
         }
         g.fill(0xFFFFFFFF);
         g.textSize(18);
         g.text("Try again?", xCenter, this.height);
+        world.makeEmptyTileMap();
     }
 
 
