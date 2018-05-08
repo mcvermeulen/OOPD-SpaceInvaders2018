@@ -115,7 +115,8 @@ public class Ruimteschip extends DestroyableGameObject implements ICollidableWit
             		AttackCapableGameObject k = p.getSource();
             		k.removeProjectile(p);
             		shot = true;
-            		setVisible(false); //TODO Explosie-animatie, etc.
+            		setVisible(false);
+            		explode();
             		UFOShot.cue(140);
             		UFOShot.play();
             		showBonusPoints();
