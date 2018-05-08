@@ -96,11 +96,10 @@ public class Cannon extends AttackCapableGameObject implements ICollidableWithGa
     public void gameObjectCollisionOccurred(List<GameObject> collidedGameObjects) {
     	for (GameObject g:collidedGameObjects) {
             if (g instanceof Projectile) {
-            	if(!((Projectile) g).getFriendly()) {
-            		Projectile p = (Projectile) g;
+                Projectile p = (Projectile) g;
+            	if(!p.getFriendly()) {
             		AttackCapableGameObject k = p.getSource();
             		k.removeProjectile(p);
-            		world.deleteGameObject(g);
             		explosion.cue(140);
             		explosion.play();
             		world.decreaseLives();
