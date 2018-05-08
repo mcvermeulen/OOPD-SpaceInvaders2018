@@ -3,14 +3,17 @@ package nl.han.ica.SpaceInvaders2018;
 import java.util.List;
 import java.util.Random;
 
+import nl.han.ica.OOPDProcessingEngineHAN.Collision.CollidedTile;
 import nl.han.ica.OOPDProcessingEngineHAN.Collision.ICollidableWithGameObjects;
+import nl.han.ica.OOPDProcessingEngineHAN.Collision.ICollidableWithTiles;
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.GameObject;
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite;
+import processing.core.PVector;
 
 /**
  * Superklasse Projectile
  */
-public abstract class Projectile extends DestroyableGameObject implements ICollidableWithGameObjects {
+public abstract class Projectile extends DestroyableGameObject implements ICollidableWithGameObjects, ICollidableWithTiles {
 
 	/**
 	 * Friendly = afgevuurd door de speler, !Friendly = afgevuurd door een alien
@@ -121,6 +124,19 @@ public abstract class Projectile extends DestroyableGameObject implements IColli
      */
     public int getWeight() {
         return weight;
+    }
+    
+    @Override
+    public void tileCollisionOccurred(List<CollidedTile> collidedTiles)  {
+    	PVector vector;
+    	for (CollidedTile ct : collidedTiles) {
+             //if (ct.theTile instanceof BunkerTile) {
+            	 source.removeProjectile(this);
+            	 world.deleteGameObject(this);
+            	 vector = world.getTileMap().getTilePixelLocation(ct.theTile);
+                 world.getTileMap().setTile((int) vector.x / 20, (int) vector.y / 20, -1);
+            // }
+    	 }
     }
 
 }
