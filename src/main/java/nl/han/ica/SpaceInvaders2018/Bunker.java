@@ -6,6 +6,7 @@ import nl.han.ica.OOPDProcessingEngineHAN.Collision.ICollidableWithGameObjects;
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.GameObject;
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite;
 import processing.core.PGraphics;
+import processing.core.PImage;
 
 public class Bunker extends DestroyableGameObject implements ICollidableWithGameObjects {
 	
@@ -13,7 +14,6 @@ public class Bunker extends DestroyableGameObject implements ICollidableWithGame
 
 	public Bunker(float x, float y, int sWidth, int sHeight, SpaceInvaders world) {
 		super(new Sprite("nl/han/ica/SpaceInvaders2018/sprites/Bunker.png"), 1, x, y, sWidth, sHeight, world);
-		setZ(-1.0f);
 	}
 
 	// TODO Ik ben er nog niet helemaal uit hoe ik de schoten moet afbeelden. Op het moment laat ik zwarte cirkels tekenen over de 
@@ -32,6 +32,13 @@ public class Bunker extends DestroyableGameObject implements ICollidableWithGame
 	public void draw(PGraphics g) {
 		super.draw(g);
 		if (hits.size() > 0) {
+		    // TODO test om de eerste 1000 pixels op 0 te zetten
+            PImage img = this.getImage();
+            img.loadPixels();
+            for (int i = 0; i < 1000; i++) {
+                img.pixels[i] = 0;
+            }
+            img.updatePixels();
 			for (BunkerHit h : hits) { // TODO: CH: het programma loopt bij mij soms vast op deze lijn, meestal als er al een flink aantal keer snel achter elkaar op de bunker is geschoten
 				drawBunkerHit(h.getX(), h.getY(), h.getImpactWeight(), h.getImpactDirection());
 			}

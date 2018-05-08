@@ -116,6 +116,7 @@ public class SpaceInvaders extends GameEngine {
         dashboardPlayerLives1.setY(717);
         dashboard.addGameObject(dashboardPlayerLives1);
     }
+
     private void createView(int viewWidth, int viewHeight) {
         View view = new View(viewWidth, viewHeight);
         view.setBackground(0,0,0);
