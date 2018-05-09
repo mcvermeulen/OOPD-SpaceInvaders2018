@@ -126,6 +126,9 @@ public abstract class Projectile extends DestroyableGameObject implements IColli
         return weight;
     }
     
+    /**
+     * Geeft aan wat er moet gebeuren wanneer een deel van de bunkers wordt geraakt
+     */
     @Override
     public void tileCollisionOccurred(List<CollidedTile> collidedTiles)  {
     	PVector vector;

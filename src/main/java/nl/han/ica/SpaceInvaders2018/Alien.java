@@ -110,6 +110,9 @@ public abstract class Alien extends AttackCapableGameObject implements ICollidab
     	setY(getY() + getHeight());
     }
     
+    /**
+     * Zorgt dat de bunker tiles die door een alien worden geraakt, gewist worden
+     */
     @Override
     public void tileCollisionOccurred(List<CollidedTile> collidedTiles)  {
     	PVector vector;

@@ -55,13 +55,11 @@ public class SpaceInvaders extends GameEngine {
 
         initializeTileMap();
         Ground grond = new Ground(this, 715);
-        Bunker bunker1 = new Bunker(350, 600, 71, 48, this);
         Cannon kanon= new Cannon(this, 700, 680, shootSound, explosion);
         Ruimteschip schip = new Ruimteschip(this, 850, 130, UFOShot);
         AlienContainer alienContainer = new AlienContainer(this, 500, currentLevel.getStartPositionAliens(), alienKilled, 11, 22, 22);
 
         addGameObject(grond);
-        addGameObject(bunker1);
         addGameObject(kanon);
         addGameObject(schip);
         addGameObject(alienContainer);
@@ -154,7 +152,8 @@ public class SpaceInvaders extends GameEngine {
         TileType<BunkerSlopedTile> slopedTileType2 = new TileType<>(BunkerSlopedTile.class, slopedSprite1);
         TileType<BunkerSlopedTile> slopedTileType3 = new TileType<>(BunkerSlopedTile.class, slopedSprite1);
         TileType<BunkerSlopedTile> slopedTileType4 = new TileType<>(BunkerSlopedTile.class, slopedSprite1);
-
+        //TODO tile size is nog een magic number (komt bovendien in diverse klassen terug)
+        //TODO overige bunkers toevoegen na tests
         
         TileType[] tileTypes = { squareTileType, slopedTileType1, slopedTileType2, slopedTileType3, slopedTileType4 };
         int tileSize=20;
@@ -211,6 +210,9 @@ public class SpaceInvaders extends GameEngine {
         ((BunkerSlopedTile)tile4).swapSprite();
     }
     
+    /**
+     * Er is in de GameEngine geen mogelijkheid om een tilemap te wissen. Dus om te zorgen dat de kapot geschoten bunkers niet in beeld blijven op het Game Over scherm, hebben we dit als oplossing
+     */
     public void makeEmptyTileMap() {
     	TileType[] tileTypes = { };
         int tileSize=20;
