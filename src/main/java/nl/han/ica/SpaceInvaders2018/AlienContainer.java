@@ -135,7 +135,7 @@ public class AlienContainer extends Alien implements ICollidableWithGameObjects 
      */
     @Override
     public void update() {
-        fireBack();
+//        fireBack();
         // Update speed
         updateCurrentGroupSpeed();
         if (aliens.size() == 1) {

@@ -4,15 +4,9 @@ import nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite;
 import processing.core.PGraphics;
 
 public class BunkerSlopedTile extends BunkerTile {
-	
-	private Sprite sprite4;
-	private Sprite sprite3;
-	private Sprite sprite2;
-	private Sprite sprite1;
-	
+
 	private int rotationAngle = 0;
-	
-	
+
     public BunkerSlopedTile(Sprite sprite) {
         super(sprite);
         sprite4 = sprite;
@@ -55,26 +49,5 @@ public class BunkerSlopedTile extends BunkerTile {
             sprite1 = new Sprite("src/main/java/nl/han/ica/SpaceInvaders2018/sprites/BunkerTile5_1hp.png");
     	}
     }
-    
-    @Override
-    public void swapSprite() {
-    	if (hitPoints == 4) {
-    		setSprite(sprite4);
-    		sprite4.resize(20, 20);
-    	}
-    	else if(hitPoints == 3) {
-    		setSprite(sprite3);
-    		sprite3.resize(20, 20);
-    	}
-    	else if(hitPoints == 2) {
-    		setSprite(sprite2);
-    		sprite2.resize(20, 20);
-    	}
-    	else if(hitPoints == 1) {
-    		setSprite(sprite1);
-    		sprite1.resize(20, 20);
-    	}
-    }
 
-    
 }

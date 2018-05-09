@@ -4,7 +4,10 @@ import nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite;
 import nl.han.ica.OOPDProcessingEngineHAN.Tile.Tile;
 
 public abstract class BunkerTile extends Tile {
-	
+    protected Sprite sprite4;
+    protected Sprite sprite3;
+    protected Sprite sprite2;
+    protected Sprite sprite1;
 	protected int hitPoints;
 
     public BunkerTile(Sprite sprite) {
@@ -20,5 +23,23 @@ public abstract class BunkerTile extends Tile {
     	return hitPoints;
     }
     
-    public abstract void swapSprite();
+    public void swapSprite() {
+        int size = getSprite().getHeight();
+        if (hitPoints == 4) {
+            setSprite(sprite4);
+            sprite4.resize(size, size);
+        }
+        else if(hitPoints == 3) {
+            setSprite(sprite3);
+            sprite3.resize(size, size);
+        }
+        else if(hitPoints == 2) {
+            setSprite(sprite2);
+            sprite2.resize(size, size);
+        }
+        else if(hitPoints == 1) {
+            setSprite(sprite1);
+            sprite1.resize(size, size);
+        }
+    }
 }

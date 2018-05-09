@@ -272,3 +272,115 @@ FAILURE: test
 FAILURE: test
 [2018-41-08 09:41:49.63] 
 FAILURE: java.lang.NoSuchMethodException: nl.han.ica.SpaceInvaders2018.BunkerSlopedTile1.<init>(nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite)
+[2018-30-09 12:30:17.593] 
+FAILURE: java.lang.NoSuchMethodException: nl.han.ica.SpaceInvaders2018.BunkerSlopedTile.<init>(nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite)
+[2018-30-09 12:30:17.594] 
+FAILURE: java.lang.NoSuchMethodException: nl.han.ica.SpaceInvaders2018.BunkerSquareTile.<init>(nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite)
+[2018-30-09 12:30:17.594] 
+FAILURE: java.lang.NoSuchMethodException: nl.han.ica.SpaceInvaders2018.BunkerSquareTile.<init>(nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite)
+[2018-30-09 12:30:17.594] 
+FAILURE: java.lang.NoSuchMethodException: nl.han.ica.SpaceInvaders2018.BunkerSquareTile.<init>(nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite)
+[2018-30-09 12:30:17.595] 
+FAILURE: java.lang.NoSuchMethodException: nl.han.ica.SpaceInvaders2018.BunkerSlopedTile.<init>(nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite)
+[2018-30-09 12:30:17.595] 
+FAILURE: java.lang.NoSuchMethodException: nl.han.ica.SpaceInvaders2018.BunkerSlopedTile.<init>(nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite)
+[2018-30-09 12:30:17.595] 
+FAILURE: java.lang.NoSuchMethodException: nl.han.ica.SpaceInvaders2018.BunkerSquareTile.<init>(nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite)
+[2018-30-09 12:30:17.595] 
+FAILURE: java.lang.NoSuchMethodException: nl.han.ica.SpaceInvaders2018.BunkerSquareTile.<init>(nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite)
+[2018-30-09 12:30:17.595] 
+FAILURE: java.lang.NoSuchMethodException: nl.han.ica.SpaceInvaders2018.BunkerSquareTile.<init>(nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite)
+[2018-30-09 12:30:17.596] 
+FAILURE: java.lang.NoSuchMethodException: nl.han.ica.SpaceInvaders2018.BunkerSlopedTile.<init>(nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite)
+[2018-30-09 12:30:17.596] 
+FAILURE: java.lang.NoSuchMethodException: nl.han.ica.SpaceInvaders2018.BunkerSlopedTile.<init>(nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite)
+[2018-30-09 12:30:17.596] 
+FAILURE: java.lang.NoSuchMethodException: nl.han.ica.SpaceInvaders2018.BunkerSquareTile.<init>(nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite)
+[2018-30-09 12:30:17.596] 
+FAILURE: java.lang.NoSuchMethodException: nl.han.ica.SpaceInvaders2018.BunkerSquareTile.<init>(nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite)
+[2018-30-09 12:30:17.596] 
+FAILURE: java.lang.NoSuchMethodException: nl.han.ica.SpaceInvaders2018.BunkerSquareTile.<init>(nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite)
+[2018-30-09 12:30:17.596] 
+FAILURE: java.lang.NoSuchMethodException: nl.han.ica.SpaceInvaders2018.BunkerSlopedTile.<init>(nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite)
+[2018-30-09 12:30:17.596] 
+FAILURE: java.lang.NoSuchMethodException: nl.han.ica.SpaceInvaders2018.BunkerSlopedTile.<init>(nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite)
+[2018-30-09 12:30:17.597] 
+FAILURE: java.lang.NoSuchMethodException: nl.han.ica.SpaceInvaders2018.BunkerSquareTile.<init>(nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite)
+[2018-30-09 12:30:17.597] 
+FAILURE: java.lang.NoSuchMethodException: nl.han.ica.SpaceInvaders2018.BunkerSquareTile.<init>(nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite)
+[2018-30-09 12:30:17.597] 
+FAILURE: java.lang.NoSuchMethodException: nl.han.ica.SpaceInvaders2018.BunkerSquareTile.<init>(nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite)
+[2018-30-09 12:30:17.597] 
+FAILURE: java.lang.NoSuchMethodException: nl.han.ica.SpaceInvaders2018.BunkerSlopedTile.<init>(nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite)
+[2018-30-09 12:30:17.597] 
+FAILURE: java.lang.NoSuchMethodException: nl.han.ica.SpaceInvaders2018.BunkerSquareTile.<init>(nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite)
+[2018-30-09 12:30:17.597] 
+FAILURE: java.lang.NoSuchMethodException: nl.han.ica.SpaceInvaders2018.BunkerSquareTile.<init>(nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite)
+[2018-30-09 12:30:17.597] 
+FAILURE: java.lang.NoSuchMethodException: nl.han.ica.SpaceInvaders2018.BunkerSquareTile.<init>(nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite)
+[2018-30-09 12:30:17.597] 
+FAILURE: java.lang.NoSuchMethodException: nl.han.ica.SpaceInvaders2018.BunkerSquareTile.<init>(nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite)
+[2018-30-09 12:30:17.597] 
+FAILURE: java.lang.NoSuchMethodException: nl.han.ica.SpaceInvaders2018.BunkerSquareTile.<init>(nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite)
+[2018-30-09 12:30:17.598] 
+FAILURE: java.lang.NoSuchMethodException: nl.han.ica.SpaceInvaders2018.BunkerSquareTile.<init>(nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite)
+[2018-30-09 12:30:17.598] 
+FAILURE: java.lang.NoSuchMethodException: nl.han.ica.SpaceInvaders2018.BunkerSquareTile.<init>(nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite)
+[2018-30-09 12:30:17.598] 
+FAILURE: java.lang.NoSuchMethodException: nl.han.ica.SpaceInvaders2018.BunkerSquareTile.<init>(nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite)
+[2018-30-09 12:30:17.598] 
+FAILURE: java.lang.NoSuchMethodException: nl.han.ica.SpaceInvaders2018.BunkerSquareTile.<init>(nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite)
+[2018-30-09 12:30:17.598] 
+FAILURE: java.lang.NoSuchMethodException: nl.han.ica.SpaceInvaders2018.BunkerSquareTile.<init>(nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite)
+[2018-30-09 12:30:17.598] 
+FAILURE: java.lang.NoSuchMethodException: nl.han.ica.SpaceInvaders2018.BunkerSquareTile.<init>(nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite)
+[2018-30-09 12:30:17.598] 
+FAILURE: java.lang.NoSuchMethodException: nl.han.ica.SpaceInvaders2018.BunkerSquareTile.<init>(nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite)
+[2018-30-09 12:30:17.599] 
+FAILURE: java.lang.NoSuchMethodException: nl.han.ica.SpaceInvaders2018.BunkerSquareTile.<init>(nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite)
+[2018-30-09 12:30:17.599] 
+FAILURE: java.lang.NoSuchMethodException: nl.han.ica.SpaceInvaders2018.BunkerSquareTile.<init>(nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite)
+[2018-30-09 12:30:17.599] 
+FAILURE: java.lang.NoSuchMethodException: nl.han.ica.SpaceInvaders2018.BunkerSquareTile.<init>(nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite)
+[2018-30-09 12:30:17.599] 
+FAILURE: java.lang.NoSuchMethodException: nl.han.ica.SpaceInvaders2018.BunkerSquareTile.<init>(nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite)
+[2018-30-09 12:30:17.599] 
+FAILURE: java.lang.NoSuchMethodException: nl.han.ica.SpaceInvaders2018.BunkerSquareTile.<init>(nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite)
+[2018-30-09 12:30:17.599] 
+FAILURE: java.lang.NoSuchMethodException: nl.han.ica.SpaceInvaders2018.BunkerSquareTile.<init>(nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite)
+[2018-30-09 12:30:17.599] 
+FAILURE: java.lang.NoSuchMethodException: nl.han.ica.SpaceInvaders2018.BunkerSquareTile.<init>(nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite)
+[2018-30-09 12:30:17.599] 
+FAILURE: java.lang.NoSuchMethodException: nl.han.ica.SpaceInvaders2018.BunkerSquareTile.<init>(nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite)
+[2018-30-09 12:30:17.600] 
+FAILURE: java.lang.NoSuchMethodException: nl.han.ica.SpaceInvaders2018.BunkerSquareTile.<init>(nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite)
+[2018-30-09 12:30:17.600] 
+FAILURE: java.lang.NoSuchMethodException: nl.han.ica.SpaceInvaders2018.BunkerSlopedTile.<init>(nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite)
+[2018-30-09 12:30:17.600] 
+FAILURE: java.lang.NoSuchMethodException: nl.han.ica.SpaceInvaders2018.BunkerSlopedTile.<init>(nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite)
+[2018-30-09 12:30:17.600] 
+FAILURE: java.lang.NoSuchMethodException: nl.han.ica.SpaceInvaders2018.BunkerSquareTile.<init>(nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite)
+[2018-30-09 12:30:17.600] 
+FAILURE: java.lang.NoSuchMethodException: nl.han.ica.SpaceInvaders2018.BunkerSquareTile.<init>(nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite)
+[2018-30-09 12:30:17.600] 
+FAILURE: java.lang.NoSuchMethodException: nl.han.ica.SpaceInvaders2018.BunkerSlopedTile.<init>(nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite)
+[2018-30-09 12:30:17.600] 
+FAILURE: java.lang.NoSuchMethodException: nl.han.ica.SpaceInvaders2018.BunkerSlopedTile.<init>(nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite)
+[2018-30-09 12:30:17.600] 
+FAILURE: java.lang.NoSuchMethodException: nl.han.ica.SpaceInvaders2018.BunkerSquareTile.<init>(nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite)
+[2018-30-09 12:30:17.601] 
+FAILURE: java.lang.NoSuchMethodException: nl.han.ica.SpaceInvaders2018.BunkerSquareTile.<init>(nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite)
+[2018-30-09 12:30:17.601] 
+FAILURE: java.lang.NoSuchMethodException: nl.han.ica.SpaceInvaders2018.BunkerSlopedTile.<init>(nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite)
+[2018-30-09 12:30:17.601] 
+FAILURE: java.lang.NoSuchMethodException: nl.han.ica.SpaceInvaders2018.BunkerSlopedTile.<init>(nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite)
+[2018-30-09 12:30:17.601] 
+FAILURE: java.lang.NoSuchMethodException: nl.han.ica.SpaceInvaders2018.BunkerSquareTile.<init>(nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite)
+[2018-30-09 12:30:17.601] 
+FAILURE: java.lang.NoSuchMethodException: nl.han.ica.SpaceInvaders2018.BunkerSquareTile.<init>(nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite)
+[2018-30-09 12:30:17.601] 
+FAILURE: java.lang.NoSuchMethodException: nl.han.ica.SpaceInvaders2018.BunkerSlopedTile.<init>(nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite)
+[2018-30-09 12:30:17.601] 
+FAILURE: java.lang.NoSuchMethodException: nl.han.ica.SpaceInvaders2018.BunkerSlopedTile.<init>(nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite)
+[2018-30-09 12:30:17.601] 
+FAILURE: java.lang.NoSuchMethodException: nl.han.ica.SpaceInvaders2018.BunkerSquareTile.<init>(nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite)

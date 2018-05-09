@@ -118,7 +118,7 @@ public abstract class Alien extends AttackCapableGameObject implements ICollidab
     	PVector vector;
     	for (CollidedTile ct : collidedTiles) {
     		vector = world.getTileMap().getTilePixelLocation(ct.theTile);
-    		world.getTileMap().setTile((int) vector.x / 20, (int) vector.y / 20, -1);
+    		world.getTileMap().setTile((int) vector.x / world.getTileMap().getTileSize(), (int) vector.y / world.getTileMap().getTileSize(), -1);
     	}
     }
     
