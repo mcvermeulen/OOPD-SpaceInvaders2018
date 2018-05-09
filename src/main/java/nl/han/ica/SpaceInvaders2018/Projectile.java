@@ -8,6 +8,7 @@ import nl.han.ica.OOPDProcessingEngineHAN.Collision.ICollidableWithGameObjects;
 import nl.han.ica.OOPDProcessingEngineHAN.Collision.ICollidableWithTiles;
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.GameObject;
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite;
+import nl.han.ica.OOPDProcessingEngineHAN.Tile.Tile;
 import processing.core.PVector;
 
 /**
@@ -138,20 +139,31 @@ public abstract class Projectile extends DestroyableGameObject implements IColli
     public void tileCollisionOccurred(List<CollidedTile> collidedTiles) {
         PVector vector;
         for (CollidedTile ct : collidedTiles) {
-            source.removeProjectile(this);
+            System.out.println("x van projectiel is: "+ getX() + " en y is "+ getY());
+        	//source.removeProjectile(this);
             if (ct.theTile instanceof BunkerTile) {
-                System.out.println(world.getTileMap().getTileIndex(ct.theTile));
-                System.out.println(world.getTileMap().getTilePixelLocation(ct.theTile));
+                System.out.println("Dit zijn de index nummers en type(? of z-axis?) van de tile volgens de tilemap: " + world.getTileMap().getTileIndex(ct.theTile));
+                System.out.println("Dit zijn de coordinaten en type(?) van de tile volgens de tilemap: " + world.getTileMap().getTilePixelLocation(ct.theTile));
+                //Tile test = world.getTileMap().getTileOnPosition((int)getY(), (int)getX());
+                //System.out.println("Dit zijn de index nummers en type(?) van de testtile (op de coordinaten van het projectiel) volgens de tilemap: " + world.getTileMap().getTileIndex(test));
+                //System.out.println("Dit zijn de coordinaten en type(?) van de testtile (op de coordinaten van het projectiel) volgens de tilemap: " + world.getTileMap().getTilePixelLocation(test));
+                //System.out.println("Dit is wat er in de tilemap zit: ");
+                //world.printArray(world.getTileMap().getTileTypes());
+                System.out.println("TileType: "+ world.getTileMap().findTileTypeIndex(ct.theTile));
+                //System.out.println("TileType test tile: "+ world.getTileMap().findTileTypeIndex(test));
                 BunkerTile bt = (BunkerTile) ct.theTile;
                 if (bt.getHitPoints() > 0) {
                     bt.setHitPoints(bt.getHitPoints() - weight);
                     bt.swapSprite();
+                    System.out.println("Dit is de info volgens de tile zelf "+ world.getTileMap().getTileIndex(bt));
+                    System.out.println("De hitpoints van deze tile: "+ bt.getHitPoints());
                 }
                 if (bt.getHitPoints() <= 0) {
                     vector = world.getTileMap().getTilePixelLocation(ct.theTile);
                     world.getTileMap().setTile((int) vector.x / world.getTileMap().getTileSize(), (int) vector.y / world.getTileMap().getTileSize(), -1);
                 }
             }
+            source.removeProjectile(this);
         }
     }
 
