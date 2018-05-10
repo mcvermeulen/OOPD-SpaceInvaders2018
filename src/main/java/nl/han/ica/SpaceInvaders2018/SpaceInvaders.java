@@ -201,10 +201,10 @@ public class SpaceInvaders extends GameEngine {
      */
     private void initializeTileMap() {
         /* TILES */
-        Sprite squareSprite = new Sprite("src/main/java/nl/han/ica/SpaceInvaders2018/sprites/BunkerTile1_4hp.png");
+        Sprite squareSprite = new Sprite("src/main/java/nl/han/ica/SpaceInvaders2018/sprites/BunkerTile1_3hp.png");
         TileType<BunkerSquareTile> squareTileType = new TileType<>(BunkerSquareTile.class, squareSprite);
         
-        Sprite slopedSprite1 = new Sprite("src/main/java/nl/han/ica/SpaceInvaders2018/sprites/BunkerTile2_4hp.png");
+        Sprite slopedSprite1 = new Sprite("src/main/java/nl/han/ica/SpaceInvaders2018/sprites/BunkerTile2_3hp.png");
         TileType<BunkerSlopedTile> slopedTileType1 = new TileType<>(BunkerSlopedTile.class, slopedSprite1);
         
         TileType[] tileTypes = { squareTileType, slopedTileType1 };
