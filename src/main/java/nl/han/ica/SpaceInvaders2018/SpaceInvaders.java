@@ -414,7 +414,6 @@ public class SpaceInvaders extends GameEngine {
         }
 
         addGameObject(new AlienContainer(this, 400, currentLevel.getStartPositionAliens(), alienKilled, 11, 22, 22));
-        initializeTileMap();
         System.out.println("Je speelt nu level " + currentLevel.getLevelNumber());
     }
     
