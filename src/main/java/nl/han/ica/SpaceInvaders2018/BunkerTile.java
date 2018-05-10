@@ -17,7 +17,7 @@ public abstract class BunkerTile extends Tile {
      */
     protected Sprite sprite2;
     /**
-     * Rode sprite,  voor als de tile 1 hitpoint heeft kritiek)
+     * Rode sprite,  voor als de tile 1 hitpoint heeft (kritiek)
      */
     protected Sprite sprite1;
     

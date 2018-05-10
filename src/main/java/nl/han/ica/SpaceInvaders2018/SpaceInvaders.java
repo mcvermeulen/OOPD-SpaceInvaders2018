@@ -37,7 +37,7 @@ public class SpaceInvaders extends GameEngine {
 	/**
 	 * TextObjects voor het dashboard
 	 */
-	private TextObject dashboardText1, dashboardPlayerLives1, dashboardHighscore;
+	private TextObject dashboardText1, dashboardPlayerLives1, dashboardHighscore, dashboardLevel;
 	/**
 	 * Highscore, score van de speler, levens van de speler, breedte en hoogte van het speelveld
 	 */
@@ -130,6 +130,7 @@ public class SpaceInvaders extends GameEngine {
     private void addDashboardText(Dashboard dashboard) {
         TextObject dashboardHeaderText1;
         TextObject dashboardHeaderTextHighscore;
+        TextObject dashboardHeaderTextLevel;
 
         dashboardHeaderText1 = new TextObject("SCORE 1", 30);
         dashboardHeaderText1.setForeColor(255, 255, 255, 255);
@@ -142,6 +143,12 @@ public class SpaceInvaders extends GameEngine {
         dashboardHeaderTextHighscore.setX(570);
         dashboardHeaderTextHighscore.setY(80);
         dashboard.addGameObject(dashboardHeaderTextHighscore);
+        
+        dashboardHeaderTextLevel = new TextObject("LEVEL", 30);
+        dashboardHeaderTextLevel.setForeColor(255, 255, 255, 255);
+        dashboardHeaderTextLevel.setX(850);
+        dashboardHeaderTextLevel.setY(80);
+        dashboard.addGameObject(dashboardHeaderTextLevel);
 
         dashboardText1 = new TextObject(String.format("%06d", scorePlayer1), 30);
         dashboardText1.setForeColor(255, 255, 255, 255);
@@ -154,6 +161,12 @@ public class SpaceInvaders extends GameEngine {
         dashboardHighscore.setX(570);
         dashboardHighscore.setY(115);
         dashboard.addGameObject(dashboardHighscore);
+        
+        dashboardLevel = new TextObject(String.format("%02d", currentLevel.getLevelNumber()), 30);
+        dashboardLevel.setForeColor(255, 255, 255, 255);
+        dashboardLevel.setX(850);
+        dashboardLevel.setY(115);
+        dashboard.addGameObject(dashboardLevel);
 
         dashboardPlayerLives1 = new PlayerLives(String.format("%01d", livesPlayer1), 25, this);
         dashboardPlayerLives1.setForeColor(255, 255, 255, 255);
@@ -262,7 +275,6 @@ public class SpaceInvaders extends GameEngine {
                 tileMap.getTileOnIndex(53, 36)
         };
         for (Tile t : slopedRightBottom) {
-        	//System.out.println(tileMap.findTileTypeIndex(t));
             ((BunkerSlopedTile) t).setRotationAngle(90);
             ((BunkerSlopedTile) t).swapAngleSprites();
         }
@@ -273,7 +285,6 @@ public class SpaceInvaders extends GameEngine {
                 tileMap.getTileOnIndex(50, 34)
         };
         for (Tile t : slopedLeftTop) {
-        	//System.out.println(tileMap.findTileTypeIndex(t));
         	((BunkerSlopedTile) t).setRotationAngle(180);
             ((BunkerSlopedTile) t).swapAngleSprites();
         }
@@ -285,7 +296,6 @@ public class SpaceInvaders extends GameEngine {
                 tileMap.getTileOnIndex(54, 34)
         };
         for (Tile t : slopedRightTop) {
-        	//System.out.println(tileMap.findTileTypeIndex(t));
         	((BunkerSlopedTile) t).setRotationAngle(270);
             ((BunkerSlopedTile) t).swapAngleSprites();
         }
@@ -388,6 +398,7 @@ public class SpaceInvaders extends GameEngine {
             dashboardHighscore.setText(String.format("%06d", highscore));
             dashboardText1.setText(String.format("%06d", scorePlayer1));
             dashboardPlayerLives1.setText(String.format("%01d", livesPlayer1));
+            dashboardLevel.setText(String.format("%02d", currentLevel.getLevelNumber()));
         }
     }
 
@@ -412,7 +423,7 @@ public class SpaceInvaders extends GameEngine {
         } else {
             currentLevel = levels.get(0);
         }
-
+        refreshDasboardText();
         addGameObject(new AlienContainer(this, 400, currentLevel.getStartPositionAliens(), alienKilled, 11, 22, 22));
         System.out.println("Je speelt nu level " + currentLevel.getLevelNumber());
     }

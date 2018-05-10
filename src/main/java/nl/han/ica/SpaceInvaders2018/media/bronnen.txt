@@ -29,4 +29,4 @@ SmallAlien.png						-> zelf gemaakt naar voorbeeld van: https://gooperblooper22.
 
 BunkerHitSmall.png,
 BunkerTile1_1hp.png t/m
-BunkerTile5_4hp.png					-> zelf gemaakt
+BunkerTile5_3hp.png					-> zelf gemaakt
