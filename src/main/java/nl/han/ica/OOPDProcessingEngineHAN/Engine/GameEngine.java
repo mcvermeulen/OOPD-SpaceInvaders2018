@@ -782,20 +782,20 @@ public abstract class GameEngine extends PApplet {
 
             if (objectIsMoving(gameObject)) {
 
-                boolean collided = false;
+//                boolean collided = false;
 
-                for (int t = 0; t <= gameObject.getSpeed() && !collided; t++) {
-                    double xPos = lerp(gameObject.getPrevX(), gameObject.getX(), t / gameObject.getSpeed());
-                    double yPos = lerp(gameObject.getPrevY(), gameObject.getY(), t / gameObject.getSpeed());
-                    collidingGameobject.setLocation((int) xPos, (int) yPos);
+//                for (int t = 0; t <= gameObject.getSpeed() && !collided; t++) {
+//                    double xPos = lerp(gameObject.getPrevX(), gameObject.getX(), t / gameObject.getSpeed());
+//                    double yPos = lerp(gameObject.getPrevY(), gameObject.getY(), t / gameObject.getSpeed());
+                    collidingGameobject.setLocation((int) gameObject.getX(), (int) gameObject.getY());
 
                     if (collidingGameobject.intersects(collidingTile)) {
 
                         objects.add(new CollidedTile(tile, getCollidedTileSide(collidingGameobject, collidingTile)));
-                        int tileSide = getCollidedTileSide(collidingGameobject, collidingTile);
-                        collided = true;
+//                        int tileSide = getCollidedTileSide(collidingGameobject, collidingTile);
+//                        collided = true;
                     }
-                }
+//                }
             }
             else {
                 if (collidingGameobject.intersects(collidingTile))

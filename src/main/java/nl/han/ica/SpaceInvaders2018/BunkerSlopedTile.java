@@ -48,6 +48,7 @@ public class BunkerSlopedTile extends BunkerTile {
             sprite2 = new Sprite("src/main/java/nl/han/ica/SpaceInvaders2018/sprites/BunkerTile5_2hp.png");
             sprite1 = new Sprite("src/main/java/nl/han/ica/SpaceInvaders2018/sprites/BunkerTile5_1hp.png");
     	}
+    	swapSprite();
     }
 
 }

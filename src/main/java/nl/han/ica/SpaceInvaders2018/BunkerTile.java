@@ -24,22 +24,17 @@ public abstract class BunkerTile extends Tile {
     }
     
     public void swapSprite() {
-        int size = getSprite().getHeight();
         if (hitPoints == 4) {
             setSprite(sprite4);
-            sprite4.resize(size, size);
         }
         else if(hitPoints == 3) {
             setSprite(sprite3);
-            sprite3.resize(size, size);
         }
         else if(hitPoints == 2) {
             setSprite(sprite2);
-            sprite2.resize(size, size);
         }
         else if(hitPoints == 1) {
             setSprite(sprite1);
-            sprite1.resize(size, size);
         }
     }
 }

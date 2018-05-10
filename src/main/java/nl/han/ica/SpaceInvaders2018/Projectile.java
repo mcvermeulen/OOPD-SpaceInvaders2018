@@ -140,8 +140,6 @@ public abstract class Projectile extends DestroyableGameObject implements IColli
         for (CollidedTile ct : collidedTiles) {
             source.removeProjectile(this);
             if (ct.theTile instanceof BunkerTile) {
-                System.out.println(world.getTileMap().getTileIndex(ct.theTile));
-                System.out.println(world.getTileMap().getTilePixelLocation(ct.theTile));
                 BunkerTile bt = (BunkerTile) ct.theTile;
                 if (bt.getHitPoints() > 0) {
                     bt.setHitPoints(bt.getHitPoints() - weight);
