@@ -34,7 +34,6 @@ public abstract class Projectile extends DestroyableGameObject implements IColli
 
     /**
      * Constructor
-     *
      * @param sprite      Afbeelding van het projectiel
      * @param totalFrames Aantal frames waaruit de afbeeldng bestaat
      * @param sWidth      Breedte van de afbeelding
@@ -72,7 +71,6 @@ public abstract class Projectile extends DestroyableGameObject implements IColli
 
     /**
      * Geeft aan of het projectiel buiten beeld is
-     *
      * @return Is het projectiel buiten beeld, true of false
      */
     public boolean getOutOfBounds() {
@@ -81,7 +79,6 @@ public abstract class Projectile extends DestroyableGameObject implements IColli
 
     /**
      * Geeft aan of een projectiel Friendly is
-     *
      * @return Is het projectiel Friendly, true of false
      */
     public boolean getFriendly() {
@@ -90,7 +87,6 @@ public abstract class Projectile extends DestroyableGameObject implements IColli
 
     /**
      * Geeft aan welk object het Projectiel heeft afgeschoten
-     *
      * @return Object dat het projectiel heeft afgeschoten
      */
     public AttackCapableGameObject getSource() {
@@ -124,7 +120,6 @@ public abstract class Projectile extends DestroyableGameObject implements IColli
 
     /**
      * Geeft zwaarte van het projectiel
-     *
      * @return Zwaarte van het projectiel
      */
     public int getWeight() {

@@ -7,13 +7,17 @@ import nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite;
  * Explosie animatie
  */
 public class Explosion extends AnimatedSpriteObject {
-    /**
+    
+	/**
      * Constructor
      */
     public Explosion() {
         super(new Sprite("nl/han/ica/SpaceInvaders2018/sprites/Explosion.png"), 3);
     }
 
+    /**
+     * Roept het volgende frame aan
+     */
     @Override
     public void update() {
         nextFrame();

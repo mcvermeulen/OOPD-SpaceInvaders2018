@@ -74,6 +74,12 @@ public class Startscreen extends GameObject{
         drawScoreTabel(g, xCenter, y+height/2+100);
     }
 
+    /**
+     * Tekent de scoretabel (d.w.z. de legenda) 
+     * @param g			importeert de tekenfunctie van Processing
+     * @param center	float-waarde waarmee teksten gecentreerd worden op de x-as
+     * @param y			y-coordinaat van de tekst
+     */
     private void drawScoreTabel(PGraphics g, float center, float y) {
         PImage[] scoreObjecten = {
                 world.loadImage("nl/han/ica/SpaceInvaders2018/sprites/Ruimteschip.png"),

@@ -21,9 +21,9 @@ public class BonusPointsText extends TextObject implements IAlarmListener {
 
 	/**
 	 * Constructor
-	 * @param text		tekst (de bonuspunten)
+	 * @param text		tekst (bv. de bonuspunten)
 	 * @param fontSize	lettergrootte
-	 * @param world		Referentie naar de hoofdmodule
+	 * @param world		referentie naar de hoofdmodule
 	 */
 	public BonusPointsText(String text, int fontSize, SpaceInvaders world) {
 		super(text, fontSize);
@@ -35,10 +35,10 @@ public class BonusPointsText extends TextObject implements IAlarmListener {
 	
 	/**
 	 * Alternatieve constructor
-	 * @param text		tekst (de bonuspunten)
+	 * @param text		tekst (bv. de bonuspunten)
 	 * @param fontSize	lettergrootte
-	 * @param lifespan	Hoeveel seconden het object blijft bestaan
-	 * @param world		Referentie naar de hoofdmodule
+	 * @param lifespan	hoeveel seconden het object blijft bestaan
+	 * @param world		referentie naar de hoofdmodule
 	 */
 	public BonusPointsText(String text, int fontSize, int lifespan, SpaceInvaders world) {
 		super(text, fontSize);
@@ -49,7 +49,7 @@ public class BonusPointsText extends TextObject implements IAlarmListener {
 	}
 	
 	/**
-	 * Zet alarm voor hoe lang de tekst zichtbaar moet blijven
+	 * Zet een alarm voor hoe lang de tekst zichtbaar moet blijven
 	 */
 	private void lifespanAlarm() {
         Alarm alarm=new Alarm("Lifespan of this TextObject", lifespan);

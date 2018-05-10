@@ -31,7 +31,7 @@ public class PlayerLives extends TextObject {
 	 * Constructor
 	 * @param text		tekst die eventueel bij de levens kan worden gezet
 	 * @param textSize	lettergrootte
-	 * @param world		Referentie naar de hoofdmodule
+	 * @param world		referentie naar de hoofdmodule
 	 */
 	public PlayerLives(String text, int textSize, SpaceInvaders world) {
 		super(text, textSize);
@@ -47,7 +47,7 @@ public class PlayerLives extends TextObject {
 	}
 
 	/**
-	 * Tekent de levens van de speler
+	 * Bekijkt of er een extra leven moet worden toegekend, en tekent de levens van de speler
 	 */
 	@Override
 	public void draw(PGraphics g) {

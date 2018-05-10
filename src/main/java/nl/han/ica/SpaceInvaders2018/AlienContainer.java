@@ -74,7 +74,7 @@ public class AlienContainer extends Alien implements ICollidableWithGameObjects 
     }
 
     /**
-     * Verwijderd een alien uit de container
+     * Verwijdert een alien uit de container
      * @param alien		alien
      */
     public void destroy(Alien alien) {
@@ -83,7 +83,7 @@ public class AlienContainer extends Alien implements ICollidableWithGameObjects 
     }
 
     /**
-     * Verwijderd alle aliens die voor het attribuut hit de waarde 'true' hebben
+     * Verwijdert alle aliens die voor het attribuut 'hit' de waarde 'true' hebben
      */
     public void cleanUpAliens() {
         for (int i = aliens.size() - 1; i >= 0; i--) {
@@ -115,7 +115,7 @@ public class AlienContainer extends Alien implements ICollidableWithGameObjects 
             allHostileProjectiles = giveAllHostileProjectiles();
             if (allHostileProjectiles < maxHostileProjectiles) {
                 Random rand = new Random();
-                int fire = rand.nextInt(200); // TODO: dit getal nog een variabele maken?
+                int fire = rand.nextInt(200);
                 if (fire <= 1) {
                     int alien = rand.nextInt(aliens.size());
                     Alien attackingAlien = aliens.get(alien);
@@ -168,7 +168,7 @@ public class AlienContainer extends Alien implements ICollidableWithGameObjects 
     }
 
     /**
-     * De hele groep naar beneden laten bewegen
+     * De hele groep een rij naar beneden laten bewegen
      */
     @Override
     protected void dropToRowBelow() {

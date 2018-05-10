@@ -17,20 +17,51 @@ import processing.core.PApplet;
 import java.util.ArrayList;
 import java.util.Vector;
 
+/**
+ * Hoofdprogramma
+ */
+
 public class SpaceInvaders extends GameEngine {
-    private static GameState gameState = GameState.START;
+    /**
+     * GameState bepaalt welk scherm moet worden getekend
+     */
+	private static GameState gameState = GameState.START;
+	/**
+	 * Serial Version UID
+	 */
 	private static final long serialVersionUID = 2790543985929323791L;
+	/**
+	 * Sounds die horen bij dit spel
+	 */
 	private Sound shootSound, UFOShot, alienKilled, explosion;
+	/**
+	 * TextObjects voor het dashboard
+	 */
 	private TextObject dashboardText1, dashboardPlayerLives1, dashboardHighscore;
+	/**
+	 * Highscore, score van de speler, levens van de speler, breedte en hoogte van het speelveld
+	 */
 	private int highscore, scorePlayer1, livesPlayer1, playfieldWidth, playfieldHeight;
+	/**
+	 * Zorgt dat de highscore opgeslagen kan worden
+	 */
 	private IPersistence persistence;
+	/**
+	 * Levels
+	 */
     private ArrayList<Level> levels;
+    /**
+     * Huidige level waarin de speler speelt (bepaalt startpositie van de aliens)
+     */
     private Level currentLevel;
 
     public static void main(String[] args) {
         PApplet.main(new String[]{"nl.han.ica.SpaceInvaders2018.SpaceInvaders"});
     }
 
+    /**
+     * Maakt het scherm aan en zet het startscherm erop
+     */
     @Override
     public void setupGame() {
         int gameWidth = 1280;
@@ -46,6 +77,9 @@ public class SpaceInvaders extends GameEngine {
         addGameObject(start);
     }
 
+    /**
+     * Zet een nieuw spel klaar voor de speler
+     */
     public void newGame() {
         setGameState(GameState.INPROGRESS);
         currentLevel = levels.get(0);
@@ -73,6 +107,11 @@ public class SpaceInvaders extends GameEngine {
     public void update() {
     }
 
+    /**
+     * Maakt het dashboard aan
+     * @param dashboardWidth		Breedte van het dashboard
+     * @param dashboardHeight		Hoogte van het dashboard
+     */
     public void createDashboard(int dashboardWidth,int dashboardHeight) {
         Dashboard dashboard = new Dashboard(0,0, dashboardWidth, dashboardHeight);
         Sprite backgroundImg = new Sprite("nl/han/ica/SpaceInvaders2018/media/background-1280x800.png");
@@ -84,6 +123,10 @@ public class SpaceInvaders extends GameEngine {
         addDashboard(dashboard);
     }
 
+    /**
+     * Voegt teksten toe aan het dashboard
+     * @param dashboard				Dashboard
+     */
     private void addDashboardText(Dashboard dashboard) {
         TextObject dashboardHeaderText1;
         TextObject dashboardHeaderTextHighscore;
@@ -119,6 +162,11 @@ public class SpaceInvaders extends GameEngine {
         dashboard.addGameObject(dashboardPlayerLives1);
     }
 
+    /**
+     * Maakt de view aan
+     * @param viewWidth				Breetde van de view
+     * @param viewHeight			Hoogte van de view
+     */
     private void createView(int viewWidth, int viewHeight) {
         View view = new View(viewWidth, viewHeight);
         view.setBackground(0,0,0);
@@ -127,6 +175,9 @@ public class SpaceInvaders extends GameEngine {
         setView(view);
     }
     
+    /**
+     * Initialiseert het geluid
+     */
     private void initializeSound() {
         shootSound = new Sound(this, "nl/han/ica/SpaceInvaders2018/media/shoot.mp3");
         UFOShot = new Sound(this, "nl/han/ica/SpaceInvaders2018/media/ufo_lowpitch.mp3");
@@ -134,6 +185,9 @@ public class SpaceInvaders extends GameEngine {
         explosion = new Sound(this, "nl/han/ica/SpaceInvaders2018/media/explosion.mp3");
     }
     
+    /**
+     * Initialiseert het opslaan van de highscore (in een tekstbestand)
+     */
     private void initializePersistence() {
         persistence = new FilePersistence("main/java/nl/han/ica/SpaceInvaders2018/media/highscore.txt");
         if (persistence.fileExists()) {
@@ -142,6 +196,9 @@ public class SpaceInvaders extends GameEngine {
         }
     }
     
+    /**
+     * Initialiseert de TileMap
+     */
     private void initializeTileMap() {
         /* TILES */
         Sprite squareSprite = new Sprite("src/main/java/nl/han/ica/SpaceInvaders2018/sprites/BunkerTile1_4hp.png");
@@ -149,9 +206,6 @@ public class SpaceInvaders extends GameEngine {
         
         Sprite slopedSprite1 = new Sprite("src/main/java/nl/han/ica/SpaceInvaders2018/sprites/BunkerTile2_4hp.png");
         TileType<BunkerSlopedTile> slopedTileType1 = new TileType<>(BunkerSlopedTile.class, slopedSprite1);
-
-        //TODO tile size is nog een magic number (komt bovendien in diverse klassen terug)
-        //TODO overige bunkers toevoegen na tests
         
         TileType[] tileTypes = { squareTileType, slopedTileType1 };
         int tileSize=17;
@@ -200,7 +254,7 @@ public class SpaceInvaders extends GameEngine {
                 {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1}
         };
         tileMap = new TileMap(tileSize, tileTypes, tilesMap);
-
+                
         Tile[] slopedRightBottom = {
                 tileMap.getTileOnIndex(23, 36),
                 tileMap.getTileOnIndex(33, 36),
@@ -208,6 +262,7 @@ public class SpaceInvaders extends GameEngine {
                 tileMap.getTileOnIndex(53, 36)
         };
         for (Tile t : slopedRightBottom) {
+        	//System.out.println(tileMap.findTileTypeIndex(t));
             ((BunkerSlopedTile) t).setRotationAngle(90);
             ((BunkerSlopedTile) t).swapAngleSprites();
         }
@@ -218,7 +273,8 @@ public class SpaceInvaders extends GameEngine {
                 tileMap.getTileOnIndex(50, 34)
         };
         for (Tile t : slopedLeftTop) {
-            ((BunkerSlopedTile) t).setRotationAngle(180);
+        	//System.out.println(tileMap.findTileTypeIndex(t));
+        	((BunkerSlopedTile) t).setRotationAngle(180);
             ((BunkerSlopedTile) t).swapAngleSprites();
         }
 
@@ -229,13 +285,14 @@ public class SpaceInvaders extends GameEngine {
                 tileMap.getTileOnIndex(54, 34)
         };
         for (Tile t : slopedRightTop) {
-            ((BunkerSlopedTile) t).setRotationAngle(270);
+        	//System.out.println(tileMap.findTileTypeIndex(t));
+        	((BunkerSlopedTile) t).setRotationAngle(270);
             ((BunkerSlopedTile) t).swapAngleSprites();
         }
     }
     
     /**
-     * Er is in de GameEngine geen mogelijkheid om een tilemap te wissen. Dus om te zorgen dat de kapot geschoten bunkers niet in beeld blijven op het Game Over scherm, hebben we dit als oplossing
+     * Er is in de GameEngine geen mogelijkheid om een TileMap te wissen. Dus om te zorgen dat de kapot geschoten bunkers niet in beeld blijven op het GameOver scherm, hebben we dit als oplossing
      */
     public void makeEmptyTileMap() {
     	TileType[] tileTypes = { };
@@ -282,29 +339,50 @@ public class SpaceInvaders extends GameEngine {
         tileMap = new TileMap(tileSize, tileTypes, tilesMap);
     }
     
+    /**
+     * Verhoogt de score
+     * @param score					Toe te voegen punten
+     */
     public void increaseScore(int score) {
         scorePlayer1 += score;
         refreshDasboardText();
     }
     
+    /**
+     * Verlaagt de levens met 1
+     */
     public void decreaseLives() {
     	livesPlayer1--;
     	refreshDasboardText();
     }
     
+    /**
+     * Verhoogt de levens met 1
+     */
     public void increaseLives() {
     	livesPlayer1++;
     	refreshDasboardText();
     }
     
+    /**
+     * Haalt aantal levens op
+     * @return						Aantal levens
+     */
     public int getLives() {
     	return livesPlayer1;
     }
     
+    /**
+     * Haalt score op
+     * @return						Score
+     */
     public int getScore() {
     	return scorePlayer1;
     }
     
+    /**
+     * Update de TextObjects van het dashboard
+     */
     private void refreshDasboardText() {
         if (gameState != GameState.START) {
             dashboardHighscore.setText(String.format("%06d", highscore));
@@ -313,6 +391,9 @@ public class SpaceInvaders extends GameEngine {
         }
     }
 
+    /**
+     * Initialiseert de levels
+     */
     private void inititializeLevels() {
         levels = new ArrayList<>();
         int startPosition = 190;
@@ -322,6 +403,9 @@ public class SpaceInvaders extends GameEngine {
         }
     }
 
+    /**
+     * Gaat naar een hoger level
+     */
     public void increaseLevel() {
         if (currentLevel.getLevelNumber() <= 9) {
             currentLevel = levels.get(currentLevel.getLevelNumber());
@@ -334,28 +418,50 @@ public class SpaceInvaders extends GameEngine {
         System.out.println("Je speelt nu level " + currentLevel.getLevelNumber());
     }
     
+    /**
+     * Werkt de highscore bij als de score van de speler hoger is dan de highscore
+     */
     public void updateHighscore() {
     	if (scorePlayer1 > highscore) {
     		persistence.saveData(Integer.toString(scorePlayer1));
     	}
     }
 
+    /**
+     * Geeft de breedte van het speelscherm
+     * @return						Breedte van het speelscherm
+     */
     public int getPlayfieldWidth() {
         return playfieldWidth;
     }
 
+    /**
+     * Geeft de hoogte van het speelscherm
+     * @return						Hoogte van het speelscherm
+     */
     public int getPlayfieldHeight() {
         return playfieldHeight;
     }
 
+    /**
+     * Set een GameState
+     * @param gameState				GameState
+     */
     public static void setGameState(GameState gameState) {
         SpaceInvaders.gameState = gameState;
     }
 
+    /**
+     * Geeft de huidige GameState
+     * @return						GameState
+     */
     public static GameState getGameState() {
         return gameState;
     }
 
+    /**
+     * Geeft aan wat er moet gebeuren wanneer het spel is afgelopen
+     */
     public void endGame() {
         setGameState(GameState.END);
         deleteAllGameOBjects();
@@ -364,6 +470,10 @@ public class SpaceInvaders extends GameEngine {
         updateHighscore();
     }
 
+    /**
+     * Haalt de highscore op
+     * @return						Highscore
+     */
     public int getHighscore() {
         return Integer.parseInt(persistence.loadDataString());
     }

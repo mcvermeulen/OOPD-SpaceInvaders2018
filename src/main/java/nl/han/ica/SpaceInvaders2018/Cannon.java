@@ -24,7 +24,6 @@ public class Cannon extends AttackCapableGameObject implements ICollidableWithGa
 
     /**
      * Constructor
-     *
      * @param world     Referentie naar de hoofdmodule
      * @param x         X-coordinaat van het kanon
      * @param y         Y-coordinaat van het kanon
@@ -38,7 +37,7 @@ public class Cannon extends AttackCapableGameObject implements ICollidableWithGa
     }
 
     /**
-     * Beweegt het kanon
+     * Beweegt het kanon en ruimt zo nodig projectielen op als deze buiten beeld zijn
      */
     @Override
     public void update() {

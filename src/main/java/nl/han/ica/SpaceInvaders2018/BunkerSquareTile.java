@@ -2,8 +2,15 @@ package nl.han.ica.SpaceInvaders2018;
 
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite;
 
+/**
+ * Subklasse van BunkerTile, bevat de code voor alle vierkante tiles
+ */
 public class BunkerSquareTile extends BunkerTile {
 	
+	/**
+	 * Constructor
+	 * @param sprite		De sprite die in eerste instantie aan dit object wordt meegegeven
+	 */
     public BunkerSquareTile(Sprite sprite) {
         super(sprite);
 		sprite4 = sprite;

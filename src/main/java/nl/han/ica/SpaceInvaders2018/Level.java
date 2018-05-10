@@ -4,8 +4,9 @@ package nl.han.ica.SpaceInvaders2018;
  * Level bepaalt de startpositie van de aliens
  */
 public class Level {
-    /**
-     * Level (1 tot 10)
+    
+	/**
+     * Levelnummer (1 tot 10)
      */
 	private int levelNumber;
 	/**
@@ -15,7 +16,7 @@ public class Level {
 
     /**
      * Constructor
-     * @param levelNumber			Level (1 tot 10)
+     * @param levelNumber			Levelnummer (1 tot 10)
      * @param startPositionAliens	Startpositie van de aliens
      */
     public Level(int levelNumber, int startPositionAliens) {

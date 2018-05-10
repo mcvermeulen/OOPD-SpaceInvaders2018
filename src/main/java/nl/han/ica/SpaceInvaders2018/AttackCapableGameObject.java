@@ -98,7 +98,7 @@ public abstract class AttackCapableGameObject extends DestroyableGameObject {
     }
 
     /**
-     * Verwijderd een projectiel uit de ArrayList
+     * Verwijdert een projectiel uit de ArrayList
      * @param p		projectiel
      */
     public void removeProjectile (Projectile p) {
@@ -107,7 +107,7 @@ public abstract class AttackCapableGameObject extends DestroyableGameObject {
     }
 
     /**
-     * Verwijderd de projectielen die uit het beeld zijn uit de ArrayList
+     * Verwijdert de projectielen die uit het beeld zijn uit de ArrayList
      */
     public void cleanUpProjectiles() {
         for (int i = projectiles.size()-1; i >=0; i--) {
