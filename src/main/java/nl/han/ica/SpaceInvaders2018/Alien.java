@@ -34,7 +34,7 @@ public abstract class Alien extends AttackCapableGameObject implements ICollidab
      * @param sprite 		Afbeelding van de alien
      * @param totalFrames 	Aantal frames waaruit de afbeeldng bestaat
      * @param x 			X-positie waarop de alien getekend wordt
-     * @param y 			Y-positie waarop de aliend getekend wordt
+     * @param y 			Y-positie waarop de alien getekend wordt
      * @param sWidth 		Breedte van de alien
      * @param sHeight 		Hoogte van de alien
      * @param world 		Referentie naar de hoofdmodule
@@ -46,6 +46,9 @@ public abstract class Alien extends AttackCapableGameObject implements ICollidab
         this.alienKilled = alienKilled;
     }
 
+    /**
+     * Beweegt de alien en zorgt dat projectielen opgeruimd worden als ze buiten beeld raken.
+     */
     @Override
     public void update() {
         nextFrame();
@@ -61,7 +64,7 @@ public abstract class Alien extends AttackCapableGameObject implements ICollidab
     }
     
     /**
-     * Als een alien wordt geraakt, worden zowel de alien als het projectiel verwijderd, en er vindt een explosie plaats
+     * Als een alien wordt geschoten, worden zowel de alien als het projectiel verwijderd, en er vindt een explosie plaats
      */
     @Override
     public void gameObjectCollisionOccurred(List<GameObject> collidedGameObjects) {
@@ -81,7 +84,7 @@ public abstract class Alien extends AttackCapableGameObject implements ICollidab
     }
     
     /**
-     * Geeft aan of de alien is geraakt
+     * Geeft aan of de alien is geraakt door een projectiel
      * @return		is de alien geraakt, true of false
      */
     public boolean getHit() {
@@ -104,7 +107,7 @@ public abstract class Alien extends AttackCapableGameObject implements ICollidab
     }
     
     /**
-     * Verplaatst de alien naar beneden
+     * Verplaatst de alien een rij naar beneden
      */
     protected void dropToRowBelow() {
     	setY(getY() + getHeight());

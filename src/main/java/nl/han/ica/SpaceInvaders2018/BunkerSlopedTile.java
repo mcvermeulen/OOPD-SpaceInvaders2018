@@ -3,10 +3,20 @@ package nl.han.ica.SpaceInvaders2018;
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite;
 import processing.core.PGraphics;
 
+/**
+ * Subklasse van BunkerTile, bevat de code voor alle schuinaflopende tiles
+ */
 public class BunkerSlopedTile extends BunkerTile {
 
+	/**
+	 * Draaihoek van de tile
+	 */
 	private int rotationAngle = 0;
 
+	/**
+	 * Constructor
+	 * @param sprite		De sprite die in eerste instantie aan dit object wordt meegegeven
+	 */
     public BunkerSlopedTile(Sprite sprite) {
         super(sprite);
         sprite4 = sprite;
@@ -15,14 +25,25 @@ public class BunkerSlopedTile extends BunkerTile {
         sprite1 = new Sprite("src/main/java/nl/han/ica/SpaceInvaders2018/sprites/BunkerTile2_1hp.png");
     }
     
+    /**
+     * Set een nieuwe draaihoek
+     * @param angle			Nieuwe draaihoek
+     */
     public void setRotationAngle(int angle) {
     	this.rotationAngle = angle;
     }
     
+    /**
+     * Haalt de huidige draaihoek op
+     * @return				Huidige draaihoek
+     */
     public int getRotationAngle() {
     	return rotationAngle;
     }
     
+    /**
+     * Verwisselt de sprites van het object, afhankelijk van de draaihoek van het object
+     */
     public void swapAngleSprites() {
     	if (rotationAngle == 0) {
     		sprite4 = new Sprite("src/main/java/nl/han/ica/SpaceInvaders2018/sprites/BunkerTile2_4hp.png");

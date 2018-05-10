@@ -8,7 +8,7 @@ import static nl.han.ica.SpaceInvaders2018.SpaceInvaders.getGameState;
 import static nl.han.ica.SpaceInvaders2018.SpaceInvaders.setGameState;
 
 /**
- * Startscherm van het spel
+ * Eindscherm van het spel
  */
 public class GameOver extends GameObject{
     /**
@@ -29,7 +29,7 @@ public class GameOver extends GameObject{
     }
 
     /**
-     * Zorgt dat het spel start als er met de muis wordt geklikt
+     * Zorgt dat het spel opnieuw start als er met de muis wordt geklikt
      */
     @Override
     public void mousePressed(int x, int y, int button) {
@@ -47,7 +47,7 @@ public class GameOver extends GameObject{
     }
 
     /**
-     * Tekent het startscherm
+     * Tekent het eindscherm
      */
     @Override
     public void draw(PGraphics g) {

@@ -8,7 +8,7 @@ import nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite;
 import nl.han.ica.OOPDProcessingEngineHAN.Sound.Sound;
 
 /**
- * Ruimteschip variabele
+ * Ruimteschip klasse
  */
 public class Ruimteschip extends DestroyableGameObject implements ICollidableWithGameObjects {
     /**
@@ -61,7 +61,6 @@ public class Ruimteschip extends DestroyableGameObject implements ICollidableWit
     public int generateValue() {
     	Random random = new Random();
     	int value = 50 * (random.nextInt(6) + 1);
-    	System.out.println(value);
     	return value;
     }
     

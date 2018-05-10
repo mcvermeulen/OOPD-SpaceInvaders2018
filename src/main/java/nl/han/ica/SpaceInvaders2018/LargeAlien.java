@@ -12,7 +12,7 @@ public class LargeAlien extends Alien {
 	 * Constructor
 	 * @param world			Referentie naar de hoofdmodule
 	 * @param x				X-positie waarop de alien getekend wordt
-	 * @param y				Y-positie waarop de aliend getekend wordt
+	 * @param y				Y-positie waarop de alien getekend wordt
 	 * @param alienKilled	Geluid wat de alien maakt als hij geraakt wordt
 	 */
     public LargeAlien(SpaceInvaders world, float x, float y, Sound alienKilled) {
