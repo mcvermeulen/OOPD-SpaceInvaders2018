@@ -423,7 +423,6 @@ public class SpaceInvaders extends GameEngine {
         }
         refreshDasboardText();
         addGameObject(new AlienContainer(this, 400, currentLevel.getStartPositionAliens(), alienKilled, 11, 22, 22));
-        System.out.println("Je speelt nu level " + currentLevel.getLevelNumber());
     }
     
     /**
@@ -474,7 +473,6 @@ public class SpaceInvaders extends GameEngine {
         setGameState(GameState.END);
         deleteAllGameOBjects();
         addGameObject(new GameOver(this));
-        System.out.println("Speler heeft verloren");
         updateHighscore();
     }
 
