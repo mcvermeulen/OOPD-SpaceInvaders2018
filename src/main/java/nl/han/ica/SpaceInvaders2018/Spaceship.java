@@ -8,9 +8,9 @@ import nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite;
 import nl.han.ica.OOPDProcessingEngineHAN.Sound.Sound;
 
 /**
- * Ruimteschip klasse
+ * Spaceship klasse
  */
-public class Ruimteschip extends DestroyableGameObject implements ICollidableWithGameObjects {
+public class Spaceship extends DestroyableGameObject implements ICollidableWithGameObjects {
     /**
      * Beweegrichting van het ruimteschip
      */
@@ -35,7 +35,7 @@ public class Ruimteschip extends DestroyableGameObject implements ICollidableWit
      * @param y				Y-positie waarop het object getekend wordt
      * @param UFOShot		Geluid dat het schip maakt, wanneer het neergeschoten wordt
      */
-    public Ruimteschip(SpaceInvaders world, float x, float y, Sound UFOShot) {
+    public Spaceship(SpaceInvaders world, float x, float y, Sound UFOShot) {
         super(new Sprite("nl/han/ica/SpaceInvaders2018/sprites/Ruimteschip.png"), 1, x, y, 50, 23, world);
         this.UFOShot = UFOShot;
         this.shot = false;
@@ -55,7 +55,7 @@ public class Ruimteschip extends DestroyableGameObject implements ICollidableWit
     }
     
     /**
-     * Geeft een nieuwe waarde aan het Ruimteschip (tussen de 50 en 300 punten)
+     * Geeft een nieuwe waarde aan het Spaceship (tussen de 50 en 300 punten)
      * @return		De punten die toegevoegd worden aan de score van de speler, als het ruimteschip wordt geraakt
      */
     public int generateValue() {

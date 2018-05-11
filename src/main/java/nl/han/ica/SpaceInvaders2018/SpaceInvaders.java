@@ -2,7 +2,6 @@ package nl.han.ica.SpaceInvaders2018;
 
 import nl.han.ica.OOPDProcessingEngineHAN.Dashboard.Dashboard;
 import nl.han.ica.OOPDProcessingEngineHAN.Engine.GameEngine;
-import nl.han.ica.OOPDProcessingEngineHAN.Objects.GameObject;
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite;
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.TextObject;
 import nl.han.ica.OOPDProcessingEngineHAN.Persistence.FilePersistence;
@@ -15,7 +14,6 @@ import nl.han.ica.OOPDProcessingEngineHAN.View.View;
 import processing.core.PApplet;
 
 import java.util.ArrayList;
-import java.util.Vector;
 
 /**
  * Hoofdprogramma
@@ -88,14 +86,14 @@ public class SpaceInvaders extends GameEngine {
         livesPlayer1 = 3;
 
         initializeTileMap();
-        Ground grond = new Ground(this, 715);
-        Cannon kanon= new Cannon(this, 700, 680, shootSound, explosion);
-        Ruimteschip schip = new Ruimteschip(this, 850, 130, UFOShot);
+        Ground ground = new Ground(this, 715);
+        Cannon cannon= new Cannon(this, 700, 680, shootSound, explosion);
+        Spaceship ship = new Spaceship(this, 850, 130, UFOShot);
         AlienContainer alienContainer = new AlienContainer(this, 500, currentLevel.getStartPositionAliens(), alienKilled, 11, 22, 22);
 
-        addGameObject(grond);
-        addGameObject(kanon);
-        addGameObject(schip);
+        addGameObject(ground);
+        addGameObject(cannon);
+        addGameObject(ship);
         addGameObject(alienContainer);
 
         deleteAllDashboards();
