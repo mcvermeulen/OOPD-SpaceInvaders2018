@@ -1,18 +1,14 @@
 package nl.han.ica.SpaceInvaders2018;
 
-import nl.han.ica.OOPDProcessingEngineHAN.Collision.ICollidableWithGameObjects;
-import nl.han.ica.OOPDProcessingEngineHAN.Objects.GameObject;
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite;
 import nl.han.ica.OOPDProcessingEngineHAN.Sound.Sound;
-
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 /**
  * De container waarin de aliens zitten, zodat deze synchroon bewegen
  */
-public class AlienContainer extends Alien implements ICollidableWithGameObjects {
+public class AlienContainer extends Alien {
     /**
      * Referentie naar de hoofdmodule
      */
@@ -125,11 +121,6 @@ public class AlienContainer extends Alien implements ICollidableWithGameObjects 
         }
     }
 
-    //TODO: Hebben we deze interface hier eigenlijk wel nodig?
-    @Override
-    public void gameObjectCollisionOccurred(List<GameObject> collidedGameObjects) {
-    }
-
     /**
      * Bepaalt de beweegrichting en -snelheid van de aliens, of ze schieten, en of de aliens opnieuw moeten worden getekend omdat de speler ze allemaal heeft neergeschoten
      */
@@ -212,7 +203,6 @@ public class AlienContainer extends Alien implements ICollidableWithGameObjects 
         }
     }
 
-    // TODO dit kan beter
     /**
      * Vult de ArrayList met nieuw aangemaakte aliens
      * @param nSmallAliens	aantal kleine aliens
