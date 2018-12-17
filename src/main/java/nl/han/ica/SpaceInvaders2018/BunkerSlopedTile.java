@@ -8,9 +8,6 @@ import processing.core.PGraphics;
  */
 public class BunkerSlopedTile extends BunkerTile {
 
-	/**
-	 * Draaihoek van de tile
-	 */
 	private int rotationAngle = 0;
 
 	/**
@@ -23,19 +20,11 @@ public class BunkerSlopedTile extends BunkerTile {
         sprite2 = new Sprite("src/main/java/nl/han/ica/SpaceInvaders2018/sprites/BunkerTile2_2hp.png");
         sprite1 = new Sprite("src/main/java/nl/han/ica/SpaceInvaders2018/sprites/BunkerTile2_1hp.png");
     }
-    
-    /**
-     * Set een nieuwe draaihoek
-     * @param angle			Nieuwe draaihoek
-     */
+
     public void setRotationAngle(int angle) {
     	this.rotationAngle = angle;
     }
-    
-    /**
-     * Haalt de huidige draaihoek op
-     * @return				Huidige draaihoek
-     */
+
     public int getRotationAngle() {
     	return rotationAngle;
     }

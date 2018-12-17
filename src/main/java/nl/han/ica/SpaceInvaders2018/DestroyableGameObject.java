@@ -9,13 +9,8 @@ import nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite;
  * Superklasse van AttackCapableGameObject
  */
 public abstract class DestroyableGameObject extends AnimatedSpriteObject implements IAlarmListener {
-	/**
-	 * Referentie naar de hoofdmodule
-	 */
+
 	protected SpaceInvaders world;
-	/**
-	 * De Explosion klasse geeft aan welke type explosie er moet plaatsvinden als het object wordt vernietigd
-	 */
 	private Explosion explosion;
 
 	/**
@@ -39,9 +34,6 @@ public abstract class DestroyableGameObject extends AnimatedSpriteObject impleme
         explosion = new Explosion();
     }
 
-    /**
-     * Zorgt voor een explosie effect
-     */
     public void explode() {
         world.addGameObject(explosion, getX(), getY());
         explosionAlarm();

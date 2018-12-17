@@ -11,9 +11,7 @@ import static nl.han.ica.SpaceInvaders2018.SpaceInvaders.setGameState;
  * Eindscherm van het spel
  */
 public class GameOver extends GameObject{
-    /**
-     * Referentie naar de hoofdmodule
-     */
+
     private SpaceInvaders world;
 
     /**
@@ -28,11 +26,12 @@ public class GameOver extends GameObject{
         this.y = (world.getHeight() - height)/2;
     }
 
-    /**
-     * Zorgt dat het spel opnieuw start als er met de muis wordt geklikt
-     */
     @Override
     public void mousePressed(int x, int y, int button) {
+        restartGame();
+    }
+
+    private void restartGame() {
         if (getGameState() == GameState.END) {
             world.addGameObject(new Startscreen(world));
             setGameState(GameState.START);

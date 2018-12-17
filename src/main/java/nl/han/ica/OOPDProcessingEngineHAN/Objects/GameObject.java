@@ -248,7 +248,7 @@ public abstract class GameObject implements IKeyInput, IMouseInput, PConstants {
         if ( friction >= 0 && friction < 1 ) {
             this.friction = friction;
         } else {
-            throw new IllegalArgumentException("Input value must be between 0 and 1");
+            throw new IllegalArgumentException("Input valueIfHit must be between 0 and 1");
         }
     }
 

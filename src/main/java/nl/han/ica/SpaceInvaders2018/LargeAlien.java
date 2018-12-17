@@ -17,7 +17,7 @@ public class LargeAlien extends Alien {
 	 */
     public LargeAlien(SpaceInvaders world, float x, float y, Sound alienKilled) {
         super(new Sprite("nl/han/ica/SpaceInvaders2018/sprites/LargeAlien.png"), 2, x, y, 24, 18, world, alienKilled);
-        this.value = 10;
+        this.valueIfHit = 10;
     }
 
 }

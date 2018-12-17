@@ -15,9 +15,6 @@ public class Explosion extends AnimatedSpriteObject {
         super(new Sprite("nl/han/ica/SpaceInvaders2018/sprites/Explosion.png"), 3);
     }
 
-    /**
-     * Roept het volgende frame aan
-     */
     @Override
     public void update() {
         nextFrame();

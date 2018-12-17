@@ -44,7 +44,7 @@ public class Sound {
 
 
     /**
-     * Set this to loop times, set a negative value to loop continuous
+     * Set this to loop times, set a negative valueIfHit to loop continuous
      *
      * @param num amount of loops
      */

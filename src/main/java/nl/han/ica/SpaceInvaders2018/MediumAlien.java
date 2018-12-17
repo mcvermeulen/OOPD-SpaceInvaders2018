@@ -17,7 +17,7 @@ public class MediumAlien extends Alien {
 	 */
     public MediumAlien(SpaceInvaders world, float x, float y, Sound alienKilled) {
         super(new Sprite("nl/han/ica/SpaceInvaders2018/sprites/MediumAlien.png"), 2, x, y, 22, 18, world, alienKilled);
-        this.value = 20;
+        this.valueIfHit = 20;
     }
 
 }

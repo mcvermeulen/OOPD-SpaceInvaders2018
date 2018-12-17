@@ -1,7 +1,6 @@
 package nl.han.ica.SpaceInvaders2018;
 
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.GameObject;
-import nl.han.ica.OOPDProcessingEngineHAN.Objects.TextObject;
 import processing.core.PGraphics;
 import processing.core.PImage;
 import static nl.han.ica.SpaceInvaders2018.SpaceInvaders.getGameState;
@@ -10,18 +9,10 @@ import static nl.han.ica.SpaceInvaders2018.SpaceInvaders.getGameState;
  * Startscherm van het spel
  */
 public class Startscreen extends GameObject{
-	/** 
-     * Logo van het spel
-     */
+
 	private PImage logo;
-	/**
-     * Referentie naar de hoofdmodule
-     */
 	private SpaceInvaders world;
-	/**
-     * Teksten op het startscherm
-     */
-	private String scoreTabel, play;
+	private String scoreTable, play;
 
 	/**
      * Constructor
@@ -35,12 +26,9 @@ public class Startscreen extends GameObject{
         this.x = (world.getWidth() - width)/2;;
         this.y = (world.getHeight() - height)/2;
         this.play = "Click to play";
-        this.scoreTabel = "* score advance table *";
+        this.scoreTable = "* score advance table *";
     }
 
-    /**
-     * Zorgt dat het spel start als er met de muis wordt geklikt
-     */
     @Override
     public void mousePressed(int x, int y, int button) {
         if (getGameState() == GameState.START) {
@@ -48,9 +36,6 @@ public class Startscreen extends GameObject{
         }
     }
 
-    /**
-     * Verandert het speelscherm als de GameState niet 0 is
-     */
     @Override
     public void update() {
         if (getGameState() != GameState.START) {
@@ -98,7 +83,7 @@ public class Startscreen extends GameObject{
         int indent = 35;
         g.textSize(20);
         g.textAlign(CENTER, CENTER);
-        g.text(scoreTabel, center, y);
+        g.text(scoreTable, center, y);
         g.imageMode(CENTER);
         g.textAlign(LEFT, CENTER);
         for (int i = 1; i <= 4; i++) {

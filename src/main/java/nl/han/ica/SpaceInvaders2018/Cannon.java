@@ -41,7 +41,7 @@ public class Cannon extends AttackCapableGameObject implements ICollidableWithGa
      */
     @Override
     public void update() {
-        cleanUpProjectiles();
+        cleanUpOutOfBoundProjectiles();
         if (getX() <= 290) {
             setxSpeed(0);
             setX(290);

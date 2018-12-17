@@ -88,7 +88,7 @@ public class FilePersistence implements IPersistence {
     private void checkSeparatorUsage(String data, String separator) {
     	
         if (data.contains(separator))
-            throw new IllegalArgumentException("A value in the Array contains the separator");
+            throw new IllegalArgumentException("A valueIfHit in the Array contains the separator");
     }
 
     /**

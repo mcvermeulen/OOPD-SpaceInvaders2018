@@ -105,11 +105,6 @@ public class SpaceInvaders extends GameEngine {
     public void update() {
     }
 
-    /**
-     * Maakt het dashboard aan
-     * @param dashboardWidth		Breedte van het dashboard
-     * @param dashboardHeight		Hoogte van het dashboard
-     */
     public void createDashboard(int dashboardWidth,int dashboardHeight) {
         Dashboard dashboard = new Dashboard(0,0, dashboardWidth, dashboardHeight);
         Sprite backgroundImg = new Sprite("nl/han/ica/SpaceInvaders2018/media/background-1280x800.png");
@@ -121,10 +116,6 @@ public class SpaceInvaders extends GameEngine {
         addDashboard(dashboard);
     }
 
-    /**
-     * Voegt teksten toe aan het dashboard
-     * @param dashboard				Dashboard
-     */
     private void addDashboardText(Dashboard dashboard) {
         TextObject dashboardHeaderText1;
         TextObject dashboardHeaderTextHighscore;

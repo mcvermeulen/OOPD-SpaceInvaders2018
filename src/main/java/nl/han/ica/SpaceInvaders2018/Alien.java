@@ -15,18 +15,9 @@ import processing.core.PVector;
  * Superklasse van de aliens
  */
 public abstract class Alien extends AttackCapableGameObject implements ICollidableWithGameObjects, ICollidableWithTiles {
-	
-	/**
-	 * De waarde van de alien, die toegevoegd wordt aan de score als de speler hem raakt
-	 */
-	protected int value = 0;
-	/**
-	 * Geeft aan of de alien is geraakt
-	 */
-	protected boolean hit;
-	/**
-	 * Geluid wat de alien maakt als hij geraakt wordt
-	 */
+
+	protected int valueIfHit = 0;
+	protected boolean isHit;
 	protected Sound alienKilled;
 
     /**
@@ -42,7 +33,7 @@ public abstract class Alien extends AttackCapableGameObject implements ICollidab
      */
     public Alien(Sprite sprite, int totalFrames, float x, float y, int sWidth, int sHeight, SpaceInvaders world, Sound alienKilled) {
         super(sprite, totalFrames, x, y, sWidth, sHeight, world);
-        this.hit = false;
+        this.isHit = false;
         this.alienKilled = alienKilled;
     }
 
@@ -52,15 +43,11 @@ public abstract class Alien extends AttackCapableGameObject implements ICollidab
     @Override
     public void update() {
         nextFrame();
-        cleanUpProjectiles();
+        cleanUpOutOfBoundProjectiles();
     }
-    
-    /**
-     * Geeft de waarde van de alien, die toegevoegd wordt aan de score als de speler hem raakt
-     * @return		waarde
-     */
-    public int getValue() {
-    	return value;
+
+    public int getValueIfHit() {
+    	return valueIfHit;
     }
     
     /**
@@ -77,7 +64,7 @@ public abstract class Alien extends AttackCapableGameObject implements ICollidab
             		AttackCapableGameObject k = p.getSource();
             		k.removeProjectile(p);
                     explode();
-	            	hit = true;
+	            	isHit = true;
             	}
             }
         }
@@ -87,8 +74,8 @@ public abstract class Alien extends AttackCapableGameObject implements ICollidab
      * Geeft aan of de alien is geraakt door een projectiel
      * @return		is de alien geraakt, true of false
      */
-    public boolean getHit() {
-    	return hit;
+    public boolean getIsHit() {
+    	return isHit;
     }
     
     /**
@@ -105,10 +92,7 @@ public abstract class Alien extends AttackCapableGameObject implements ICollidab
             generateLaser(false);
         }
     }
-    
-    /**
-     * Verplaatst de alien een rij naar beneden
-     */
+
     protected void dropToRowBelow() {
     	setY(getY() + getHeight());
     }

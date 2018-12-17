@@ -482,7 +482,7 @@ public abstract class GameEngine extends PApplet {
 
     /**
      * Gets and calculates the relative mouse position with the location of world (TileMap).
-     * A negative value means the mouse position is detected outside the world map.
+     * A negative valueIfHit means the mouse position is detected outside the world map.
      * @param x
      * @param y
      * @return PVector
@@ -658,7 +658,7 @@ public abstract class GameEngine extends PApplet {
         }
 
         /**
-         * This method returns an integer between 0 and 3 to define which side of the Tile has been hit by the GameObject.
+         * This method returns an integer between 0 and 3 to define which side of the Tile has been isHit by the GameObject.
          * @param gameObject
          * @param tile
          * @return int
@@ -676,7 +676,7 @@ public abstract class GameEngine extends PApplet {
         }
 
         /**
-         * This method returns an integer between 0 and 3 to define which side of the Tile has been hit by the GameObject.
+         * This method returns an integer between 0 and 3 to define which side of the Tile has been isHit by the GameObject.
          * @param gameObject
          * @param centerTileX
          * @param centerTileY
@@ -729,7 +729,7 @@ public abstract class GameEngine extends PApplet {
         }
 
         /**
-         * This method calculates which side of a Tile is hit, based on angle between GameObject and Tile.
+         * This method calculates which side of a Tile is isHit, based on angle between GameObject and Tile.
          * @param angleGameObjectToTile
          * @return int
          */

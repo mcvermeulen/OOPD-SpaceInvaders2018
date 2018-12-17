@@ -9,21 +9,10 @@ import java.util.List;
  * Grondlijn klasse
  */
 public class Ground extends GameObject implements ICollidableWithGameObjects {
-    /**
-     * Referentie naar de hoofdmodule
-     */
+
 	private SpaceInvaders world;
-	/**
-	 * Y-positie van de lijn
-	 */
 	private int yPosition;
-	/**
-	 * Eerste x-positie van de lijn
-	 */
 	private int xPosition1;
-	/**
-	 * Tweede x-positie van de lijn
-	 */
 	private int xPosition2;
 
     /**

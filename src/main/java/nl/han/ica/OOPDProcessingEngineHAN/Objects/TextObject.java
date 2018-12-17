@@ -61,7 +61,7 @@ public class TextObject extends GameObject {
 	
 	/**
 	 * Sets the font size of the text.
-	 * @param fontSize The value has to be higher than 0.
+	 * @param fontSize The valueIfHit has to be higher than 0.
 	 */
 	public void setFontSize(int fontSize) {
 		
@@ -79,10 +79,10 @@ public class TextObject extends GameObject {
 	
 	/**
 	 * Sets the fore color of the text.
-	 * @param r The min and max value are 0-255.
-	 * @param g The min and max value are 0-255.
-	 * @param b The min and max value are 0-255.
-	 * @param alpha The min and max value are 0-255.
+	 * @param r The min and max valueIfHit are 0-255.
+	 * @param g The min and max valueIfHit are 0-255.
+	 * @param b The min and max valueIfHit are 0-255.
+	 * @param alpha The min and max valueIfHit are 0-255.
 	 */
 	public void setForeColor(int r, int g, int b, int alpha) {
 		
@@ -94,7 +94,7 @@ public class TextObject extends GameObject {
 	}
 	
 	/**
-	 * Gets the red value. (0-225)
+	 * Gets the red valueIfHit. (0-225)
 	 * @return int
 	 */
 	public int getRedValue() {
@@ -103,7 +103,7 @@ public class TextObject extends GameObject {
 	}
 	
 	/**
-	 * Gets the green value. (0-225)
+	 * Gets the green valueIfHit. (0-225)
 	 * @return int
 	 */
 	public int getGreenValue() {
@@ -112,7 +112,7 @@ public class TextObject extends GameObject {
 	}
 
 	/**
-	 * Gets the blue value. (0-225)
+	 * Gets the blue valueIfHit. (0-225)
 	 * @return int
 	 */
 	public int getBlueValue() {
@@ -121,7 +121,7 @@ public class TextObject extends GameObject {
 	}
 
 	/**
-	 * Gets the alpha value. (0-225)
+	 * Gets the alpha valueIfHit. (0-225)
 	 * @return int
 	 */
 	public int getAlphaValue() {

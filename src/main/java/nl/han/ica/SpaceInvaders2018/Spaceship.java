@@ -11,22 +11,11 @@ import nl.han.ica.OOPDProcessingEngineHAN.Sound.Sound;
  * Spaceship klasse
  */
 public class Spaceship extends DestroyableGameObject implements ICollidableWithGameObjects {
-    /**
-     * Beweegrichting van het ruimteschip
-     */
+
 	private int direction = 90;
-    /**
-     * Geluid dat het schip maakt, wanneer het neergeschoten wordt
-     */
 	private Sound UFOShot;
-    /**
-     * Geeft aan of het ruimteschip is geraakt door de speler
-     */
-    private boolean shot;
-    /**
-     * De punten die toegevoegd worden aan de score van de speler, als het ruimteschip wordt geraakt
-     */
-    private int value;
+    private boolean isShot;
+    private int valueIfShot;
 
     /**
      * Constructor
@@ -38,8 +27,8 @@ public class Spaceship extends DestroyableGameObject implements ICollidableWithG
     public Spaceship(SpaceInvaders world, float x, float y, Sound UFOShot) {
         super(new Sprite("nl/han/ica/SpaceInvaders2018/sprites/Ruimteschip.png"), 1, x, y, 50, 23, world);
         this.UFOShot = UFOShot;
-        this.shot = false;
-        this.value = 100;
+        this.isShot = false;
+        this.valueIfShot = 100;
 
         setCurrentFrameIndex(0);
         setDirectionSpeed(direction, 2);
@@ -63,21 +52,15 @@ public class Spaceship extends DestroyableGameObject implements ICollidableWithG
     	int value = 50 * (random.nextInt(6) + 1);
     	return value;
     }
-    
-    /**
-     * Reset het ruimteschip (maakt het weer zichtbaar)
-     */
+
     public void resetUFO() {
-    	if (shot) {
+    	if (isShot) {
     		setVisible(true);
-    		value = generateValue();
+    		valueIfShot = generateValue();
     	}
-    	shot = false;
+    	isShot = false;
     }
-    
-    /**
-     * Laat het ruimteschip bewegen
-     */
+
     public void travel() {
         // boundaries
         if (direction == 90 && x >= world.width) {
@@ -95,7 +78,7 @@ public class Spaceship extends DestroyableGameObject implements ICollidableWithG
      * Toont de bonuspunten op de locatie waar het ruimteschip was geraakt
      */
     private void showBonusPoints() {
-    	BonusPointsText bonus = new BonusPointsText((String.format("%02d", value)), 20, world);
+    	BonusPointsText bonus = new BonusPointsText((String.format("%02d", valueIfShot)), 20, world);
     	bonus.setForeColor(255, 0, 0, 255);
     	bonus.setX(getX());
     	bonus.setY(getY() + getHeight());
@@ -110,18 +93,22 @@ public class Spaceship extends DestroyableGameObject implements ICollidableWithG
         for (GameObject g:collidedGameObjects) {
             if (g instanceof Projectile) {
                 Projectile p = (Projectile) g;
-            	if(p.getFriendly()) {
-            		AttackCapableGameObject k = p.getSource();
-            		k.removeProjectile(p);
-            		shot = true;
-            		setVisible(false);
-            		explode();
-            		UFOShot.cue(140);
-            		UFOShot.play();
-            		showBonusPoints();
-            		world.increaseScore(value);
-            	}
+                if (p.getIsFriendly()) {
+                    handleCollisionEventWithPlayerProjectile(p);
+                }
             }
         }
+    }
+
+    private void handleCollisionEventWithPlayerProjectile(Projectile p) {
+        AttackCapableGameObject source = p.getSource();
+        source.removeProjectile(p);
+        isShot = true;
+        setVisible(false);
+        explode();
+        UFOShot.cue(140);
+        UFOShot.play();
+        showBonusPoints();
+        world.increaseScore(valueIfShot);
     }
 }
