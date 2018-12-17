@@ -20,37 +20,14 @@ import java.util.ArrayList;
  */
 
 public class SpaceInvaders extends GameEngine {
-    /**
-     * GameState bepaalt welk scherm moet worden getekend
-     */
-	private static GameState gameState = GameState.START;
-	/**
-	 * Serial Version UID
-	 */
+
+	private static GameState gameState = GameState.START; //GameState bepaalt welk scherm moet worden getekend
 	private static final long serialVersionUID = 2790543985929323791L;
-	/**
-	 * Sounds die horen bij dit spel
-	 */
 	private Sound shootSound, UFOShot, alienKilled, explosion;
-	/**
-	 * TextObjects voor het dashboard
-	 */
 	private TextObject dashboardText1, dashboardPlayerLives1, dashboardHighscore, dashboardLevel;
-	/**
-	 * Highscore, score van de speler, levens van de speler, breedte en hoogte van het speelveld
-	 */
 	private int highscore, scorePlayer1, livesPlayer1, playfieldWidth, playfieldHeight;
-	/**
-	 * Zorgt dat de highscore opgeslagen kan worden
-	 */
 	private IPersistence persistence;
-	/**
-	 * Levels
-	 */
     private ArrayList<Level> levels;
-    /**
-     * Huidige level waarin de speler speelt (bepaalt startpositie van de aliens)
-     */
     private Level currentLevel;
 
     public static void main(String[] args) {
@@ -75,9 +52,6 @@ public class SpaceInvaders extends GameEngine {
         addGameObject(start);
     }
 
-    /**
-     * Zet een nieuw spel klaar voor de speler
-     */
     public void newGame() {
         setGameState(GameState.INPROGRESS);
         currentLevel = levels.get(0);
@@ -164,11 +138,6 @@ public class SpaceInvaders extends GameEngine {
         dashboard.addGameObject(dashboardPlayerLives1);
     }
 
-    /**
-     * Maakt de view aan
-     * @param viewWidth				Breetde van de view
-     * @param viewHeight			Hoogte van de view
-     */
     private void createView(int viewWidth, int viewHeight) {
         View view = new View(viewWidth, viewHeight);
         view.setBackground(0,0,0);
@@ -176,20 +145,14 @@ public class SpaceInvaders extends GameEngine {
         size(viewWidth, viewHeight);
         setView(view);
     }
-    
-    /**
-     * Initialiseert het geluid
-     */
+
     private void initializeSound() {
         shootSound = new Sound(this, "nl/han/ica/SpaceInvaders2018/media/shoot.mp3");
         UFOShot = new Sound(this, "nl/han/ica/SpaceInvaders2018/media/ufo_lowpitch.mp3");
         alienKilled = new Sound(this, "nl/han/ica/SpaceInvaders2018/media/invaderkilled.mp3");
         explosion = new Sound(this, "nl/han/ica/SpaceInvaders2018/media/explosion.mp3");
     }
-    
-    /**
-     * Initialiseert het opslaan van de highscore (in een tekstbestand)
-     */
+
     private void initializePersistence() {
         persistence = new FilePersistence("main/java/nl/han/ica/SpaceInvaders2018/media/highscore.txt");
         if (persistence.fileExists()) {
@@ -197,18 +160,16 @@ public class SpaceInvaders extends GameEngine {
             refreshDasboardText();
         }
     }
-    
-    /**
-     * Initialiseert de TileMap
-     */
+
     private void initializeTileMap() {
-        /* TILES */
+        /* type tiles */
         Sprite squareSprite = new Sprite("src/main/java/nl/han/ica/SpaceInvaders2018/sprites/BunkerTile1_3hp.png");
         TileType<BunkerSquareTile> squareTileType = new TileType<>(BunkerSquareTile.class, squareSprite);
         
         Sprite slopedSprite1 = new Sprite("src/main/java/nl/han/ica/SpaceInvaders2018/sprites/BunkerTile2_3hp.png");
         TileType<BunkerSlopedTile> slopedTileType1 = new TileType<>(BunkerSlopedTile.class, slopedSprite1);
-        
+
+        /* Tile map voor de bunkers */
         TileType[] tileTypes = { squareTileType, slopedTileType1 };
         int tileSize=17;
         int tilesMap[][]={
@@ -337,51 +298,30 @@ public class SpaceInvaders extends GameEngine {
         };
         tileMap = new TileMap(tileSize, tileTypes, tilesMap);
     }
-    
-    /**
-     * Verhoogt de score
-     * @param score					Toe te voegen punten
-     */
+
     public void increaseScore(int score) {
         scorePlayer1 += score;
         refreshDasboardText();
     }
-    
-    /**
-     * Verlaagt de levens met 1
-     */
+
     public void decreaseLives() {
     	livesPlayer1--;
     	refreshDasboardText();
     }
-    
-    /**
-     * Verhoogt de levens met 1
-     */
+
     public void increaseLives() {
     	livesPlayer1++;
     	refreshDasboardText();
     }
-    
-    /**
-     * Haalt aantal levens op
-     * @return						Aantal levens
-     */
+
     public int getLives() {
     	return livesPlayer1;
     }
-    
-    /**
-     * Haalt score op
-     * @return						Score
-     */
+
     public int getScore() {
     	return scorePlayer1;
     }
-    
-    /**
-     * Update de TextObjects van het dashboard
-     */
+
     private void refreshDasboardText() {
         if (gameState != GameState.START) {
             dashboardHighscore.setText(String.format("%06d", highscore));
@@ -391,9 +331,6 @@ public class SpaceInvaders extends GameEngine {
         }
     }
 
-    /**
-     * Initialiseert de levels
-     */
     private void inititializeLevels() {
         levels = new ArrayList<>();
         int startPosition = 190;
@@ -403,9 +340,6 @@ public class SpaceInvaders extends GameEngine {
         }
     }
 
-    /**
-     * Gaat naar een hoger level
-     */
     public void increaseLevel() {
         if (currentLevel.getLevelNumber() <= 9) {
             currentLevel = levels.get(currentLevel.getLevelNumber());
@@ -415,51 +349,29 @@ public class SpaceInvaders extends GameEngine {
         refreshDasboardText();
         addGameObject(new AlienContainer(this, 400, currentLevel.getStartPositionAliens(), alienKilled, 11, 22, 22));
     }
-    
-    /**
-     * Werkt de highscore bij als de score van de speler hoger is dan de highscore
-     */
+
     public void updateHighscore() {
     	if (scorePlayer1 > highscore) {
     		persistence.saveData(Integer.toString(scorePlayer1));
     	}
     }
 
-    /**
-     * Geeft de breedte van het speelscherm
-     * @return						Breedte van het speelscherm
-     */
     public int getPlayfieldWidth() {
         return playfieldWidth;
     }
 
-    /**
-     * Geeft de hoogte van het speelscherm
-     * @return						Hoogte van het speelscherm
-     */
     public int getPlayfieldHeight() {
         return playfieldHeight;
     }
 
-    /**
-     * Set een GameState
-     * @param gameState				GameState
-     */
     public static void setGameState(GameState gameState) {
         SpaceInvaders.gameState = gameState;
     }
 
-    /**
-     * Geeft de huidige GameState
-     * @return						GameState
-     */
     public static GameState getGameState() {
         return gameState;
     }
 
-    /**
-     * Geeft aan wat er moet gebeuren wanneer het spel is afgelopen
-     */
     public void endGame() {
         setGameState(GameState.END);
         deleteAllGameOBjects();
@@ -467,10 +379,6 @@ public class SpaceInvaders extends GameEngine {
         updateHighscore();
     }
 
-    /**
-     * Haalt de highscore op
-     * @return						Highscore
-     */
     public int getHighscore() {
         return Integer.parseInt(persistence.loadDataString());
     }
