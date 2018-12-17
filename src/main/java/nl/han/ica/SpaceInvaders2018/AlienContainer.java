@@ -174,7 +174,6 @@ public class AlienContainer extends Alien {
      * @param nLargeAliens	aantal grote aliens
      */
     private void generateAliens(int nSmallAliens, int nMediumAliens, int nLargeAliens) {
-        int columns = 11;
         int row = 0;
         int margeX = 35;
         int margeY = 35;
@@ -183,7 +182,7 @@ public class AlienContainer extends Alien {
             Alien alien = new SmallAlien(world, this.getX() + offset * margeX, this.getY() + row * margeY, alienKilled);
             this.add(alien);
             offset++;
-            if (j > 0 && (j + 1) % columns == 0) {
+            if (isEndOfRowReached(j)) {
                 row++;
                 offset = 0;
             }
@@ -192,7 +191,7 @@ public class AlienContainer extends Alien {
             Alien alien = new MediumAlien(world, this.getX() + offset * margeX, this.getY() + row * margeY, alienKilled);
             this.add(alien);
             offset++;
-            if (j > 0 && (j + 1) % columns == 0) {
+            if (isEndOfRowReached(j)) {
                 row++;
                 offset = 0;
             }
@@ -201,11 +200,20 @@ public class AlienContainer extends Alien {
             Alien alien = new LargeAlien(world, this.getX() + offset * margeX, this.getY() + row * margeY, alienKilled);
             this.add(alien);
             offset++;
-            if (j > 0 && (j + 1) % columns == 0) {
+            if (isEndOfRowReached(j)) {
                 row++;
                 offset = 0;
             }
         }
+    }
+
+    private boolean isEndOfRowReached(int j) {
+        int columns = 11;
+        if (j > 0 && (j + 1) % columns == 0) {
+            return true;
+
+        }
+        return false;
     }
 
 }
