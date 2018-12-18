@@ -58,7 +58,7 @@ public abstract class Alien extends AttackCapableGameObject implements ICollidab
         for (GameObject g:collidedGameObjects) {
             if (g instanceof Projectile) {
             	Projectile p = (Projectile) g;
-            	if(p.getFriendly()) {
+            	if(p.getIsFriendly()) {
             		alienKilled.cue(140);
             		alienKilled.play();
             		AttackCapableGameObject k = p.getSource();
