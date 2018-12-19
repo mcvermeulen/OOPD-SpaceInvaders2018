@@ -13,13 +13,8 @@ import nl.han.ica.OOPDProcessingEngineHAN.Sound.Sound;
  * Het kanon (de speler)
  */
 public class Cannon extends AttackCapableGameObject implements ICollidableWithGameObjects, IAlarmListener {
-    /**
-     * Geluid van het schieten
-     */
+
     private Sound shootSound;
-    /**
-     * Geluid van de explosie
-     */
     private Sound explosion;
 
     /**
@@ -52,9 +47,6 @@ public class Cannon extends AttackCapableGameObject implements ICollidableWithGa
         }
     }
 
-    /**
-     * Bepaalt wat er moet gebeuren wanneer er bepaalde toetsaanslagen gebeuren
-     */
     @Override
     public void keyPressed(int keyCode, char key) {
         final int speed = 5;
@@ -77,9 +69,6 @@ public class Cannon extends AttackCapableGameObject implements ICollidableWithGa
         }
     }
 
-    /**
-     * Stopt de beweging van het kanon als de knoppen los worden gelaten
-     */
     @Override
     public void keyReleased(int keyCode, char key) {
         switch (keyCode) {
@@ -90,27 +79,28 @@ public class Cannon extends AttackCapableGameObject implements ICollidableWithGa
         }
     }
 
-    /**
-     * Geeft aan wat er moet gebeuren wanneer de speler wordt geraakt door een vijandelijk projectiel
-     */
     @Override
     public void gameObjectCollisionOccurred(List<GameObject> collidedGameObjects) {
         for (GameObject g : collidedGameObjects) {
             if (g instanceof Projectile) {
                 Projectile p = (Projectile) g;
-                AttackCapableGameObject k = p.getSource();
-                k.removeProjectile(p);
-                explosion.cue(140);
-                explosion.play();
-                world.decreaseLives();
-                if (world.getLives() > 0) {
-                    setVisible(false);
-                    world.pauseGame();
-                    newLifeAlarm();
-                } else if (world.getLives() == 0) {
-                    world.endGame();
-                }
+                handleCollisionEventWithCannon(p);
             }
+        }
+    }
+
+    private void handleCollisionEventWithCannon(Projectile p) {
+        AttackCapableGameObject k = p.getSource();
+        k.removeProjectile(p);
+        explosion.cue(140);
+        explosion.play();
+        world.decreaseLives();
+        if (world.getLives() > 0) {
+            setVisible(false);
+            world.pauseGame();
+            newLifeAlarm();
+        } else if (world.getLives() == 0) {
+            world.endGame();
         }
     }
 

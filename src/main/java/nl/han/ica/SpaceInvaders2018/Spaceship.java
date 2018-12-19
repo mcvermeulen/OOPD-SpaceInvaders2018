@@ -47,7 +47,7 @@ public class Spaceship extends DestroyableGameObject implements ICollidableWithG
      * Geeft een nieuwe waarde aan het Spaceship (tussen de 50 en 300 punten)
      * @return		De punten die toegevoegd worden aan de score van de speler, als het ruimteschip wordt geraakt
      */
-    public int generateValue() {
+    public int generateRandomValue() {
     	Random random = new Random();
     	int value = 50 * (random.nextInt(6) + 1);
     	return value;
@@ -56,7 +56,7 @@ public class Spaceship extends DestroyableGameObject implements ICollidableWithG
     public void resetUFO() {
     	if (isShot) {
     		setVisible(true);
-    		valueIfShot = generateValue();
+    		valueIfShot = generateRandomValue();
     	}
     	isShot = false;
     }
